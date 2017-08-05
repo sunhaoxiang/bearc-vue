@@ -1,0 +1,235 @@
+// 背景颜色
+.body-wapper {
+  background: $bodyBackground;
+}
+
+// 去掉margin padding
+.no-pd {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+.no-mg {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+.no-mp {
+  @extend .no-mp;
+  @extend .no-pd;
+}
+
+// 外边距0
+.ma-l-0 {
+  margin-left: 0px !important;
+}
+.ma-r-0 {
+  margin-right: 0px !important;
+}
+.ma-t-0 {
+  margin-top: 0px !important;
+}
+.ma-b-0 {
+  margin-bottom: 0px !important;
+}
+
+//外边距5
+.ma-l-5 {
+  margin-left: 5px !important;
+}
+.ma-r-5 {
+  margin-right: 5px !important;
+}
+.ma-t-5 {
+  margin-top: 5px !important;
+}
+.ma-b-5 {
+  margin-bottom: 5px !important;
+}
+.ma-5 {
+  @extend .ma-l-5;
+  @extend .ma-r-5;
+  @extend .ma-t-5;
+  @extend .ma-b-5;
+}
+
+// 外边距10
+.ma-l-10 {
+  margin-left: 10px !important;
+}
+.ma-r-10 {
+  margin-right: 10px !important;
+}
+.ma-t-10 {
+  margin-top: 10px !important;
+}
+.ma-b-10 {
+  margin-bottom: 10px !important;
+}
+.ma-10 {
+  @extend .ma-l-10;
+  @extend .ma-r-10;
+  @extend .ma-t-10;
+  @extend .ma-b-10;
+}
+
+// 外边距15
+.ma-l-15 {
+  margin-left: 15px !important;
+}
+.ma-r-15 {
+  margin-right: 15px !important;
+}
+.ma-t-15 {
+  margin-top: 15px !important;
+}
+.ma-b-15 {
+  margin-bottom: 15px !important;
+}
+.ma-15 {
+  @extend .ma-l-15;
+  @extend .ma-r-15;
+  @extend .ma-t-15;
+  @extend .ma-b-15;
+}
+
+// 外边距20
+.ma-l-20 {
+  margin-left: 20px !important;
+}
+.ma-r-20 {
+  margin-right: 20px !important;
+}
+.ma-t-20 {
+  margin-top: 20px !important;
+}
+.ma-b-20 {
+  margin-bottom: 20px !important;
+}
+.ma-20 {
+  @extend .ma-l-20;
+  @extend .ma-r-20;
+  @extend .ma-t-20;
+  @extend .ma-b-20;
+}
+
+// 外边距25
+.ma-l-25 {
+  margin-left: 25px !important;
+}
+.ma-r-25 {
+  margin-right: 25px !important;
+}
+.ma-t-25 {
+  margin-top: 25px !important;
+}
+.ma-b-25 {
+  margin-bottom: 25px !important;
+}
+.ma-25 {
+  @extend .ma-l-25;
+  @extend .ma-r-25;
+  @extend .ma-t-25;
+  @extend .ma-b-25;
+}
+
+// 内边距0
+.pa-l-0 {
+  padding-left: 0px !important;
+}
+.pa-r-0 {
+  padding-right: 0px !important;
+}
+.pa-t-0 {
+  padding-top: 0px !important;
+}
+.pa-b-0 {
+  padding-bottom: 0px !important;
+}
+
+// 内边距5
+.pa-l-5 {
+  padding-left: 5px !important;
+}
+.pa-r-5 {
+  padding-right: 5px !important;
+}
+.pa-t-5 {
+  padding-top: 5px !important;
+}
+.pa-b-5 {
+  padding-bottom: 5px !important;
+}
+.pa-5 {
+  @extend .pa-l-5;
+  @extend .pa-r-5;
+  @extend .pa-t-5;
+  @extend .pa-b-5;
+}
+
+// 内边距10
+.pa-l-10 {
+  padding-left: 10px !important;
+}
+.pa-r-10 {
+  padding-right: 10px !important;
+}
+.pa-t-10 {
+  padding-top: 10px !important;
+}
+.pa-b-10 {
+  padding-bottom: 10px !important;
+}
+.pa-10 {
+  @extend .pa-l-10;
+  @extend .pa-r-10;
+  @extend .pa-t-10;
+  @extend .pa-b-10;
+}
+
+// 内边距15
+.pa-l-15 {
+  padding-left: 15px !important;
+}
+.pa-r-15 {
+  padding-right: 15px !important;
+}
+.pa-t-15 {
+  padding-top: 15px !important;
+}
+.pa-b-15 {
+  padding-bottom: 15px !important;
+}
+.pa-15 {
+  @extend .pa-l-15;
+  @extend .pa-r-15;
+  @extend .pa-t-15;
+  @extend .pa-b-15;
+}
+
+// 内边距20
+.pa-l-20 {
+  padding-left: 20px !important;
+}
+.pa-r-20 {
+  padding-right: 20px !important;
+}
+.pa-t-20 {
+  padding-top: 20px !important;
+}
+.pa-b-20 {
+  padding-bottom: 20px !important;
+}
+.pa-20 {
+  @extend .pa-l-20;
+  @extend .pa-r-20;
+  @extend .pa-t-20;
+  @extend .pa-b-20;
+}
+
+// 内边距60
+.pa-t-60 {
+  padding-top: 60px !important;
+}

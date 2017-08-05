@@ -1,0 +1,10 @@
+// 淡入淡出
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to, .fade-leave {
+  opacity: 1;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: .7s;
+}
