@@ -5,7 +5,7 @@
     <div class="body-wapper pa-t-60">
       <Row>
         <Col :sm="{span: 5, offset: 1}" :md="{span: 4, offset: 2}" :lg="{span: 4, offset: 2}">
-          <Country-picker></Country-picker>
+          <Country-picker :activeIndex.sync="activeIndex"></Country-picker>
         </Col>
         <Col :sm="{span: 17}" :md="{span: 16}" :lg="{span: 16}">
           <transition name="fade" mode="out-in">
@@ -29,6 +29,12 @@ export default {
   },
   data () {
     return {
+      activeIndex: 0
+    }
+  },
+  watch: {
+    activeIndex (val, oldVal) {
+      console.log(val)
     }
   }
 }

@@ -7,37 +7,30 @@
 
 <script>
 export default {
+  props: {
+    activeIndex: {
+      type: Number,
+      default: 0,
+      required: true
+    }
+  },
   data () {
     return {
-      // country: ['所有国家', '英国', '德国', '美国', '澳大利亚'],
-      country: [
-        {
-          countryId: 0,
-          countryName: '所有国家'
-        },
-        {
-          countryId: 1,
-          countryName: '英国'
-        },
-        {
-          countryId: 3,
-          countryName: '德国'
-        },
-        {
-          countryId: 4,
-          countryName: '美国'
-        },
-        {
-          countryId: 2,
-          countryName: '日本'
-        }
-      ],
-      activeIndex: 0  // 默认选中所有国家
+      country: []
     }
+  },
+  created () {
+    this.$http.get('https://www.easy-mock.com/mock/5986c047a1d30433d8566e7e/bearc-vue/getCountry')
+      .then((res) => {
+        this.country = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   },
   methods: {
     chooseCountry (id) {
-      this.activeIndex = id
+      this.$emit('update:activeIndex', id)
     }
   }
 }

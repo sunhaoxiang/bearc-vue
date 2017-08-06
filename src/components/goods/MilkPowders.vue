@@ -1,27 +1,7 @@
 <template>
   <div>
     <Row :gutter="20">
-      <Col span="6">
-        <Item-card></Item-card>
-      </Col>
-      <Col span="6">
-        <Item-card></Item-card>
-      </Col>
-      <Col span="6">
-        <Item-card></Item-card>
-      </Col>
-      <Col span="6">
-        <Item-card></Item-card>
-      </Col>
-      <Col span="6">
-        <Item-card></Item-card>
-      </Col>
-      <Col span="6">
-        <Item-card></Item-card>
-      </Col>
-      <Col span="6">
-        <Item-card></Item-card>
-      </Col>
+123
     </Row>
   </div>
 </template>

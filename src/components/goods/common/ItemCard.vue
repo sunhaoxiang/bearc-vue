@@ -1,16 +1,22 @@
 <template>
   <div>
     <Card class="card ma-b-20" :padding="10">
-      <img class="img center" src="../../../assets/img/1.jpg" alt="">
-      <h4 class="title">自拍杆</h4>
-      <h3 class="price ma-t-25">￥50.00</h3>
-      <p class="country ma-t-10">日本</p>
+      <img class="img center" :src="itemData.imgSrc" alt="">
+      <h4 class="title">{{itemData.title}}</h4>
+      <h3 class="price ma-t-25">￥{{itemData.price}}</h3>
+      <p class="country ma-t-10">{{itemData.countryName}}</p>
     </Card>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    itemData: {
+      type: Object,
+      required: true
+    }
+  },
   data () {
     return {
     }
@@ -19,12 +25,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// @media screen and (min-width: 1440px) {
-//   .img {
-//     width: 200px;
-//     height: 200px;
-//   }
-// }
 @media screen and (min-width: 1321px) {
   .img {
     width: 200px;
