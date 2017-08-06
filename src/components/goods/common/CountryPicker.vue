@@ -21,16 +21,19 @@ export default {
   methods: {
     chooseCountry (id) {
       this.$emit('update:activeIndex', id)
+    },
+    getCountry () {
+      this.$http.get('getCountry')
+        .then((res) => {
+          this.country = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   },
   created () {
-    this.$http.get('https://www.easy-mock.com/mock/5986c047a1d30433d8566e7e/bearc-vue/getCountry')
-      .then((res) => {
-        this.country = res.data
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    this.getCountry()
   }
 }
 </script>

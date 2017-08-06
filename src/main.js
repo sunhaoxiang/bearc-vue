@@ -10,7 +10,10 @@ import Utils from './lib/utils'
 Vue.use(VueAxios, Axios)
 Vue.use(iView)
 Vue.use(Utils)
+
 Vue.config.productionTip = false
+// 接口地址
+Axios.defaults.baseURL = 'https://www.easy-mock.com/mock/5986c047a1d30433d8566e7e/bearc-vue/'
 
 /* eslint-disable no-new */
 new Vue({
