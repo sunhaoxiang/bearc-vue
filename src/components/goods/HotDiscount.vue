@@ -1,19 +1,19 @@
 <template>
   <div>
-    <Row :gutter="20">
-      <Col span="6">
+    <Row :gutter="10">
+      <Col :sm="12" :md="8" :lg="6">
         <Item-card></Item-card>
       </Col>
-      <Col span="6">
+      <Col :sm="12" :md="8" :lg="6">
         <Item-card></Item-card>
       </Col>
-      <Col span="6">
+      <Col :sm="12" :md="8" :lg="6">
         <Item-card></Item-card>
       </Col>
-      <Col span="6">
+      <Col :sm="12" :md="8" :lg="6">
         <Item-card></Item-card>
       </Col>
-      <Col span="6">
+      <Col :sm="12" :md="8" :lg="6">
         <Item-card></Item-card>
       </Col>
     </Row>

@@ -4,10 +4,10 @@
     <Nav-header></Nav-header>
     <div class="body-wapper pa-t-60">
       <Row>
-        <Col span="4" offset="2">
+        <Col :sm="{span: 5, offset: 1}" :md="{span: 4, offset: 2}" :lg="{span: 4, offset: 2}">
           <Country-picker></Country-picker>
         </Col>
-        <Col span="16">
+        <Col :sm="{span: 17}" :md="{span: 16}" :lg="{span: 16}">
           <transition name="fade" mode="out-in">
             <router-view></router-view>
           </transition>

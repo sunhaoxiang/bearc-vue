@@ -3,6 +3,15 @@
   background: $bodyBackground;
 }
 
+// 居中
+.center {
+  display: block;
+  margin: 0 auto;
+}
+.text-center {
+  text-align: center;
+}
+
 // 去掉margin padding
 .no-pd {
   padding-top: 0px !important;
@@ -133,6 +142,26 @@
   @extend .ma-r-25;
   @extend .ma-t-25;
   @extend .ma-b-25;
+}
+
+// 外边距50
+.ma-l-50 {
+  margin-left: 50px !important;
+}
+.ma-r-50 {
+  margin-right: 50px !important;
+}
+.ma-t-50 {
+  margin-top: 50px !important;
+}
+.ma-b-50 {
+  margin-bottom: 50px !important;
+}
+.ma-50 {
+  @extend .ma-l-50;
+  @extend .ma-r-50;
+  @extend .ma-t-50;
+  @extend .ma-b-50;
 }
 
 // 内边距0

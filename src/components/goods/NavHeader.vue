@@ -1,10 +1,10 @@
 <template>
   <div>
     <Row>
-      <Col span="8" offset="2">
+      <Col :sm="{span: 5, offset: 1}" :md="{span: 4, offset: 2}" :lg="{span: 4, offset: 2}">
         logo
       </Col>
-      <Col span="12">
+      <Col :sm="{span: 17}" :md="{span: 16}" :lg="{span: 16}">
         <Menu mode="horizontal" theme="light" active-name="hotdiscount" @on-select="selectMenu">
             <Menu-item name="hotdiscount">
               热门
