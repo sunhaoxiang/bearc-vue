@@ -10,13 +10,17 @@ export default {
   props: {
     activeIndex: {
       type: Number,
-      default: 0,
       required: true
     }
   },
   data () {
     return {
       country: []
+    }
+  },
+  methods: {
+    chooseCountry (id) {
+      this.$emit('update:activeIndex', id)
     }
   },
   created () {
@@ -27,11 +31,6 @@ export default {
       .catch((err) => {
         console.log(err)
       })
-  },
-  methods: {
-    chooseCountry (id) {
-      this.$emit('update:activeIndex', id)
-    }
   }
 }
 </script>
@@ -50,5 +49,6 @@ export default {
   border-left: 2px solid #2d8cf0;
   padding-left: 15px;
   color: #2d8cf0;
+  font-weight: bold;
 }
 </style>

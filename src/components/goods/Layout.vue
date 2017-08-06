@@ -9,33 +9,38 @@
         </Col>
         <Col :sm="{span: 17}" :md="{span: 16}" :lg="{span: 16}">
           <transition name="fade" mode="out-in">
-            <router-view></router-view>
+            <router-view :activeIndex="activeIndex"></router-view>
           </transition>
         </Col>
       </Row>
     </div>
+    <Nav-footer></Nav-footer>
   </div>
 </template>
 
 <script>
 import NavHeader from './NavHeader'
+import NavFooter from './NavFooter'
 import CountryPicker from './common/CountryPicker'
 
 export default {
   name: 'layout',
   components: {
     NavHeader,
+    NavFooter,
     CountryPicker
   },
   data () {
     return {
       activeIndex: 0
     }
-  },
-  watch: {
-    activeIndex (val, oldVal) {
-      console.log(val)
-    }
   }
 }
 </script>
+
+<style scoped lang="scss">
+.body-wapper {
+  background: #f5f7fc;
+  min-height: 700px;
+}
+</style>
