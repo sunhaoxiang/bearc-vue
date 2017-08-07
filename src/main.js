@@ -11,7 +11,14 @@ Vue.use(VueAxios, Axios)
 Vue.use(iView)
 Vue.use(Utils)
 
+// vue在启动时是否生成生产提示
 Vue.config.productionTip = false
+// 是否取消Vue所有的日志与警告
+Vue.config.silent = false
+// 给 v-on 自定义键位别名
+Vue.config.keyCodes = {
+}
+
 // 接口地址
 Axios.defaults.baseURL = 'https://www.easy-mock.com/mock/5986c047a1d30433d8566e7e/bearc-vue/'
 
