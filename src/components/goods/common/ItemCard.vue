@@ -3,7 +3,10 @@
     <Card class="card ma-b-20" :padding="10">
       <img class="img center" :src="itemData.imgSrc" alt="">
       <h4 class="title">{{itemData.title}}</h4>
-      <h3 class="price ma-t-25">￥{{itemData.price}}</h3>
+      <h3 class="price ma-t-25">
+        <span v-if="itemData.discountPrice"> ￥ {{itemData.discountPrice}}</span>
+        <span :class="[itemData.discountPrice ? 'discount' : '']">￥ {{itemData.price}}</span>
+      </h3>
       <p class="country ma-t-10">{{itemData.countryName}}</p>
     </Card>
   </div>
@@ -71,6 +74,11 @@ export default {
   }
   .price {
     color: #ed3f14;
+  }
+  .discount {
+    color: #80848f;
+    font-size: 12px;
+    text-decoration: #80848f line-through;
   }
   .country {
     color: #80848f;

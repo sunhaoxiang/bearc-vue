@@ -40,7 +40,7 @@ export default {
 
 <style scoped lang="scss">
 .body-wapper {
-  background: #f5f7fc;
-  min-height: 700px;
+  background: #f8f8f9;
+  min-height: 900px;
 }
 </style>
