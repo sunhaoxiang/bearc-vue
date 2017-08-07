@@ -2,16 +2,16 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 前台内容
-const Layout = resolve => require(['@/components/goods/Layout'], resolve)
-const HotDiscount = resolve => require(['@/components/goods/HotDiscount'], resolve)
-const MilkPowders = resolve => require(['@/components/goods/MilkPowders'], resolve)
-const BabyFoods = resolve => require(['@/components/goods/BabyFoods'], resolve)
-const BabyArticles = resolve => require(['@/components/goods/BabyArticles'], resolve)
-const Masks = resolve => require(['@/components/goods/Masks'], resolve)
-const Creams = resolve => require(['@/components/goods/Creams'], resolve)
-const Cosmetics = resolve => require(['@/components/goods/Cosmetics'], resolve)
-const MildyWashes = resolve => require(['@/components/goods/MildyWashes'], resolve)
-const Accessories = resolve => require(['@/components/goods/Accessories'], resolve)
+const Layout = resolve => require(['@/components/goods/layout/Layout'], resolve)
+const HotDiscount = resolve => require(['@/components/goods/module/HotDiscount'], resolve)
+const MilkPowders = resolve => require(['@/components/goods/module/MilkPowders'], resolve)
+const BabyFoods = resolve => require(['@/components/goods/module/BabyFoods'], resolve)
+const BabyArticles = resolve => require(['@/components/goods/module/BabyArticles'], resolve)
+const Masks = resolve => require(['@/components/goods/module/Masks'], resolve)
+const Creams = resolve => require(['@/components/goods/module/Creams'], resolve)
+const Cosmetics = resolve => require(['@/components/goods/module/Cosmetics'], resolve)
+const MildyWashes = resolve => require(['@/components/goods/module/MildyWashes'], resolve)
+const Accessories = resolve => require(['@/components/goods/module/Accessories'], resolve)
 
 // 后台内容
 const AdminLayout = resolve => require(['@/components/admin/AdminLayout'], resolve)

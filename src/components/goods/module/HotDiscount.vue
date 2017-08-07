@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ItemCard from './common/ItemCard'
+import ItemCard from '../common/ItemCard'
 
 export default {
   props: {

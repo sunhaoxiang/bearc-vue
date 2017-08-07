@@ -21,7 +21,7 @@
 <script>
 import NavHeader from './NavHeader'
 import NavFooter from './NavFooter'
-import CountryPicker from './common/CountryPicker'
+import CountryPicker from '../common/CountryPicker'
 
 export default {
   name: 'layout',
