@@ -159,6 +159,26 @@
   @extend .ma-b-50;
 }
 
+// 外边距120
+.ma-l-120 {
+  margin-left: 120px !important;
+}
+.ma-r-120 {
+  margin-right: 120px !important;
+}
+.ma-t-120 {
+  margin-top: 120px !important;
+}
+.ma-b-120 {
+  margin-bottom: 120px !important;
+}
+.ma-120 {
+  @extend .ma-l-120;
+  @extend .ma-r-120;
+  @extend .ma-t-120;
+  @extend .ma-b-120;
+}
+
 // 内边距0
 .pa-l-0 {
   padding-left: 0px !important;

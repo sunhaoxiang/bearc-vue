@@ -1,7 +1,26 @@
 <template>
   <div>
-    <!-- 热门，奶粉，辅食，宝宝用品，面膜，护肤，彩妆，洗护，饰品 -->
     <Nav-header></Nav-header>
+    <transition name="fade" mode="out-in">
+      <Row v-if="routeName === 'HotDiscount'">
+        <Col span="24">
+          <Carousel autoplay :autoplay-speed="3000" v-model="bannerDefault">
+              <Carousel-item>
+                  <div class="banner">1</div>
+              </Carousel-item>
+              <Carousel-item>
+                  <div class="banner">2</div>
+              </Carousel-item>
+              <Carousel-item>
+                  <div class="banner">3</div>
+              </Carousel-item>
+              <Carousel-item>
+                  <div class="banner">4</div>
+              </Carousel-item>
+          </Carousel>
+        </Col>
+      </Row>
+    </transition>
     <div class="body-wapper pa-t-60">
       <Row>
         <Col :sm="{span: 5, offset: 1}" :md="{span: 4, offset: 2}" :lg="{span: 4, offset: 2}">
@@ -32,13 +51,29 @@ export default {
   },
   data () {
     return {
+      routeName: 'HotDiscount',
+      bannerDefault: 0,
       activeIndex: 0
+    }
+  },
+  watch: {
+    $route (val, oldVal) {
+      this.routeName = val.name
+      console.log(this.routeName)
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+.banner {
+  height: 400px;
+  line-height: 400px;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  background: #506b9e;
+}
 .body-wapper {
   background: #f8f8f9;
   min-height: 900px;
