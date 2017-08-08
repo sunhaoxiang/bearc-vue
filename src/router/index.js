@@ -12,6 +12,7 @@ const Creams = resolve => require(['@/components/goods/module/Creams'], resolve)
 const Cosmetics = resolve => require(['@/components/goods/module/Cosmetics'], resolve)
 const MildyWashes = resolve => require(['@/components/goods/module/MildyWashes'], resolve)
 const Accessories = resolve => require(['@/components/goods/module/Accessories'], resolve)
+const Detail = resolve => require(['@/components/goods/detail/Detail'], resolve)
 
 // 后台内容
 const AdminLayout = resolve => require(['@/components/admin/AdminLayout'], resolve)
@@ -73,6 +74,11 @@ export default new Router({
         }
       ],
       redirect: '/hotdiscount'
+    },
+    {
+      path: '/detail/:id',
+      name: 'Detail',
+      component: Detail
     },
     {
       path: '/admin',

@@ -5,34 +5,32 @@
       <Row v-if="routeName === 'HotDiscount'">
         <Col span="24">
           <Carousel autoplay :autoplay-speed="3000" v-model="bannerDefault">
-              <Carousel-item>
-                  <div class="banner">1</div>
-              </Carousel-item>
-              <Carousel-item>
-                  <div class="banner">2</div>
-              </Carousel-item>
-              <Carousel-item>
-                  <div class="banner">3</div>
-              </Carousel-item>
-              <Carousel-item>
-                  <div class="banner">4</div>
-              </Carousel-item>
+            <Carousel-item>
+              <div class="banner">1</div>
+            </Carousel-item>
+            <Carousel-item>
+              <div class="banner">2</div>
+            </Carousel-item>
+            <Carousel-item>
+              <div class="banner">3</div>
+            </Carousel-item>
+            <Carousel-item>
+              <div class="banner">4</div>
+            </Carousel-item>
           </Carousel>
         </Col>
       </Row>
     </transition>
-    <div class="body-wapper pa-t-60">
-      <Row>
-        <Col :sm="{span: 5, offset: 1}" :md="{span: 4, offset: 2}" :lg="{span: 4, offset: 2}">
-          <Country-picker :activeIndex.sync="activeIndex"></Country-picker>
-        </Col>
-        <Col :sm="{span: 17}" :md="{span: 16}" :lg="{span: 16}">
-          <transition name="fade" mode="out-in">
-            <router-view :activeIndex="activeIndex"></router-view>
-          </transition>
-        </Col>
-      </Row>
-    </div>
+    <Row class="body-wrapper pa-t-60">
+      <Col :sm="{span: 5, offset: 1}" :md="{span: 4, offset: 2}" :lg="{span: 4, offset: 2}">
+        <Country-picker :activeIndex.sync="activeIndex"></Country-picker>
+      </Col>
+      <Col :sm="{span: 17}" :md="{span: 16}" :lg="{span: 16}">
+        <transition name="fade" mode="out-in">
+          <router-view :activeIndex="activeIndex"></router-view>
+        </transition>
+      </Col>
+    </Row>
     <Nav-footer></Nav-footer>
   </div>
 </template>
@@ -44,11 +42,6 @@ import CountryPicker from '../common/CountryPicker'
 
 export default {
   name: 'layout',
-  components: {
-    NavHeader,
-    NavFooter,
-    CountryPicker
-  },
   data () {
     return {
       routeName: 'HotDiscount',
@@ -59,8 +52,15 @@ export default {
   watch: {
     $route (val, oldVal) {
       this.routeName = val.name
-      console.log(this.routeName)
     }
+  },
+  created () {
+    this.routeName = this.$route.name
+  },
+  components: {
+    NavHeader,
+    NavFooter,
+    CountryPicker
   }
 }
 </script>
@@ -73,9 +73,5 @@ export default {
   color: #fff;
   font-size: 20px;
   background: #506b9e;
-}
-.body-wapper {
-  background: #f8f8f9;
-  min-height: 900px;
 }
 </style>

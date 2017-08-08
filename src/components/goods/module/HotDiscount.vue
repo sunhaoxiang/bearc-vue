@@ -36,14 +36,19 @@ export default {
       return data
     }
   },
+  methods: {
+    getHotdiscount () {
+      this.$http.get('getHotdiscount')
+        .then((res) => {
+          this.dataList = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  },
   created () {
-    this.$http.get('getHotdiscount')
-      .then((res) => {
-        this.dataList = res.data
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    this.getHotdiscount()
   },
   components: {
     ItemCard
