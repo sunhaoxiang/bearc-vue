@@ -165,6 +165,46 @@
   @extend .ma-b-50;
 }
 
+// 外边距60
+.ma-l-60 {
+  margin-left: 60px !important;
+}
+.ma-r-60 {
+  margin-right: 60px !important;
+}
+.ma-t-60 {
+  margin-top: 60px !important;
+}
+.ma-b-60 {
+  margin-bottom: 60px !important;
+}
+.ma-60 {
+  @extend .ma-l-60;
+  @extend .ma-r-60;
+  @extend .ma-t-60;
+  @extend .ma-b-60;
+}
+
+// 外边距80
+.ma-l-80 {
+  margin-left: 80px !important;
+}
+.ma-r-80 {
+  margin-right: 80px !important;
+}
+.ma-t-80 {
+  margin-top: 80px !important;
+}
+.ma-b-80 {
+  margin-bottom: 80px !important;
+}
+.ma-80 {
+  @extend .ma-l-80;
+  @extend .ma-r-80;
+  @extend .ma-t-80;
+  @extend .ma-b-80;
+}
+
 // 外边距120
 .ma-l-120 {
   margin-left: 120px !important;
