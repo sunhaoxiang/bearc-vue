@@ -15,7 +15,8 @@ const Accessories = resolve => require(['@/components/goods/module/Accessories']
 const Detail = resolve => require(['@/components/goods/detail/Detail'], resolve)
 
 // 后台内容
-const AdminLayout = resolve => require(['@/components/admin/AdminLayout'], resolve)
+const AdminLayout = resolve => require(['@/components/admin/layout/AdminLayout'], resolve)
+const Login = resolve => require(['@/components/admin/login/Login'], resolve)
 
 Vue.use(Router)
 
@@ -82,8 +83,15 @@ export default new Router({
     },
     {
       path: '/admin',
-      name: 'AdminHomepage',
-      component: AdminLayout
+      name: 'AdminLayout',
+      component: AdminLayout,
+      children: [
+      ]
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },
     {
       path: '*',
