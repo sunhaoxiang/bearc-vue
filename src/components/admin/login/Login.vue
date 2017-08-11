@@ -34,7 +34,7 @@ export default {
 
 <style scoped lang="scss">
 .login-wrapper {
-  margin: 300px auto 0;
+  margin: 250px auto 0;
   width: 300px;
   .login-title {
     margin-bottom: 80px;
