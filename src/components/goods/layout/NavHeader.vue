@@ -41,10 +41,6 @@
 
 <script>
 export default {
-  data () {
-    return {
-    }
-  },
   methods: {
     selectMenu (name) {
       this.$router.push(name)

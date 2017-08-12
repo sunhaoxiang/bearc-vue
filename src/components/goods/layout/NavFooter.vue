@@ -8,12 +8,6 @@
   </div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style scoped lang="scss">
 .footer {
   color: #fff;

@@ -2,7 +2,7 @@
   <div>
     <Row :gutter="10">
       <Col :sm="12" :md="8" :lg="6" v-for="item in dataListByCountry" :key="item.id">
-        <Item-card :itemData="item"></Item-card>
+        <item-card :itemData="item"></item-card>
       </Col>
     </Row>
   </div>
@@ -20,27 +20,25 @@ export default {
   },
   data () {
     return {
-      dataList: []
+      goodsList: []
     }
   },
   computed: {
     dataListByCountry () {
-      let data = []
       if (this.activeIndex === 0) {
-        data = this.dataList
+        return this.goodsList
       } else {
-        data = this.dataList.filter((ele) => {
+        return this.goodsList.filter((ele) => {
           return ele.countryId === this.activeIndex
         })
       }
-      return data
     }
   },
   methods: {
     getHotdiscount () {
       this.$http.get('getHotdiscount')
         .then((res) => {
-          this.dataList = res.data
+          this.goodsList = res.data.result
         })
         .catch((err) => {
           console.log(err)

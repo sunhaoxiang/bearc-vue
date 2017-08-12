@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="ma-b-25">国家</h3>
-    <p class="country ma-b-15" :class="[activeIndex === item.countryId ? 'is-active' : '']" v-for="item in country" :key="item.countryId" @click="chooseCountry(item.countryId)">{{item.countryName}}</p>
+    <p class="country ma-b-15" :class="{'is-active': activeIndex === item.countryId}" v-for="item in country" :key="item.countryId" @click="chooseCountry(item.countryId)">{{item.countryName}}</p>
   </div>
 </template>
 

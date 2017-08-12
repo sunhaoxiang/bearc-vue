@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Nav-header></Nav-header>
+    <nav-header></nav-header>
     <transition name="fade" mode="out-in">
       <Row v-if="routeName === 'HotDiscount'">
         <Col span="24">
@@ -23,7 +23,7 @@
     </transition>
     <Row class="body-wrapper pa-t-60">
       <Col :sm="{span: 5, offset: 1}" :md="{span: 4, offset: 2}" :lg="{span: 4, offset: 2}">
-        <Country-picker :activeIndex.sync="activeIndex"></Country-picker>
+        <country-picker :activeIndex.sync="activeIndex"></country-picker>
       </Col>
       <Col :sm="{span: 17}" :md="{span: 16}" :lg="{span: 16}">
         <transition name="fade" mode="out-in">
@@ -31,7 +31,7 @@
         </transition>
       </Col>
     </Row>
-    <Nav-footer></Nav-footer>
+    <nav-footer></nav-footer>
   </div>
 </template>
 

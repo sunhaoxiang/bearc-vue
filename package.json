@@ -2,7 +2,7 @@
   "name": "bearc-vue",
   "version": "1.0.0",
   "description": "bearc-vue",
-  "author": "sunhaoxiang",
+  "author": "孙昊翔 <673686754@qq.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

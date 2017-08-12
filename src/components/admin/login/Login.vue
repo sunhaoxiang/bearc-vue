@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Login-canvas></Login-canvas>
+    <login-canvas></login-canvas>
     <div class="login-wrapper">
       <h2 class="login-title text-center">Bearc 管理系统</h2>
       <Input class="login-input" type="text" size="large" v-model="userId">

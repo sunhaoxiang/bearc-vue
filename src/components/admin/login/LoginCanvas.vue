@@ -1,5 +1,5 @@
 <template>
-  <canvas style="display:block; position:absolute; left:0px; top:0px; z-index:-1;" id="Mycanvas"></canvas>
+  <canvas id="canvas" class="canvas"></canvas>
 </template>
 
 <script>
@@ -15,7 +15,7 @@ export default {
       var WIDTH = window.innerWidth
       var HEIGHT = window.innerHeight
       var POINT = 35
-      var canvas = document.getElementById('Mycanvas')
+      var canvas = document.getElementById('canvas')
       canvas.width = WIDTH
       canvas.height = HEIGHT
       var context = canvas.getContext('2d')
@@ -119,3 +119,13 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.canvas {
+  display:block;
+  position:absolute;
+  left:0px;
+  top:0px;
+  z-index:-1;
+}
+</style>

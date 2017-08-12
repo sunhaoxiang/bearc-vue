@@ -62,7 +62,7 @@
         </Card>
       </Col>
     </Row> 
-    <Nav-footer></Nav-footer>
+    <nav-footer></nav-footer>
   </div>
 </template>
 

@@ -1,11 +1,11 @@
 <template>
   <div>
     <Card class="card ma-b-20" :padding="10">
-      <img class="img center" :src="itemData.imgSrc" alt="">
-      <h4 class="title">{{itemData.title}}</h4>
+      <img class="img center" :src="itemData.goodsImgSrc" alt="">
+      <h4 class="title">{{itemData.goodsName}}</h4>
       <h3 class="price ma-t-25">
-        <span v-if="itemData.discountPrice"> ￥ {{itemData.discountPrice}}</span>
-        <span :class="[itemData.discountPrice ? 'discount' : '']">￥ {{itemData.price}}</span>
+        <span v-if="itemData.goodsDiscountPrice"> ￥ {{itemData.goodsDiscountPrice}}</span>
+        <span :class="{'discount': itemData.goodsDiscountPrice}">￥ {{itemData.goodsPrice}}</span>
       </h3>
       <p class="country ma-t-10">{{itemData.countryName}}</p>
     </Card>
