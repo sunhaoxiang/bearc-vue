@@ -14,8 +14,7 @@ import ItemCard from '../common/ItemCard'
 export default {
   props: {
     activeIndex: {
-      type: Number,
-      required: true
+      type: Number
     }
   },
   data () {

@@ -9,8 +9,7 @@
 export default {
   props: {
     activeIndex: {
-      type: Number,
-      required: true
+      type: Number
     }
   },
   data () {

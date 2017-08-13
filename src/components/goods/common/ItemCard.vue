@@ -1,7 +1,7 @@
 <template>
   <div>
     <Card class="card ma-b-20" :padding="10">
-      <img class="img center" :src="itemData.goodsImgSrc" alt="">
+      <img class="img center" v-lazy="itemData.goodsImgSrc" :alt="itemData.goodsName">
       <h4 class="title">{{itemData.goodsName}}</h4>
       <h3 class="price ma-t-25">
         <span v-if="itemData.goodsDiscountPrice"> ￥ {{itemData.goodsDiscountPrice}}</span>
@@ -16,8 +16,7 @@
 export default {
   props: {
     itemData: {
-      type: Object,
-      required: true
+      type: Object
     }
   },
   data () {

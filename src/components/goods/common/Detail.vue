@@ -6,31 +6,31 @@
       </Col>
       <Col :sm="{span: 17}" :md="{span: 16}" :lg="{span: 16}">
         <Menu mode="horizontal" theme="light" :active-name="activeName" @on-select="selectMenu">
-            <Menu-item name="hotdiscount">
+            <Menu-item name="HotDiscount">
               热门
             </Menu-item>
-            <Menu-item name="milkpowder">
+            <Menu-item name="MilkPowder">
               奶粉
             </Menu-item>
-            <Menu-item name="babyfoods">
+            <Menu-item name="BabyFoods">
               辅食
             </Menu-item>
-            <Menu-item name="babyarticles">
+            <Menu-item name="BabyArticles">
               宝宝用品
             </Menu-item>
-            <Menu-item name="masks">
+            <Menu-item name="Masks">
               面膜
             </Menu-item>
-            <Menu-item name="creams">
+            <Menu-item name="Creams">
               护肤
             </Menu-item>
-            <Menu-item name="cosmetics">
+            <Menu-item name="Cosmetics">
               彩妆
             </Menu-item>
-            <Menu-item name="mildywashes">
+            <Menu-item name="MildyWashes">
               洗护
             </Menu-item>
-            <Menu-item name="accessories">
+            <Menu-item name="Accessories">
               饰品
             </Menu-item>
         </Menu>

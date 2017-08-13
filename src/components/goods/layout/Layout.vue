@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-header></nav-header>
+    <nav-header :activeName="routeName"></nav-header>
     <transition name="fade" mode="out-in">
       <Row v-if="routeName === 'HotDiscount'">
         <Col span="24">
@@ -44,7 +44,7 @@ export default {
   name: 'layout',
   data () {
     return {
-      routeName: 'HotDiscount',
+      routeName: '',
       bannerDefault: 0,
       activeIndex: 0
     }
