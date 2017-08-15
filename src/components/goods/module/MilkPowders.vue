@@ -13,8 +13,8 @@ import ItemCard from '../common/ItemCard'
 
 export default {
   props: {
-    activeIndex: {
-      type: Number
+    activeName: {
+      type: String
     }
   },
   data () {
@@ -24,20 +24,20 @@ export default {
   },
   computed: {
     dataListByCountry () {
-      if (this.activeIndex === 0) {
+      if (this.activeName === '所有国家') {
         return this.goodsList
       } else {
         return this.goodsList.filter((ele) => {
-          return ele.countryId === this.activeIndex
+          return ele.productCountry === this.activeName
         })
       }
     }
   },
   methods: {
-    getHotdiscount () {
-      this.$http.get('getHotdiscount')
+    getHot () {
+      this.$http.get('goods')
         .then((res) => {
-          this.goodsList = res.data.result
+          this.goodsList = res.data.result.list
         })
         .catch((err) => {
           console.log(err)
@@ -45,7 +45,7 @@ export default {
     }
   },
   created () {
-    this.getHotdiscount()
+    this.getHot()
   },
   components: {
     ItemCard

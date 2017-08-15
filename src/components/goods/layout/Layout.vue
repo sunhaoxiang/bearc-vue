@@ -2,7 +2,7 @@
   <div>
     <nav-header :activeName="routeName"></nav-header>
     <transition name="fade" mode="out-in">
-      <Row v-if="routeName === 'HotDiscount'">
+      <Row v-if="routeName === 'Hot'">
         <Col span="24">
           <Carousel autoplay :autoplay-speed="3000" v-model="bannerDefault">
             <Carousel-item>
@@ -23,11 +23,11 @@
     </transition>
     <Row class="body-wrapper pa-t-60">
       <Col :sm="{span: 5, offset: 1}" :md="{span: 4, offset: 2}" :lg="{span: 4, offset: 2}">
-        <country-picker :activeIndex.sync="activeIndex"></country-picker>
+        <country-picker :activeName.sync="activeName"></country-picker>
       </Col>
       <Col :sm="{span: 17}" :md="{span: 16}" :lg="{span: 16}">
         <transition name="fade" mode="out-in">
-          <router-view :activeIndex="activeIndex"></router-view>
+          <router-view :activeName="activeName"></router-view>
         </transition>
       </Col>
     </Row>
@@ -46,7 +46,7 @@ export default {
     return {
       routeName: '',
       bannerDefault: 0,
-      activeIndex: 0
+      activeName: '所有国家'
     }
   },
   watch: {

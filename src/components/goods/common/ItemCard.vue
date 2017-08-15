@@ -1,13 +1,13 @@
 <template>
   <div>
     <Card class="card ma-b-20" :padding="10">
-      <img class="img center" v-lazy="itemData.goodsImgSrc" :alt="itemData.goodsName">
-      <h4 class="title">{{itemData.goodsName}}</h4>
+      <img class="img center" v-lazy="itemData.productImgSrc" :alt="itemData.productName">
+      <h4 class="title">{{itemData.productName}}</h4>
       <h3 class="price ma-t-25">
-        <span v-if="itemData.goodsDiscountPrice"> ￥ {{itemData.goodsDiscountPrice}}</span>
-        <span :class="{'discount': itemData.goodsDiscountPrice}">￥ {{itemData.goodsPrice}}</span>
+        <span v-if="itemData.productDiscountPrice"> ￥ {{itemData.productDiscountPrice}}</span>
+        <span :class="{'discount': itemData.productDiscountPrice}">￥ {{itemData.productPrice}}</span>
       </h3>
-      <p class="country ma-t-10">{{itemData.countryName}}</p>
+      <p class="country ma-t-10">{{itemData.productCountry}}</p>
     </Card>
   </div>
 </template>

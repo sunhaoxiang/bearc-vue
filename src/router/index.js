@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 // 前台内容
 const Layout = resolve => require(['@/components/goods/layout/Layout'], resolve)
-const HotDiscount = resolve => require(['@/components/goods/module/HotDiscount'], resolve)
+const Hot = resolve => require(['@/components/goods/module/Hot'], resolve)
 const MilkPowders = resolve => require(['@/components/goods/module/MilkPowders'], resolve)
 const BabyFoods = resolve => require(['@/components/goods/module/BabyFoods'], resolve)
 const BabyArticles = resolve => require(['@/components/goods/module/BabyArticles'], resolve)
@@ -29,9 +29,9 @@ export default new Router({
       component: Layout,
       children: [
         {
-          path: 'hotdiscount',
-          name: 'HotDiscount',
-          component: HotDiscount
+          path: 'hot',
+          name: 'Hot',
+          component: Hot
         },
         {
           path: 'milkpowder',
@@ -74,7 +74,7 @@ export default new Router({
           component: Accessories
         }
       ],
-      redirect: '/hotdiscount'
+      redirect: '/hot'
     },
     {
       path: '/detail/:id',
@@ -95,7 +95,7 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/hotdiscount'
+      redirect: '/hot'
     }
   ]
 })

@@ -1,15 +1,16 @@
 <template>
   <div>
     <h3 class="ma-b-25">国家</h3>
-    <p class="country ma-b-15" :class="{'is-active': activeIndex === item.countryId}" v-for="item in country" :key="item.countryId" @click="chooseCountry(item.countryId)">{{item.countryName}}</p>
+    <p class="country ma-b-15" :class="{'is-active': activeName === '所有国家'}" @click="chooseCountry('所有国家')">所有国家</p>
+    <p class="country ma-b-15" :class="{'is-active': activeName === item.country}" v-for="item in country" :key="item.country" @click="chooseCountry(item.country)">{{item.country}}</p>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    activeIndex: {
-      type: Number
+    activeName: {
+      type: String
     }
   },
   data () {
@@ -18,13 +19,13 @@ export default {
     }
   },
   methods: {
-    chooseCountry (id) {
-      this.$emit('update:activeIndex', id)
+    chooseCountry (name) {
+      this.$emit('update:activeName', name)
     },
     getCountry () {
-      this.$http.get('getCountry')
+      this.$http.get('countries')
         .then((res) => {
-          this.country = res.data
+          this.country = res.data.result.list
         })
         .catch((err) => {
           console.log(err)
