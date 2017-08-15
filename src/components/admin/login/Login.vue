@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="display:flex">
     <login-canvas></login-canvas>
     <div class="login-wrapper">
       <h2 class="login-title text-center">Bearc 管理系统</h2>
@@ -34,7 +34,10 @@ export default {
 
 <style scoped lang="scss">
 .login-wrapper {
-  margin: 250px auto 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
   width: 300px;
   .login-title {
     margin-bottom: 80px;

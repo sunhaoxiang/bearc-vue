@@ -1,3 +1,23 @@
+//     ┏┓     ┏┓
+//    ┏┛┻━━━━━┛┻┓
+//    ┃         ┃
+//    ┃    ━    ┃
+//    ┃  ┳┛ ┗┳  ┃
+//    ┃         ┃
+//    ┃    ┻    ┃
+//    ┃         ┃
+//    ┗━┓     ┏━┛
+//      ┃     ┃
+//      ┃     ┃
+//      ┃     ┗━━━━━┓
+//      ┃           ┣┓
+//      ┃           ┏┛
+//      ┗┓┓┏━━━━━┳┓┏┛
+//       ┃┫┫     ┃┫┫
+//       ┗┻┛     ┗┻┛
+//   神兽保佑,永无BUG
+//   Code is far away from bug with the animal protecting
+
 import Vue from 'vue'
 import App from './App'
 import router from './router'
