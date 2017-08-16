@@ -1,7 +1,7 @@
 <template>
   <div>
     <Row :gutter="10">
-      <Col :sm="12" :md="8" :lg="6" v-for="item in dataListByCountry" :key="item.id">
+      <Col :sm="12" :md="8" :lg="6" v-for="item in dataListByCountry" :key="item._id">
         <item-card :itemData="item"></item-card>
       </Col>
     </Row>
@@ -34,8 +34,8 @@ export default {
     }
   },
   methods: {
-    getHot () {
-      this.$http.get('goods')
+    getGoodsList () {
+      this.$http.get('goods/hot')
         .then((res) => {
           this.goodsList = res.data.result.list
         })
@@ -45,7 +45,7 @@ export default {
     }
   },
   created () {
-    this.getHot()
+    this.getGoodsList()
   },
   components: {
     ItemCard
