@@ -9,28 +9,31 @@
             <Menu-item name="Hot">
               热门
             </Menu-item>
-            <Menu-item name="MilkPowder">
+            <Menu-item name="milkpowders">
               奶粉
             </Menu-item>
-            <Menu-item name="BabyFoods">
+            <Menu-item name="babyfoods">
               辅食
             </Menu-item>
-            <Menu-item name="BabyArticles">
+            <Menu-item name="babyarticles">
               宝宝用品
             </Menu-item>
-            <Menu-item name="Masks">
+            <Menu-item name="masks">
               面膜
             </Menu-item>
-            <Menu-item name="Creams">
+            <Menu-item name="creams">
               护肤
             </Menu-item>
-            <Menu-item name="Cosmetics">
+            <Menu-item name="cosmetics">
               彩妆
             </Menu-item>
-            <Menu-item name="MildyWashes">
+            <Menu-item name="mildywashes">
               洗护
             </Menu-item>
-            <Menu-item name="Accessories">
+            <Menu-item name="healthproducts">
+              保健
+            </Menu-item>
+            <Menu-item name="accessories">
               饰品
             </Menu-item>
         </Menu>

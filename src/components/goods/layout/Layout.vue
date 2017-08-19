@@ -2,7 +2,7 @@
   <div>
     <nav-header :activeName="routeName"></nav-header>
     <transition name="fade" mode="out-in">
-      <Row v-if="routeName === 'Hot'">
+      <Row v-if="routeName === 'hot'">
         <Col span="24">
           <Carousel autoplay :autoplay-speed="3000" v-model="bannerDefault">
             <Carousel-item>

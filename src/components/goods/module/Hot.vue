@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     getGoodsList () {
-      this.$http.get('goods/hot')
+      this.$http.get('getgoods/hot')
         .then((res) => {
           this.goodsList = res.data.result.list
         })

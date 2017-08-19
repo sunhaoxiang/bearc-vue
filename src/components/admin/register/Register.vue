@@ -2,14 +2,14 @@
   <div style="display:flex">
     <canvas-background></canvas-background>
     <div class="login-wrapper">
-      <h2 class="login-title text-center">Bearc 管理系统 - 登录</h2>
+      <h2 class="login-title text-center">Bearc 管理系统 - 注册</h2>
       <Input class="login-input" type="text" size="large" v-model="username">
           <span slot="prepend">账 号</span>
       </Input>
       <Input class="login-input" type="password" size="large" v-model="password">
           <span slot="prepend">密 码</span>
       </Input>
-      <Button class="login-button" type="primary" size="large">登 录</Button>
+      <Button class="login-button" type="primary" size="large">注 册</Button>
     </div>
   </div>
 </template>

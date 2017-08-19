@@ -44,8 +44,7 @@ Vue.config.keyCodes = {
 }
 
 // 接口地址
-// Axios.defaults.baseURL = 'https://www.easy-mock.com/mock/5986c047a1d30433d8566e7e/bearc-vue/'
-Axios.defaults.baseURL = 'http://localhost:8888/'
+Axios.defaults.baseURL = 'http://localhost:9999/'
 
 /* eslint-disable no-new */
 new Vue({

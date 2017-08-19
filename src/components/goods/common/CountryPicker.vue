@@ -23,7 +23,7 @@ export default {
       this.$emit('update:activeName', name)
     },
     getCountry () {
-      this.$http.get('countries')
+      this.$http.get('getcountries')
         .then((res) => {
           this.country = res.data.result.list
         })
