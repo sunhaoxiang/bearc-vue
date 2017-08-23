@@ -17,8 +17,8 @@ const Detail = resolve => require(['@/components/goods/common/Detail'], resolve)
 
 // 后台内容
 const AdminLayout = resolve => require(['@/components/admin/layout/AdminLayout'], resolve)
-const Register = resolve => require(['@/components/admin/register/Register'], resolve)
-const Login = resolve => require(['@/components/admin/login/Login'], resolve)
+const Register = resolve => require(['@/components/register/Register'], resolve)
+const Login = resolve => require(['@/components/login/Login'], resolve)
 
 Vue.use(Router)
 
@@ -92,9 +92,6 @@ const router = new Router({
       path: '/admin',
       name: 'adminlayout',
       component: AdminLayout,
-      meta: {
-        login: true
-      },
       children: [
       ]
     },
@@ -113,14 +110,6 @@ const router = new Router({
       redirect: '/hot'
     }
   ]
-})
-
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(item => item.meta.login)) {
-    next('/login')
-  } else {
-    next()
-  }
 })
 
 export default router
