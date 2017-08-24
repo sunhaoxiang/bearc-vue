@@ -16,7 +16,6 @@
         </Form-item>
         <Button class="login-button" type="primary" size="large" @click="login">登 录</Button>
       </Form>
-
     </div>
   </div>
 </template>
@@ -51,12 +50,16 @@ export default {
           password: this.formLogin.password
         })
           .then((res) => {
-            if (res.data.status !== 0) {
+            if (res.data.status === 2 || res.data.status === 3) {
               this.$Message.error(res.data.msg)
             } else {
               this.$Message.success(res.data.msg)
-              this.$store.commit('login', res.data.result)
+              sessionStorage.setItem('bearcUsername', res.data.result.username)
+              sessionStorage.setItem('bearcToken', res.data.result.token)
+              this.$store.commit('login')
               this.$router.push('/admin')
+              console.log(sessionStorage.getItem('bearcUsername'))
+              console.log(sessionStorage.getItem('bearcToken'))
             }
           })
           .catch((err) => {
