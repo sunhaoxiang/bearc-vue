@@ -27,10 +27,36 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      if (vm.$store.state.login === false) {
-        next('/login')
-      } else {
+      if (vm.$store.state.login === true) {
         next()
+      } else {
+        vm.$http.post('users/verifytoken', {
+          username: sessionStorage.getItem('bearcUsername'),
+          token: sessionStorage.getItem('bearcToken')
+        })
+          .then((res) => {
+            switch (res.data.status) {
+              // 验证成功
+              case 0:
+                vm.$store.commit('login')
+                next()
+                break
+              // 验证成功，但需要更新token
+              case 1:
+                sessionStorage.setItem('bearcToken', res.data.result.newToken)
+                vm.$store.commit('login')
+                next()
+                break
+              // 验证失败
+              case 4:
+                vm.$Message.error(res.data.msg)
+                next('/login')
+                break
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       }
     })
   }

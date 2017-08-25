@@ -58,8 +58,6 @@ export default {
               sessionStorage.setItem('bearcToken', res.data.result.token)
               this.$store.commit('login')
               this.$router.push('/admin')
-              console.log(sessionStorage.getItem('bearcUsername'))
-              console.log(sessionStorage.getItem('bearcToken'))
             }
           })
           .catch((err) => {
