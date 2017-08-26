@@ -1,15 +1,21 @@
 <template>
   <div style="display:flex">
     <canvas-background></canvas-background>
-    <div class="login-wrapper">
-      <h2 class="login-title text-center">Bearc 管理系统 - 注册</h2>
-      <Input class="login-input" type="text" size="large" v-model="username">
-          <span slot="prepend">账 号</span>
-      </Input>
-      <Input class="login-input" type="password" size="large" v-model="password">
-          <span slot="prepend">密 码</span>
-      </Input>
-      <Button class="login-button" type="primary" size="large">注 册</Button>
+    <div class="register-wrapper">
+      <h2 class="register-title text-center">Bearc 管理系统 - 注册</h2>
+      <Form :model="formRegister" :rules="ruleRegister">
+        <Form-item prop="username">
+          <Input class="register-input" type="text" size="large" v-model="formRegister.username">
+            <Icon type="ios-person-outline" size="20" slot="prepend"></Icon>
+          </Input>
+        </Form-item>
+        <Form-item prop="password">
+          <Input class="register-input" type="password" size="large" v-model="formRegister.password">
+            <Icon type="ios-locked-outline" size="20" slot="prepend"></Icon>
+          </Input>
+        </Form-item>
+        <Button class="register-button" type="primary" size="large" @click="register">注 册</Button>
+      </Form>
     </div>
   </div>
 </template>
@@ -20,9 +26,22 @@ import CanvasBackground from '../common/CanvasBackground'
 export default {
   data () {
     return {
-      username: '',
-      password: ''
+      formRegister: {
+        username: '',
+        password: ''
+      },
+      ruleRegister: {
+        username: [
+          { required: true, message: '账号不能为空', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '密码不能为空', trigger: 'blur' }
+        ]
+      }
     }
+  },
+  methods: {
+    register () {}
   },
   components: {
     CanvasBackground
@@ -31,20 +50,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.login-wrapper {
+.register-wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   width: 300px;
-  .login-title {
+  .register-title {
     margin-bottom: 80px;
   }
-  .login-input {
+  .register-input {
     width: 300px;
     margin-bottom: 10px;
   }
-  .login-button {
+  .register-button {
     width: 300px;
     margin-top: 30px;
   }

@@ -3,7 +3,7 @@
     <canvas-background></canvas-background>
     <div class="login-wrapper">
       <h2 class="login-title text-center">Bearc 管理系统 - 登录</h2>
-      <Form ref="formLogin" :model="formLogin" :rules="ruleLogin">
+      <Form :model="formLogin" :rules="ruleLogin">
         <Form-item prop="username">
           <Input class="login-input" type="text" size="large" v-model="formLogin.username">
             <Icon type="ios-person-outline" size="20" slot="prepend"></Icon>
