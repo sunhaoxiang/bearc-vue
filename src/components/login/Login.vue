@@ -54,9 +54,8 @@ export default {
               this.$Message.error(res.data.msg)
             } else {
               this.$Message.success(res.data.msg)
-              sessionStorage.setItem('bearcUsername', res.data.result.username)
-              sessionStorage.setItem('bearcToken', res.data.result.token)
-              this.$store.commit('login')
+              localStorage.setItem('bearcToken', res.data.result.token)
+              this.$store.commit('login', res.data.result.username)
               this.$router.push('/admin')
             }
           })

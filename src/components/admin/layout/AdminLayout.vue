@@ -31,20 +31,19 @@ export default {
         next()
       } else {
         vm.$http.post('users/verifytoken', {
-          username: sessionStorage.getItem('bearcUsername'),
-          token: sessionStorage.getItem('bearcToken')
+          token: localStorage.getItem('bearcToken')
         })
           .then((res) => {
             switch (res.data.status) {
               // 验证成功
               case 0:
-                vm.$store.commit('login')
+                vm.$store.commit('login', res.data.result.username)
                 next()
                 break
               // 验证成功，但需要更新token
               case 1:
-                sessionStorage.setItem('bearcToken', res.data.result.newToken)
-                vm.$store.commit('login')
+                localStorage.setItem('bearcToken', res.data.result.newToken)
+                vm.$store.commit('login', res.data.result.username)
                 next()
                 break
               // 验证失败
