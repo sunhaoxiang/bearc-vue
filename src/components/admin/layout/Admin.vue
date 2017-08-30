@@ -1,7 +1,24 @@
 <template>
   <div>
+    <Menu mode="horizontal" theme="dark" active-name="1">
+        <MenuItem name="1">
+          <Icon type="ios-paper"></Icon>
+          商品管理
+        </MenuItem>
+        <MenuItem name="2">
+          <Icon type="ios-people"></Icon>
+          客户管理
+        </MenuItem>
+        <MenuItem name="3">
+          <Icon type="stats-bars"></Icon>
+          统计分析
+        </MenuItem>
+        <MenuItem name="4" class="fr">
+          <Icon type="ios-gear"></Icon>
+          综合设置
+        </MenuItem>
+    </Menu>
     <router-view></router-view>
-    <Button type="primary" size="large" @click="test">测 试</Button>
   </div>
 </template>
 
@@ -13,17 +30,6 @@ export default {
     }
   },
   methods: {
-    test () {
-      this.$http.post('users/test', {
-        token: this.$store.state.token
-      })
-        .then((res) => {
-          console.log(res)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
@@ -42,8 +48,8 @@ export default {
                 break
               // 验证成功，但需要更新token
               case 1:
-                localStorage.setItem('bearcToken', res.data.result.newToken)
                 vm.$store.commit('login', res.data.result.username)
+                localStorage.setItem('bearcToken', res.data.result.newToken)
                 next()
                 break
               // 验证失败

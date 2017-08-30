@@ -10,8 +10,8 @@ const store = new Vuex.Store({
   },
   mutations: {
     login (state, username) {
-      state.login = true
       state.username = username
+      state.login = true
     }
   }
 })

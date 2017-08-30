@@ -2,7 +2,7 @@
   <div>
     <Row>
       <Col span="24">
-        <p class="footer pa-t-30 pa-b-30 text-center">Copyright &copy; 2017 Sunhaoxiang All Rights Reserved.</p>
+        <p class="footer pa-t-30 pa-b-30 text-center">Copyright &copy; 2017-2017 Sunhaoxiang All Rights Reserved.</p>
       </Col>
     </Row>
   </div>

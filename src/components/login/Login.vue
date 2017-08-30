@@ -50,13 +50,13 @@ export default {
           password: this.formLogin.password
         })
           .then((res) => {
-            if (res.data.status === 2 || res.data.status === 3) {
-              this.$Message.error(res.data.msg)
-            } else {
+            if (res.data.status === 0) {
               this.$Message.success(res.data.msg)
               localStorage.setItem('bearcToken', res.data.result.token)
               this.$store.commit('login', res.data.result.username)
               this.$router.push('/admin')
+            } else {
+              this.$Message.error(res.data.msg)
             }
           })
           .catch((err) => {

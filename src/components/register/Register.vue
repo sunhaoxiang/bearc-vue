@@ -41,7 +41,27 @@ export default {
     }
   },
   methods: {
-    register () {}
+    register () {
+      if (this.formRegister.username === '' || this.formRegister.password === '') {
+        this.$Message.error('账号或密码不能为空')
+      } else {
+        this.$http.post('/users/register', {
+          username: this.formRegister.username,
+          password: this.formRegister.password
+        })
+          .then((res) => {
+            if (res.data.status === 5) {
+              this.$Message.success(res.data.msg)
+              this.$router.push('/login')
+            } else {
+              this.$Message.error(res.data.msg)
+            }
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      }
+    }
   },
   components: {
     CanvasBackground

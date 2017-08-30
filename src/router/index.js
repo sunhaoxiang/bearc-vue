@@ -15,10 +15,13 @@ const HealthProducts = resolve => require(['@/components/goods/module/HealthProd
 const Accessories = resolve => require(['@/components/goods/module/Accessories'], resolve)
 const Detail = resolve => require(['@/components/goods/common/Detail'], resolve)
 
-// 后台内容
-const AdminLayout = resolve => require(['@/components/admin/layout/AdminLayout'], resolve)
+// 注册登录
 const Register = resolve => require(['@/components/register/Register'], resolve)
 const Login = resolve => require(['@/components/login/Login'], resolve)
+
+// 后台内容
+const Admin = resolve => require(['@/components/admin/layout/Admin'], resolve)
+const Goods = resolve => require(['@/components/admin/module/goods'], resolve)
 
 Vue.use(Router)
 
@@ -90,9 +93,14 @@ const router = new Router({
     },
     {
       path: '/admin',
-      name: 'adminlayout',
-      component: AdminLayout,
+      name: 'admin',
+      component: Admin,
       children: [
+        {
+          path: 'goods',
+          name: 'goods',
+          component: Goods
+        }
       ]
     },
     {
