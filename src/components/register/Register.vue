@@ -3,7 +3,7 @@
     <canvas-background></canvas-background>
     <div class="register-wrapper">
       <h2 class="register-title text-center">Bearc 管理系统 - 注册</h2>
-      <Form :model="formRegister" :rules="ruleRegister">
+      <Form ref="formRegister" :model="formRegister" :rules="ruleRegister">
         <Form-item prop="username">
           <Input class="register-input" type="text" size="large" v-model="formRegister.username">
             <Icon type="ios-person-outline" size="20" slot="prepend"></Icon>
@@ -14,7 +14,7 @@
             <Icon type="ios-locked-outline" size="20" slot="prepend"></Icon>
           </Input>
         </Form-item>
-        <Button class="register-button" type="primary" size="large" @click="register">注 册</Button>
+        <Button class="register-button" type="primary" size="large" @click="register('formRegister')">注 册</Button>
       </Form>
     </div>
   </div>
@@ -32,35 +32,41 @@ export default {
       },
       ruleRegister: {
         username: [
-          { required: true, message: '账号不能为空', trigger: 'blur' }
+          { required: true, message: '账号不能为空', trigger: 'blur' },
+          { type: 'string', min: 6, message: '账号不能少于6个字符', trigger: 'blur' },
+          { type: 'string', max: 32, message: '账号不能多于32个字符', trigger: 'blur' }
         ],
         password: [
-          { required: true, message: '密码不能为空', trigger: 'blur' }
+          { required: true, message: '密码不能为空', trigger: 'blur' },
+          { type: 'string', min: 6, message: '密码不能少于6个字符', trigger: 'blur' },
+          { type: 'string', max: 32, message: '密码不能多于32个字符', trigger: 'blur' }
         ]
       }
     }
   },
   methods: {
-    register () {
-      if (this.formRegister.username === '' || this.formRegister.password === '') {
-        this.$Message.error('账号或密码不能为空')
-      } else {
-        this.$http.post('/users/register', {
-          username: this.formRegister.username,
-          password: this.formRegister.password
-        })
-          .then((res) => {
-            if (res.data.status === 5) {
-              this.$Message.success(res.data.msg)
-              this.$router.push('/login')
-            } else {
-              this.$Message.error(res.data.msg)
-            }
+    register (name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          this.$http.post('/users/register', {
+            username: this.formRegister.username,
+            password: this.formRegister.password
           })
-          .catch((err) => {
-            console.log(err)
-          })
-      }
+            .then((res) => {
+              if (res.data.status === 5) {
+                this.$Message.success(res.data.msg)
+                this.$router.push('/login')
+              } else {
+                this.$Message.error(res.data.msg)
+              }
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        } else {
+          this.$Message.error('表单验证失败!')
+        }
+      })
     }
   },
   components: {
