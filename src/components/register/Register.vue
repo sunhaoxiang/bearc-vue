@@ -10,11 +10,11 @@
           </Input>
         </Form-item>
         <Form-item prop="password">
-          <Input class="register-input" type="password" size="large" v-model="formRegister.password">
+          <Input class="register-input" type="password" size="large" v-model="formRegister.password" @keyup.enter.native="registerSubmit('formRegister')">
             <Icon type="ios-locked-outline" size="20" slot="prepend"></Icon>
           </Input>
         </Form-item>
-        <Button class="register-button" type="primary" size="large" @click="register('formRegister')">注 册</Button>
+        <Button class="register-button" type="primary" size="large" @click="registerSubmit('formRegister')">注 册</Button>
       </Form>
     </div>
   </div>
@@ -22,6 +22,7 @@
 
 <script>
 import CanvasBackground from '../common/CanvasBackground'
+import { register } from '@/axios/axios.js'
 
 export default {
   data () {
@@ -45,28 +46,30 @@ export default {
     }
   },
   methods: {
-    register (name) {
+    registerSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$http.post('/users/register', {
-            username: this.formRegister.username,
-            password: this.formRegister.password
-          })
-            .then((res) => {
-              if (res.data.status === 5) {
-                this.$Message.success(res.data.msg)
-                this.$router.push('/login')
-              } else {
-                this.$Message.error(res.data.msg)
-              }
-            })
-            .catch((err) => {
-              console.log(err)
-            })
+          this.registerAsync()
         } else {
-          this.$Message.error('表单验证失败!')
+          this.$Message.error('表单验证失败')
         }
       })
+    },
+    async registerAsync () {
+      try {
+        let res = await register({
+          username: this.formRegister.username,
+          password: this.formRegister.password
+        })
+        if (res.data.status === 5) {
+          this.$Message.success(res.data.msg)
+          this.$router.push('/login')
+        } else {
+          this.$Message.error(res.data.msg)
+        }
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   components: {

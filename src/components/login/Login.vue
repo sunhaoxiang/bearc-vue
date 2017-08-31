@@ -10,11 +10,11 @@
           </Input>
         </Form-item>
         <Form-item prop="password">
-          <Input class="login-input" type="password" size="large" v-model="formLogin.password">
+          <Input class="login-input" type="password" size="large" v-model="formLogin.password" @keyup.enter.native="loginSubmit('formLogin')">
             <Icon type="ios-locked-outline" size="20" slot="prepend"></Icon>
           </Input>
         </Form-item>
-        <Button class="login-button" type="primary" size="large" @click="login('formLogin')">登 录</Button>
+        <Button class="login-button" type="primary" size="large" @click="loginSubmit('formLogin')">登 录</Button>
       </Form>
     </div>
   </div>
@@ -22,6 +22,7 @@
 
 <script>
 import CanvasBackground from '../common/CanvasBackground'
+import { login } from '@/axios/axios.js'
 
 export default {
   data () {
@@ -41,30 +42,32 @@ export default {
     }
   },
   methods: {
-    login (name) {
+    loginSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$http.post('/users/login', {
-            username: this.formLogin.username,
-            password: this.formLogin.password
-          })
-            .then((res) => {
-              if (res.data.status === 0) {
-                this.$Message.success(res.data.msg)
-                localStorage.setItem('bearcToken', res.data.result.token)
-                this.$store.commit('login', res.data.result.username)
-                this.$router.push('/admin')
-              } else {
-                this.$Message.error(res.data.msg)
-              }
-            })
-            .catch((err) => {
-              console.log(err)
-            })
+          this.loginAsync()
         } else {
-          this.$Message.error('表单验证失败!')
+          this.$Message.error('表单验证失败')
         }
       })
+    },
+    async loginAsync () {
+      try {
+        let res = await login({
+          username: this.formLogin.username,
+          password: this.formLogin.password
+        })
+        if (res.data.status === 0) {
+          this.$Message.success(res.data.msg)
+          localStorage.setItem('bearcToken', res.data.result.token)
+          this.$store.commit('login', res.data.result.username)
+          this.$router.push('/admin')
+        } else {
+          this.$Message.error(res.data.msg)
+        }
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   components: {

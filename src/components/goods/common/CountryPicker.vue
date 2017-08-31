@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { getCountries } from '@/axios/axios.js'
+
 export default {
   props: {
     activeName: {
@@ -22,18 +24,17 @@ export default {
     chooseCountry (name) {
       this.$emit('update:activeName', name)
     },
-    getCountry () {
-      this.$http.get('getcountries')
-        .then((res) => {
-          this.country = res.data.result.list
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+    async getCountryAsync () {
+      try {
+        let res = await getCountries()
+        this.country = res.data.result.list
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   created () {
-    this.getCountry()
+    this.getCountryAsync()
   }
 }
 </script>

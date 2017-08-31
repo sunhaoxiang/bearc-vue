@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import { verifyToken } from '@/axios/axios.js'
+
 export default {
   name: 'adminLayout',
   data () {
@@ -59,32 +61,35 @@ export default {
       if (vm.$store.state.login === true) {
         next()
       } else {
-        vm.$http.post('users/verifytoken', {
-          token: localStorage.getItem('bearcToken')
-        })
-          .then((res) => {
-            switch (res.data.status) {
-              // 验证成功
-              case 0:
-                vm.$store.commit('login', res.data.result.username)
-                next()
-                break
-              // 验证成功，但需要更新token
-              case 1:
-                vm.$store.commit('login', res.data.result.username)
-                localStorage.setItem('bearcToken', res.data.result.newToken)
-                next()
-                break
-              // 验证失败
-              case 4:
-                vm.$Message.error(res.data.msg)
-                next('/login')
-                break
-            }
+        verifyTokenAsync()
+      }
+      async function verifyTokenAsync () {
+        try {
+          let res = await verifyToken({
+            token: localStorage.getItem('bearcToken')
           })
-          .catch((err) => {
-            console.log(err)
-          })
+          console.log(res)
+          switch (res.data.status) {
+            // 验证成功
+            case 0:
+              vm.$store.commit('login', res.data.result.username)
+              next()
+              break
+            // 验证成功，但需要更新token
+            case 1:
+              vm.$store.commit('login', res.data.result.username)
+              localStorage.setItem('bearcToken', res.data.result.newToken)
+              next()
+              break
+            // 验证失败
+            default:
+              vm.$Message.error(res.data.msg)
+              next('/login')
+              break
+          }
+        } catch (err) {
+          console.log(err)
+        }
       }
     })
   }
