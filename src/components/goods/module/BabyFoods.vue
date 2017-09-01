@@ -10,6 +10,7 @@
 
 <script>
 import ItemCard from '../common/ItemCard'
+import { getBabyFoods } from '@/axios/axios.js'
 
 export default {
   props: {
@@ -34,18 +35,17 @@ export default {
     }
   },
   methods: {
-    getGoodsList () {
-      this.$http.get('getgoods/babyfoods')
-        .then((res) => {
-          this.goodsList = res.data.result.list
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+    async getBabyFoodsAsync () {
+      try {
+        let res = await getBabyFoods()
+        this.goodsList = res.data.result.list
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   created () {
-    this.getGoodsList()
+    this.getBabyFoodsAsync()
   },
   components: {
     ItemCard

@@ -68,7 +68,6 @@ export default {
           let res = await verifyToken({
             token: localStorage.getItem('bearcToken')
           })
-          console.log(res)
           switch (res.data.status) {
             // 验证成功
             case 0:
