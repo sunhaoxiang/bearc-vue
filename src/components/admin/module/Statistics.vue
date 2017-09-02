@@ -1,6 +1,6 @@
 <template>
   <div>
-    商品管理开发中
+    统计分析开发中
   </div>
 </template>
 

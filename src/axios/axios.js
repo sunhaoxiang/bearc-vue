@@ -1,16 +1,16 @@
-import Axios from 'axios'
+import axios from 'axios'
 
 // 接口地址
-Axios.defaults.baseURL = 'http://localhost:9999/'
+axios.defaults.baseURL = 'http://localhost:9999/'
 
 // get 方法
 function get (url) {
-  return body => Axios.get(url, { params: body })
+  return body => axios.get(url, { params: body })
 }
 
 // post 方法
 function post (url) {
-  return body => Axios.post(url, body)
+  return body => axios.post(url, body)
 }
 
 // 前台

@@ -21,7 +21,10 @@ const Login = resolve => require(['@/components/login/Login'], resolve)
 
 // 后台内容
 const Admin = resolve => require(['@/components/admin/layout/Admin'], resolve)
-const Goods = resolve => require(['@/components/admin/module/goods'], resolve)
+const Goods = resolve => require(['@/components/admin/module/Goods'], resolve)
+const Customers = resolve => require(['@/components/admin/module/Customers'], resolve)
+const Statistics = resolve => require(['@/components/admin/module/Statistics'], resolve)
+const Settings = resolve => require(['@/components/admin/module/Settings'], resolve)
 
 Vue.use(Router)
 
@@ -100,8 +103,24 @@ const router = new Router({
           path: 'goods',
           name: 'goods',
           component: Goods
+        },
+        {
+          path: 'customers',
+          name: 'customers',
+          component: Customers
+        },
+        {
+          path: 'statistics',
+          name: 'statistics',
+          component: Statistics
+        },
+        {
+          path: 'settings',
+          name: 'settings',
+          component: Settings
         }
-      ]
+      ],
+      redirect: 'admin/goods'
     },
     {
       path: '/register',

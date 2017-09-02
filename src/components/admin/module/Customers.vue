@@ -1,6 +1,6 @@
 <template>
   <div>
-    商品管理开发中
+    客户管理开发中
   </div>
 </template>
 
