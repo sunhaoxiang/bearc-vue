@@ -11,7 +11,7 @@
         客户管理
       </MenuItem>
       <MenuItem name="statistics">
-        <Icon type="stats-bars"></Icon>
+        <Icon type="ios-pulse-strong"></Icon>
         统计分析
       </MenuItem>
       <MenuItem name="settings">

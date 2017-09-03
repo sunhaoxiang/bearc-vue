@@ -1,7 +1,7 @@
 <template>
   <div>
     <admin-header :activeName="routeName"></admin-header>
-    <router-view class="body-wrapper"></router-view>
+    <router-view class="body-wrapper min-height"></router-view>
     <admin-footer></admin-footer>
   </div>
 </template>
