@@ -59,11 +59,11 @@ export default {
   },
   watch: {
     $route (val, oldVal) {
-      this.routeName = val.name
+      this.routeName = val.matched[1].name
     }
   },
   created () {
-    this.routeName = this.$route.name
+    this.routeName = this.$route.matched[1].name
   },
   components: {
     AdminHeader,

@@ -21,10 +21,17 @@ const Login = resolve => require(['@/components/login/Login'], resolve)
 
 // 后台内容
 const Admin = resolve => require(['@/components/admin/layout/Admin'], resolve)
-const Goods = resolve => require(['@/components/admin/module/Goods'], resolve)
-const Customers = resolve => require(['@/components/admin/module/Customers'], resolve)
-const Statistics = resolve => require(['@/components/admin/module/Statistics'], resolve)
-const Settings = resolve => require(['@/components/admin/module/Settings'], resolve)
+// Goods模块
+const Goods = resolve => require(['@/components/admin/module/Goods/Goods'], resolve)
+const GoodsList = resolve => require(['@/components/admin/module/Goods/GoodsList'], resolve)
+const AddGoods = resolve => require(['@/components/admin/module/Goods/AddGoods'], resolve)
+const HotGoods = resolve => require(['@/components/admin/module/Goods/HotGoods'], resolve)
+// Customers模块
+const Customers = resolve => require(['@/components/admin/module/Customers/Customers'], resolve)
+// Statistics模块
+const Statistics = resolve => require(['@/components/admin/module/Statistics/Statistics'], resolve)
+// Settings模块
+const Settings = resolve => require(['@/components/admin/module/Settings/Settings'], resolve)
 
 Vue.use(Router)
 
@@ -112,7 +119,25 @@ const router = new Router({
         {
           path: 'goods',
           name: 'goods',
-          component: Goods
+          component: Goods,
+          children: [
+            {
+              path: 'goodslist',
+              name: 'goodslist',
+              component: GoodsList
+            },
+            {
+              path: 'addgoods',
+              name: 'addgoods',
+              component: AddGoods
+            },
+            {
+              path: 'hotgoods',
+              name: 'hotgoods',
+              component: HotGoods
+            }
+          ],
+          redirect: 'goods/goodslist'
         },
         {
           path: 'customers',
@@ -130,7 +155,7 @@ const router = new Router({
           component: Settings
         }
       ],
-      redirect: 'admin/goods'
+      redirect: 'admin/goods/goodslist'
     },
     {
       path: '*',

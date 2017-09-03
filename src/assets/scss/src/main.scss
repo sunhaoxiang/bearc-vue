@@ -351,6 +351,26 @@
   @extend .pa-b-30;
 }
 
+// 内边距40
+.pa-l-40 {
+  padding-left: 40px !important;
+}
+.pa-r-40 {
+  padding-right: 40px !important;
+}
+.pa-t-40 {
+  padding-top: 40px !important;
+}
+.pa-b-40 {
+  padding-bottom: 40px !important;
+}
+.pa-40 {
+  @extend .pa-l-40;
+  @extend .pa-r-40;
+  @extend .pa-t-40;
+  @extend .pa-b-40;
+}
+
 // 内边距50
 .pa-l-50 {
   padding-left: 50px !important;
