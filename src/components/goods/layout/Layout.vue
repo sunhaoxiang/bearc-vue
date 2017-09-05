@@ -21,7 +21,7 @@
         </Col>
       </Row>
     </transition>
-    <Row class="body-wrapper min-height pa-t-60">
+    <Row class="body-wrapper body-min-height pa-t-60">
       <Col :sm="{span: 5, offset: 1}" :md="{span: 4, offset: 2}" :lg="{span: 4, offset: 2}">
         <country-picker :activeName.sync="activeName"></country-picker>
       </Col>

@@ -39,7 +39,7 @@
         </Menu>
       </Col>
     </Row> 
-     <Row class="body-wrapper min-height pa-t-20">
+     <Row class="body-wrapper body-min-height pa-t-20">
       <Col :sm="{span: 22, offset: 1}" :md="{span: 20, offset: 2}" :lg="{span: 20, offset: 2}">
         <Card shadow class="card">
           <Row>
