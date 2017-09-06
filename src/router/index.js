@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/store'
+import { verifyToken } from '@/axios/axios.js'
 
 // 前台内容
 const Layout = resolve => require(['@/components/goods/layout/Layout'], resolve)
@@ -115,6 +117,9 @@ const router = new Router({
       path: '/admin',
       name: 'admin',
       component: Admin,
+      meta: {
+        login: true
+      },
       children: [
         {
           path: 'goods',
@@ -162,6 +167,44 @@ const router = new Router({
       redirect: '/hot'
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(item => item.meta.login)) {
+    if (store.state.login === true) {
+      next()
+    } else {
+      verifyTokenAsync()
+    }
+  } else {
+    next()
+  }
+  async function verifyTokenAsync () {
+    try {
+      let res = await verifyToken({
+        token: localStorage.getItem('bearcToken')
+      })
+      switch (res.data.status) {
+        // 验证成功
+        case 0:
+          store.commit('login', res.data.result.username)
+          next()
+          break
+        // 验证成功，但需要更新token
+        case 1:
+          store.commit('login', res.data.result.username)
+          localStorage.setItem('bearcToken', res.data.result.newToken)
+          next()
+          break
+        // 验证失败
+        default:
+          next('/login')
+          break
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
 })
 
 export default router

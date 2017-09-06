@@ -32,7 +32,7 @@ export default {
           width: 100
         },
         {
-          title: '折扣',
+          title: '折扣价',
           key: 'discount',
           width: 100
         },
@@ -78,28 +78,28 @@ export default {
           class: '母婴',
           productPrice: 100,
           productDiscountPrice: 120,
-          discount: '100%'
+          discount: 80
         },
         {
           productName: '商品2商品2商品2',
           class: '饰品',
           productPrice: 20,
           productDiscountPrice: 30,
-          discount: '100%'
+          discount: 0
         },
         {
           productName: '商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3',
           class: '饰品',
           productPrice: 150,
           productDiscountPrice: 200,
-          discount: '100%'
+          discount: 180
         },
         {
           productName: '商品4商品4商品4',
           class: '饰品',
           productPrice: 300,
           productDiscountPrice: 350,
-          discount: '100%'
+          discount: 345
         }
       ]
     }
