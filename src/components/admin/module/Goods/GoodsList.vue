@@ -53,7 +53,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.show(params.index)
+                    this.change(params.index)
                   }
                 }
               }, '修改'),
@@ -105,8 +105,8 @@ export default {
     }
   },
   methods: {
-    show (index) {
-      console.log(`show ${index}`)
+    change (index) {
+      console.log(`change ${index}`)
     },
     remove (index) {
       console.log(`remove ${index}`)

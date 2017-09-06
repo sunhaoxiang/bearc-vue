@@ -27,8 +27,8 @@ export const getHealthProducts = get('getgoods/healthproducts')  // 保健
 export const getAccessories = get('getgoods/accessories')  // 饰品
 
 // 注册登录
-export const register = post('/users/register')  // 注册
-export const login = post('/users/login')  // 登录
+export const register = post('/register')  // 注册
+export const login = post('/login')  // 登录
 
 // 后台
 export const verifyToken = post('users/verifytoken')  // 验证登录
