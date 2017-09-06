@@ -14,7 +14,7 @@ function post (url) {
 }
 
 // 前台
-export const getCountries = get('getcountries')  // 获取国家数据
+export const getCountries = get('getcountries')  // 国家数据
 export const getHot = get('getgoods/hot')  // 热门
 export const getMilkPowders = get('getgoods/milkpowders')  // 奶粉
 export const getBabyFoods = get('getgoods/babyfoods')  // 辅食
@@ -32,3 +32,4 @@ export const login = post('/login')  // 登录
 
 // 后台
 export const verifyToken = post('users/verifytoken')  // 验证登录
+export const getGoodsList = get('users/goodslist/get')  // 商品列表
