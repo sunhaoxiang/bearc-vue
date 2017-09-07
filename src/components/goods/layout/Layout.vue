@@ -46,7 +46,7 @@ export default {
     return {
       routeName: '',
       bannerDefault: 0,
-      activeName: '所有国家'
+      activeName: 'allCountries'
     }
   },
   watch: {

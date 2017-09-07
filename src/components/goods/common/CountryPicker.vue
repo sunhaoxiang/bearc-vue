@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 class="ma-b-25">国家</h3>
-    <p class="country ma-b-15" :class="{'is-active': activeName === '所有国家'}" @click="chooseCountry('所有国家')">所有国家</p>
+    <p class="country ma-b-15" :class="{'is-active': activeName === 'allCountries'}" @click="chooseCountry('allCountries')">所有国家</p>
     <p class="country ma-b-15" :class="{'is-active': activeName === item.country}" v-for="item in country" :key="item._id" @click="chooseCountry(item.country)">{{item.country}}</p>
   </div>
 </template>

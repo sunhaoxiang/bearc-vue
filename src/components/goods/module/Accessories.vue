@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     dataListByCountry () {
-      if (this.activeName === '所有国家') {
+      if (this.activeName === 'allCountries') {
         return this.goodsList
       } else {
         return this.goodsList.filter((ele) => {
