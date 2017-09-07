@@ -1,8 +1,27 @@
 <template>
   <div>
     <Card shadow class="admin-card center">
-      <Table :columns="tHeader" :data="tBody"></Table>
+      <div class="ma-b-10">
+        <Button type="primary" size="large" @click="addGoodsBtn = true">
+          <Icon type="ios-compose-outline"></Icon>
+          添加商品
+        </Button>
+        <Button type="primary" size="large" @click="exportData">
+          <Icon type="ios-download-outline"></Icon>
+          导出商品数据
+        </Button>
+      </div>
+      <Table :columns="tHeader" :data="tBody" ref="table"></Table>
     </Card>
+    <Modal
+      width='1000'
+      :mask-closable='false'
+      v-model="addGoodsBtn"
+      title="添加商品"
+      @on-ok="addGoodsSubmit"
+      @on-cancel="addGoodsCancel">
+      <p>对话框内容</p>
+    </Modal>
   </div>
 </template>
 
@@ -60,7 +79,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.change(params.index)
+                    this.changeGood(params.index)
                   }
                 }
               }, '修改'),
@@ -71,7 +90,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.remove(params.index)
+                    this.removeGood(params.index)
                   }
                 }
               }, '删除')
@@ -79,40 +98,8 @@ export default {
           }
         }
       ],
-      tBody: [
-        {
-          productName: '商品1商品1商品1商品1商品1',
-          class: '母婴',
-          country: 'aaa',
-          productPrice: 100,
-          productDiscountPrice: 120,
-          discount: 80
-        },
-        {
-          productName: '商品2商品2商品2',
-          class: '饰品',
-          country: 'aaa',
-          productPrice: 20,
-          productDiscountPrice: 30,
-          discount: 0
-        },
-        {
-          productName: '商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3',
-          class: '饰品',
-          country: '澳大利亚',
-          productPrice: 150,
-          productDiscountPrice: 200,
-          discount: 180
-        },
-        {
-          productName: '商品4商品4商品4',
-          class: '饰品',
-          country: 'aaa',
-          productPrice: 300,
-          productDiscountPrice: 350,
-          discount: 345
-        }
-      ]
+      tBody: [],
+      addGoodsBtn: false
     }
   },
   methods: {
@@ -141,12 +128,19 @@ export default {
         console.log(err)
       }
     },
-    change (index) {
+    exportData () {
+      this.$refs.table.exportCsv({
+        filename: '商品数据'
+      })
+    },
+    changeGood (index) {
       console.log(`change ${index}`)
     },
-    remove (index) {
+    removeGood (index) {
       console.log(`remove ${index}`)
-    }
+    },
+    addGoodsSubmit () {},
+    addGoodsCancel () {}
   },
   created () {
     this.getGoodsListAsync()

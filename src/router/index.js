@@ -26,7 +26,6 @@ const Admin = resolve => require(['@/components/admin/layout/Admin'], resolve)
 // Goods模块
 const Goods = resolve => require(['@/components/admin/module/Goods/Goods'], resolve)
 const GoodsList = resolve => require(['@/components/admin/module/Goods/GoodsList'], resolve)
-const AddGoods = resolve => require(['@/components/admin/module/Goods/AddGoods'], resolve)
 const HotGoods = resolve => require(['@/components/admin/module/Goods/HotGoods'], resolve)
 // Customers模块
 const Customers = resolve => require(['@/components/admin/module/Customers/Customers'], resolve)
@@ -130,11 +129,6 @@ const router = new Router({
               path: 'goodslist',
               name: 'goodslist',
               component: GoodsList
-            },
-            {
-              path: 'addgoods',
-              name: 'addgoods',
-              component: AddGoods
             },
             {
               path: 'hotgoods',

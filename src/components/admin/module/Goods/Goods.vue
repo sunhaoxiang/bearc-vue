@@ -7,10 +7,6 @@
             <Icon type="ios-list"></Icon>
             商品列表
           </MenuItem>
-          <MenuItem name="addgoods">
-            <Icon type="ios-compose"></Icon>
-            商品添加
-          </MenuItem>
           <MenuItem name="hotgoods">
             <Icon type="ios-flame"></Icon>
             热门商品
