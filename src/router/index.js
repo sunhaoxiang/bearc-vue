@@ -165,11 +165,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(item => item.meta.login)) {
-    if (store.state.login === true) {
-      next()
-    } else {
-      verifyTokenAsync()
-    }
+    verifyTokenAsync()
   } else {
     next()
   }

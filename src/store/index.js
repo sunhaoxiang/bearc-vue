@@ -11,11 +11,9 @@ const store = new Vuex.Store({
   mutations: {
     login (state, username) {
       state.username = username
-      state.login = true
     },
     logout (state) {
       state.username = ''
-      state.login = false
     }
   }
 })
