@@ -14,13 +14,17 @@
       <Table :columns="tHeader" :data="tBody" ref="table"></Table>
     </Card>
     <Modal
-      width='1000'
+      width='800'
       :mask-closable='false'
       v-model="addGoodsBtn"
       title="添加商品"
       @on-ok="addGoodsSubmit"
       @on-cancel="addGoodsCancel">
-      <p>对话框内容</p>
+      <Form :model="formAddGoods" :rules="ruleAddGoods" :label-width="80">
+        <FormItem label="商品名" prop="productName">
+          <Input v-model="formAddGoods.productName" placeholder="请输入姓名"></Input>
+        </FormItem>
+      </Form>
     </Modal>
   </div>
 </template>
@@ -99,7 +103,15 @@ export default {
         }
       ],
       tBody: [],
-      addGoodsBtn: false
+      addGoodsBtn: false,
+      formAddGoods: {
+        productName: ''
+      },
+      ruleAddGoods: {
+        productName: [
+          { required: true, message: '商品名不能为空', trigger: 'blur' }
+        ]
+      }
     }
   },
   methods: {
