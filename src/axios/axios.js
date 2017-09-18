@@ -32,4 +32,5 @@ export const login = post('/login')  // 登录
 
 // 后台
 export const verifyToken = post('users/verifytoken')  // 验证登录
+export const upload = post('users/upload')  // 上传文件
 export const getGoodsList = get('users/goodslist/get')  // 商品列表

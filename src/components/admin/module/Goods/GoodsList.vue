@@ -23,6 +23,16 @@
       <Form :model="formAddGoods" :rules="ruleAddGoods" :label-width="80">
         <FormItem label="商品名" prop="productName">
           <Input v-model="formAddGoods.productName" placeholder="请输入姓名"></Input>
+          <Upload
+            action="http://localhost:9999/users/upload/"
+            name="image"
+            accept="image/gif,image/jpeg,image/jpg,image/png"
+            :max-size="2048"
+            :data="token"
+            :on-success="uploadSuccess"
+            :on-error="uploadError">
+              <Button type="ghost" icon="ios-cloud-upload-outline">上传图片</Button>
+          </Upload>
         </FormItem>
       </Form>
     </Modal>
@@ -114,6 +124,13 @@ export default {
       }
     }
   },
+  computed: {
+    token () {
+      return {
+        token: localStorage.getItem('bearcToken')
+      }
+    }
+  },
   methods: {
     async getGoodsListAsync () {
       try {
@@ -135,7 +152,6 @@ export default {
             this.$router.push('/login')
             break
         }
-        // this.goodsList = res.data.result.list
       } catch (err) {
         console.log(err)
       }
@@ -152,7 +168,15 @@ export default {
       console.log(`remove ${index}`)
     },
     addGoodsSubmit () {},
-    addGoodsCancel () {}
+    addGoodsCancel () {},
+    uploadSuccess (res, file) {
+      console.log(res)
+      console.log(file)
+    },
+    uploadError (err, file) {
+      console.log(err)
+      this.$Message.error('上传失败')
+    }
   },
   created () {
     this.getGoodsListAsync()
