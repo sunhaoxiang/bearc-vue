@@ -33,6 +33,7 @@
             :on-error="uploadError">
               <Button type="ghost" icon="ios-cloud-upload-outline">上传图片</Button>
           </Upload>
+          <div><img :src="uploadSrc"></div>
         </FormItem>
       </Form>
     </Modal>
@@ -121,7 +122,8 @@ export default {
         productName: [
           { required: true, message: '商品名不能为空', trigger: 'blur' }
         ]
-      }
+      },
+      uploadSrc: ''
     }
   },
   computed: {
