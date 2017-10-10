@@ -21,8 +21,10 @@
       @on-ok="addGoodsSubmit"
       @on-cancel="addGoodsCancel">
       <Form :model="formAddGoods" :rules="ruleAddGoods" :label-width="80">
-        <FormItem label="商品名" prop="productName">
+        <FormItem label="商品名称" prop="productName">
           <Input v-model="formAddGoods.productName" placeholder="请输入姓名"></Input>
+        </FormItem>
+        <FormItem label="商品图片" prop="productImgSrc">
           <Upload
             action="http://localhost:9999/users/upload/"
             name="image"
@@ -30,10 +32,12 @@
             :max-size="2048"
             :data="token"
             :on-success="uploadSuccess"
-            :on-error="uploadError">
+            :on-error="uploadError"
+            :on-remove="uploadRemove">
               <Button type="ghost" icon="ios-cloud-upload-outline">上传图片</Button>
           </Upload>
-          <div><img :src="uploadSrc"></div>
+          <Input class="upload-img-src" v-model="formAddGoods.productImgsrc"></Input>
+          <img class="upload-img" :src="formAddGoods.productImgSrc">
         </FormItem>
       </Form>
     </Modal>
@@ -116,14 +120,14 @@ export default {
       tBody: [],
       addGoodsBtn: false,
       formAddGoods: {
-        productName: ''
+        productName: '',
+        productImgSrc: ''
       },
       ruleAddGoods: {
         productName: [
-          { required: true, message: '商品名不能为空', trigger: 'blur' }
+          { required: true, message: '商品名称不能为空', trigger: 'blur' }
         ]
-      },
-      uploadSrc: ''
+      }
     }
   },
   computed: {
@@ -172,12 +176,14 @@ export default {
     addGoodsSubmit () {},
     addGoodsCancel () {},
     uploadSuccess (res, file) {
-      console.log(res)
-      console.log(file)
+      this.formAddGoods.productImgSrc = res.result.path
     },
     uploadError (err, file) {
       console.log(err)
       this.$Message.error('上传失败')
+    },
+    uploadRemove (file) {
+      this.formAddGoods.productImgSrc = ''
     }
   },
   created () {
@@ -185,3 +191,13 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.upload-img-src {
+  display: none;
+}
+.upload-img {
+  display: block;
+  width: 200px;
+}
+</style>
