@@ -61,7 +61,7 @@ export default {
           username: this.formRegister.username,
           password: this.formRegister.password
         })
-        if (res.data.status === 5) {
+        if (res.data.status === 0) {
           this.$Message.success(res.data.msg)
           this.$router.push('/login')
         } else {
