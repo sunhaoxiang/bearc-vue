@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
 import { verifyToken } from '@/axios/axios.js'
+import Cookies from 'js-cookie'
 
 // 前台内容
 const Layout = resolve => require(['@/components/goods/layout/Layout'], resolve)
@@ -172,7 +173,7 @@ router.beforeEach((to, from, next) => {
   async function verifyTokenAsync () {
     try {
       let res = await verifyToken({
-        token: localStorage.getItem('bearcToken')
+        token: Cookies.get('bearcToken')
       })
       switch (res.data.status) {
         // 验证成功
@@ -183,7 +184,7 @@ router.beforeEach((to, from, next) => {
         // 验证成功，但需要更新token
         case 1:
           store.commit('login', res.data.result.username)
-          localStorage.setItem('bearcToken', res.data.result.newToken)
+          Cookies.set('bearcToken', res.data.result.newToken)
           next()
           break
         // 验证失败

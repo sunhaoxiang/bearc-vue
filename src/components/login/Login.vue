@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 import CanvasBackground from '../common/CanvasBackground'
 import { login } from '@/axios/axios.js'
 
@@ -59,7 +60,7 @@ export default {
         })
         if (res.data.status === 0) {
           this.$Message.success(res.data.msg)
-          localStorage.setItem('bearcToken', res.data.result.token)
+          Cookies.set('bearcToken', res.data.result.token)
           this.$store.commit('login', res.data.result.username)
           this.$router.push('/admin')
         } else {

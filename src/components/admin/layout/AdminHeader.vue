@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
+
 export default {
   props: {
     activeName: {
@@ -55,7 +57,7 @@ export default {
       this.$router.push(`/admin/${name}`)
     },
     logout () {
-      localStorage.setItem('bearcToken', '')
+      Cookies.remove('bearcToken')
       this.$store.commit('logout')
       this.$router.push('/login')
     }

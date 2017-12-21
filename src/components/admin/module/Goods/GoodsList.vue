@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 import { getGoodsList } from '@/axios/axios.js'
 
 export default {
@@ -141,7 +142,7 @@ export default {
   computed: {
     token () {
       return {
-        token: localStorage.getItem('bearcToken')
+        token: Cookies.get('bearcToken')
       }
     }
   },
@@ -149,7 +150,7 @@ export default {
     async getGoodsListAsync () {
       try {
         let res = await getGoodsList({
-          token: localStorage.getItem('bearcToken')
+          token: Cookies.get('bearcToken')
         })
         switch (res.data.status) {
           // 验证成功
@@ -158,7 +159,7 @@ export default {
             break
           // 验证成功，但需要更新token
           case 1:
-            localStorage.setItem('bearcToken', res.data.result.newToken)
+            Cookies.set('bearcToken', res.data.result.newToken)
             this.tBody = res.data.result.list
             break
           // 验证失败
