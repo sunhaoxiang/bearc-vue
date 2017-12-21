@@ -39,6 +39,12 @@
           <Input class="upload-img-src" v-model="formAddGoods.productImgsrc"></Input>
           <img class="upload-img" :src="formAddGoods.productImgSrc">
         </FormItem>
+        <FormItem label="商品进价" prop="purchasePrice">
+          <Input v-model="formAddGoods.purchasePrice" placeholder="请输入进价"></Input>
+        </FormItem>
+        <FormItem label="商品售价" prop="productPrice">
+          <Input v-model="formAddGoods.productPrice" placeholder="请输入售价"></Input>
+        </FormItem>
       </Form>
     </Modal>
   </div>
@@ -121,7 +127,9 @@ export default {
       addGoodsBtn: false,
       formAddGoods: {
         productName: '',
-        productImgSrc: ''
+        productImgSrc: '',
+        purchasePrice: 0,
+        productPrice: 0
       },
       ruleAddGoods: {
         productName: [
