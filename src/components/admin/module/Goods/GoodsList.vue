@@ -2,7 +2,7 @@
   <div>
     <Card shadow class="admin-card center">
       <div class="ma-b-10">
-        <Button type="primary" size="large" @click="addGoodsBtn = true">
+        <Button type="primary" size="large" @click="isAddGoodsModalShow = true">
           <Icon type="ios-compose-outline"></Icon>
           添加商品
         </Button>
@@ -11,12 +11,12 @@
           导出商品数据
         </Button>
       </div>
-      <Table :columns="tHeader" :data="tBody" ref="table"></Table>
+      <Table :loading="tLoading" :columns="tHeader" :data="tBody" ref="table"></Table>
     </Card>
     <Modal
       width='800'
       :mask-closable='false'
-      v-model="addGoodsBtn"
+      v-model="isAddGoodsModalShow"
       title="添加商品"
       @on-ok="addGoodsSubmit"
       @on-cancel="addGoodsCancel">
@@ -47,12 +47,35 @@
         </FormItem>
       </Form>
     </Modal>
+    <Modal
+      v-model="isModalShow"
+      title="Common Modal dialog box title"
+      @on-ok="modalGoodSubmit"
+      @on-cancel="modalGoodCancel">
+      <Form :model="formModalGood" :rules="ruleModalGood" :label-width="80">
+        <FormItem label="商品名" prop="productName">
+          <Input v-model="formModalGood.productName" placeholder="请输入商品名"></Input>
+        </FormItem>
+        <FormItem label="进价" prop="purchasePrice">
+          <Input number v-model="formModalGood.purchasePrice" placeholder="请输入进价"></Input>
+        </FormItem>
+        <FormItem label="售价" prop="productPrice">
+          <Input number v-model="formModalGood.productPrice" placeholder="请输入售价"></Input>
+        </FormItem>
+        <FormItem label="分类" prop="productClass">
+          <Input v-model="formModalGood.productClass" placeholder="请输入分类"></Input>
+        </FormItem>
+        <FormItem label="国家" prop="productCountry">
+          <Input v-model="formModalGood.productCountry" placeholder="请输入国家"></Input>
+        </FormItem>
+      </Form>
+    </Modal>
   </div>
 </template>
 
 <script>
 import Cookies from 'js-cookie'
-import { getGoodsList } from '@/axios/axios.js'
+import { getGoodsList, modifyGoodsList } from '@/axios/axios.js'
 
 export default {
   data () {
@@ -125,7 +148,10 @@ export default {
         }
       ],
       tBody: [],
-      addGoodsBtn: false,
+      tLoading: false,
+      isAddGoodsModalShow: false,
+      isModalShow: false,
+      modalType: '',
       formAddGoods: {
         productName: '',
         productImgSrc: '',
@@ -136,6 +162,17 @@ export default {
         productName: [
           { required: true, message: '商品名称不能为空', trigger: 'blur' }
         ]
+      },
+      formModalGood: {
+        _id: '',
+        productName: '',
+        purchasePrice: 0,
+        productPrice: 0,
+        productClass: '',
+        productCountry: ''
+      },
+      ruleModalGood: {
+
       }
     }
   },
@@ -146,9 +183,13 @@ export default {
       }
     }
   },
+  created () {
+    this.getGoodsListAsync()
+  },
   methods: {
     async getGoodsListAsync () {
       try {
+        this.tLoading = true
         let res = await getGoodsList({
           token: Cookies.get('bearcToken')
         })
@@ -156,15 +197,51 @@ export default {
           // 验证成功
           case 0:
             this.tBody = res.data.result.list
+            this.tLoading = false
             break
           // 验证成功，但需要更新token
           case 1:
             Cookies.set('bearcToken', res.data.result.newToken)
             this.tBody = res.data.result.list
+            this.tLoading = false
             break
           // 验证失败
           default:
             this.$router.push('/login')
+            break
+        }
+      } catch (err) {
+        this.tLoading = false
+        console.log(err)
+      }
+    },
+    async modifyGoodsListAsync () {
+      try {
+        let res = await modifyGoodsList({
+          _id: this.formModalGood._id,
+          productName: this.formModalGood.productName,
+          purchasePrice: this.formModalGood.purchasePrice,
+          productPrice: this.formModalGood.productPrice,
+          productClass: this.formModalGood.productClass,
+          productCountry: this.formModalGood.productCountry,
+          token: Cookies.get('bearcToken')
+        })
+        switch (res.data.status) {
+          // 验证成功
+          case 0:
+            this.$Message.success(res.data.msg)
+            this.getGoodsListAsync()
+            break
+          // 验证成功，但需要更新token
+          case 1:
+            Cookies.set('bearcToken', res.data.result.newToken)
+            this.$Message.success(res.data.msg)
+            this.getGoodsListAsync()
+            break
+          // 验证失败
+          default:
+            // this.$router.push('/login')
+            this.$Message.error(res.data.msg)
             break
         }
       } catch (err) {
@@ -177,13 +254,28 @@ export default {
       })
     },
     changeGood (index) {
-      console.log(`change ${index}`)
+      this.modalType = 'edit'
+      this.formModalGood._id = this.tBody[index]._id
+      this.formModalGood.productName = this.tBody[index].productName
+      this.formModalGood.purchasePrice = this.tBody[index].purchasePrice
+      this.formModalGood.productPrice = this.tBody[index].productPrice
+      this.formModalGood.productClass = this.tBody[index].productClass
+      this.formModalGood.productCountry = this.tBody[index].productCountry
+      this.isModalShow = true
     },
     removeGood (index) {
       console.log(`remove ${index}`)
     },
     addGoodsSubmit () {},
     addGoodsCancel () {},
+    modalGoodSubmit () {
+      if (this.modalType === 'edit') {
+        this.modifyGoodsListAsync()
+      } else {
+        console.log('new')
+      }
+    },
+    modalGoodCancel () {},
     uploadSuccess (res, file) {
       this.formAddGoods.productImgSrc = res.result.path
     },
@@ -194,9 +286,6 @@ export default {
     uploadRemove (file) {
       this.formAddGoods.productImgSrc = ''
     }
-  },
-  created () {
-    this.getGoodsListAsync()
   }
 }
 </script>
