@@ -5,18 +5,18 @@ import { verifyToken } from '@/axios/axios.js'
 import Cookies from 'js-cookie'
 
 // 前台内容
-const Layout = resolve => require(['@/components/goods/layout/Layout'], resolve)
-const Hot = resolve => require(['@/components/goods/module/Hot'], resolve)
-const MilkPowders = resolve => require(['@/components/goods/module/MilkPowders'], resolve)
-const BabyFoods = resolve => require(['@/components/goods/module/BabyFoods'], resolve)
-const BabyArticles = resolve => require(['@/components/goods/module/BabyArticles'], resolve)
-const Masks = resolve => require(['@/components/goods/module/Masks'], resolve)
-const Creams = resolve => require(['@/components/goods/module/Creams'], resolve)
-const Cosmetics = resolve => require(['@/components/goods/module/Cosmetics'], resolve)
-const MildyWashes = resolve => require(['@/components/goods/module/MildyWashes'], resolve)
-const HealthProducts = resolve => require(['@/components/goods/module/HealthProducts'], resolve)
-const Accessories = resolve => require(['@/components/goods/module/Accessories'], resolve)
-const Detail = resolve => require(['@/components/goods/common/Detail'], resolve)
+// const Layout = resolve => require(['@/components/goods/layout/Layout'], resolve)
+// const Hot = resolve => require(['@/components/goods/module/Hot'], resolve)
+// const MilkPowders = resolve => require(['@/components/goods/module/MilkPowders'], resolve)
+// const BabyFoods = resolve => require(['@/components/goods/module/BabyFoods'], resolve)
+// const BabyArticles = resolve => require(['@/components/goods/module/BabyArticles'], resolve)
+// const Masks = resolve => require(['@/components/goods/module/Masks'], resolve)
+// const Creams = resolve => require(['@/components/goods/module/Creams'], resolve)
+// const Cosmetics = resolve => require(['@/components/goods/module/Cosmetics'], resolve)
+// const MildyWashes = resolve => require(['@/components/goods/module/MildyWashes'], resolve)
+// const HealthProducts = resolve => require(['@/components/goods/module/HealthProducts'], resolve)
+// const Accessories = resolve => require(['@/components/goods/module/Accessories'], resolve)
+// const Detail = resolve => require(['@/components/goods/common/Detail'], resolve)
 
 // 注册登录
 const Register = resolve => require(['@/components/register/Register'], resolve)
@@ -40,69 +40,69 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   routes: [
-    {
-      path: '/',
-      name: 'layout',
-      component: Layout,
-      children: [
-        {
-          path: 'hot',
-          name: 'hot',
-          component: Hot
-        },
-        {
-          path: 'milkpowders',
-          name: 'milkpowders',
-          component: MilkPowders
-        },
-        {
-          path: 'babyfoods',
-          name: 'babyfoods',
-          component: BabyFoods
-        },
-        {
-          path: 'babyarticles',
-          name: 'babyarticles',
-          component: BabyArticles
-        },
-        {
-          path: 'masks',
-          name: 'masks',
-          component: Masks
-        },
-        {
-          path: 'creams',
-          name: 'creams',
-          component: Creams
-        },
-        {
-          path: 'cosmetics',
-          name: 'cosmetics',
-          component: Cosmetics
-        },
-        {
-          path: 'mildywashes',
-          name: 'mildywashes',
-          component: MildyWashes
-        },
-        {
-          path: 'healthproducts',
-          name: 'healthproducts',
-          component: HealthProducts
-        },
-        {
-          path: 'accessories',
-          name: 'accessories',
-          component: Accessories
-        }
-      ],
-      redirect: '/hot'
-    },
-    {
-      path: '/detail/:id',
-      name: 'detail',
-      component: Detail
-    },
+    // {
+    //   path: '/',
+    //   name: 'layout',
+    //   component: Layout,
+    //   children: [
+    //     {
+    //       path: 'hot',
+    //       name: 'hot',
+    //       component: Hot
+    //     },
+    //     {
+    //       path: 'milkpowders',
+    //       name: 'milkpowders',
+    //       component: MilkPowders
+    //     },
+    //     {
+    //       path: 'babyfoods',
+    //       name: 'babyfoods',
+    //       component: BabyFoods
+    //     },
+    //     {
+    //       path: 'babyarticles',
+    //       name: 'babyarticles',
+    //       component: BabyArticles
+    //     },
+    //     {
+    //       path: 'masks',
+    //       name: 'masks',
+    //       component: Masks
+    //     },
+    //     {
+    //       path: 'creams',
+    //       name: 'creams',
+    //       component: Creams
+    //     },
+    //     {
+    //       path: 'cosmetics',
+    //       name: 'cosmetics',
+    //       component: Cosmetics
+    //     },
+    //     {
+    //       path: 'mildywashes',
+    //       name: 'mildywashes',
+    //       component: MildyWashes
+    //     },
+    //     {
+    //       path: 'healthproducts',
+    //       name: 'healthproducts',
+    //       component: HealthProducts
+    //     },
+    //     {
+    //       path: 'accessories',
+    //       name: 'accessories',
+    //       component: Accessories
+    //     }
+    //   ],
+    //   redirect: '/hot'
+    // },
+    // {
+    //   path: '/detail/:id',
+    //   name: 'detail',
+    //   component: Detail
+    // },
     {
       path: '/register',
       name: 'register',
@@ -114,7 +114,7 @@ const router = new Router({
       component: Login
     },
     {
-      path: '/admin',
+      path: '/',
       name: 'admin',
       component: Admin,
       meta: {
@@ -155,12 +155,12 @@ const router = new Router({
           component: Settings
         }
       ],
-      redirect: 'admin/goods/goodslist'
-    },
-    {
-      path: '*',
-      redirect: '/hot'
+      redirect: 'goods/goodslist'
     }
+    // {
+    //   path: '*',
+    //   redirect: '/hot'
+    // }
   ]
 })
 
