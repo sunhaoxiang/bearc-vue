@@ -75,7 +75,7 @@
 
 <script>
 import Cookies from 'js-cookie'
-import { getGoodsList, modifyGoodsList } from '@/axios/axios.js'
+import { goodsList, modifyGood } from '@/axios/axios.js'
 
 export default {
   data () {
@@ -184,13 +184,13 @@ export default {
     }
   },
   created () {
-    this.getGoodsListAsync()
+    this.goodsListAsync()
   },
   methods: {
-    async getGoodsListAsync () {
+    async goodsListAsync () {
       try {
         this.tLoading = true
-        let res = await getGoodsList({
+        let res = await goodsList({
           token: Cookies.get('bearcToken')
         })
         switch (res.data.status) {
@@ -215,9 +215,9 @@ export default {
         console.log(err)
       }
     },
-    async modifyGoodsListAsync () {
+    async modifyGoodAsync () {
       try {
-        let res = await modifyGoodsList({
+        let res = await modifyGood({
           _id: this.formModalGood._id,
           productName: this.formModalGood.productName,
           purchasePrice: this.formModalGood.purchasePrice,
@@ -230,13 +230,13 @@ export default {
           // 验证成功
           case 0:
             this.$Message.success(res.data.msg)
-            this.getGoodsListAsync()
+            this.goodsListAsync()
             break
           // 验证成功，但需要更新token
           case 1:
             Cookies.set('bearcToken', res.data.result.newToken)
             this.$Message.success(res.data.msg)
-            this.getGoodsListAsync()
+            this.goodsListAsync()
             break
           // 验证失败
           default:
@@ -270,7 +270,7 @@ export default {
     addGoodsCancel () {},
     modalGoodSubmit () {
       if (this.modalType === 'edit') {
-        this.modifyGoodsListAsync()
+        this.modifyGoodAsync()
       } else {
         console.log('new')
       }
