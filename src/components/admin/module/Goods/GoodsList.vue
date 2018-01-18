@@ -15,10 +15,8 @@
     </Card>
     <Modal
       v-model="isModalShow"
-      title="Common Modal dialog box title"
-      @on-ok="modalGoodSubmit"
-      @on-cancel="modalGoodCancel">
-      <Form :model="formModalGood" :rules="ruleModalGood" :label-width="80">
+      title="Common Modal dialog box title">
+      <Form ref="formModalGood" :model="formModalGood" :rules="ruleModalGood" :label-width="80">
         <FormItem label="商品名" prop="productName">
           <Input v-model="formModalGood.productName" placeholder="请输入商品名"></Input>
         </FormItem>
@@ -35,13 +33,16 @@
           <Input v-model="formModalGood.productCountry" placeholder="请输入国家"></Input>
         </FormItem>
       </Form>
+      <div slot="footer">
+        <Button type="primary" size="large" long @click="modalGoodSubmit('formModalGood')">确 定</Button>
+      </div>
     </Modal>
   </div>
 </template>
 
 <script>
 import Cookies from 'js-cookie'
-import { goodsList, addGood, modifyGood } from '@/axios/axios.js'
+import { goodsList, addGood, modifyGood, removeGood } from '@/axios/axios.js'
 
 export default {
   data () {
@@ -105,7 +106,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.removeGood(params.index)
+                    this.modalRemoveGood(params.index)
                   }
                 }
               }, '删除')
@@ -120,15 +121,17 @@ export default {
       formModalGood: {
         _id: '',
         productName: '',
-        purchasePrice: 0,
-        productPrice: 0,
+        purchasePrice: null,
+        productPrice: null,
         productClass: '',
         productCountry: ''
       },
       ruleModalGood: {
-        productName: [
-          { required: true, message: '商品名称不能为空', trigger: 'blur' }
-        ]
+        productName: [{ required: true, message: '商品名不能为空', trigger: 'blur' }],
+        purchasePrice: [{ required: true, type: 'number', message: '进价不能为空', trigger: 'blur' }],
+        productPrice: [{ required: true, type: 'number', message: '售价不能为空', trigger: 'blur' }],
+        productClass: [{ required: true, message: '分类不能为空', trigger: 'blur' }],
+        productCountry: [{ required: true, message: '国家不能为空', trigger: 'blur' }]
       }
     }
   },
@@ -236,6 +239,34 @@ export default {
         console.log(err)
       }
     },
+    async removeGoodAsync (index) {
+      try {
+        let res = await removeGood({
+          _id: this.tBody[index]._id,
+          token: Cookies.get('bearcToken')
+        })
+        switch (res.data.status) {
+          // 验证成功
+          case 0:
+            this.$Message.success(res.data.msg)
+            this.goodsListAsync()
+            break
+          // 验证成功，但需要更新token
+          case 1:
+            Cookies.set('bearcToken', res.data.result.newToken)
+            this.$Message.success(res.data.msg)
+            this.goodsListAsync()
+            break
+          // 验证失败
+          default:
+            this.$router.push('/login')
+            this.$Message.error(res.data.msg)
+            break
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    },
     exportData () {
       this.$refs.table.exportCsv({
         filename: '商品数据'
@@ -245,8 +276,8 @@ export default {
       this.modalType = 'new'
       this.formModalGood._id = ''
       this.formModalGood.productName = ''
-      this.formModalGood.purchasePrice = 0
-      this.formModalGood.productPrice = 0
+      this.formModalGood.purchasePrice = null
+      this.formModalGood.productPrice = null
       this.formModalGood.productClass = ''
       this.formModalGood.productCountry = ''
       this.isModalShow = true
@@ -261,27 +292,29 @@ export default {
       this.formModalGood.productCountry = this.tBody[index].productCountry
       this.isModalShow = true
     },
-    removeGood (index) {
-      console.log(`remove ${index}`)
+    modalGoodSubmit (name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          this.$Modal.remove()
+          if (this.modalType === 'edit') {
+            this.modifyGoodAsync()
+          } else if (this.modalType === 'new') {
+            this.addGoodAsync()
+          }
+        } else {
+          this.$Message.error('请先填写表单')
+        }
+      })
     },
-    modalGoodSubmit () {
-      if (this.modalType === 'edit') {
-        this.modifyGoodAsync()
-      } else if (this.modalType === 'new') {
-        this.addGoodAsync()
-      }
-    },
-    modalGoodCancel () {}
+    modalRemoveGood (index) {
+      this.$Modal.confirm({
+        title: '删除商品',
+        content: '<p>确定删除商品吗？</p>',
+        onOk: () => {
+          this.removeGoodAsync(index)
+        }
+      })
+    }
   }
 }
 </script>
-
-<style scoped lang="scss">
-.upload-img-src {
-  display: none;
-}
-.upload-img {
-  display: block;
-  width: 200px;
-}
-</style>

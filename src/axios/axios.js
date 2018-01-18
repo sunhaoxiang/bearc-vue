@@ -34,5 +34,6 @@ export const login = post('/login')  // 登录
 export const verifyToken = post('users/verifytoken')  // 验证登录
 export const upload = post('users/upload')  // 上传文件
 export const goodsList = get('users/goods/goodslist')  // 商品列表
-export const addGood = post('users/goods/addgood')  // 修改商品
+export const addGood = post('users/goods/addgood')  // 添加商品
 export const modifyGood = post('users/goods/modifygood')  // 修改商品
+export const removeGood = post('users/goods/removegood')  // 删除商品
