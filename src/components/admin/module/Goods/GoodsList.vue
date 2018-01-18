@@ -15,7 +15,7 @@
     </Card>
     <Modal
       v-model="isModalShow"
-      title="Common Modal dialog box title">
+      :title="modalTitle">
       <Form ref="formModalGood" :model="formModalGood" :rules="ruleModalGood" :label-width="80">
         <FormItem label="商品名" prop="productName">
           <Input v-model="formModalGood.productName" placeholder="请输入商品名"></Input>
@@ -26,8 +26,8 @@
         <FormItem label="售价" prop="productPrice">
           <Input number v-model="formModalGood.productPrice" placeholder="请输入售价"></Input>
         </FormItem>
-        <FormItem label="分类" prop="productClass">
-          <Input v-model="formModalGood.productClass" placeholder="请输入分类"></Input>
+        <FormItem label="分类" prop="productType">
+          <Input v-model="formModalGood.productType" placeholder="请输入分类"></Input>
         </FormItem>
         <FormItem label="国家" prop="productCountry">
           <Input v-model="formModalGood.productCountry" placeholder="请输入国家"></Input>
@@ -64,13 +64,8 @@ export default {
           width: 100
         },
         {
-          title: '折扣价',
-          key: 'productDiscountPrice',
-          width: 100
-        },
-        {
           title: '分类',
-          key: 'productClass',
+          key: 'productType',
           width: 100
         },
         {
@@ -123,23 +118,21 @@ export default {
         productName: '',
         purchasePrice: null,
         productPrice: null,
-        productClass: '',
+        productType: '',
         productCountry: ''
       },
       ruleModalGood: {
         productName: [{ required: true, message: '商品名不能为空', trigger: 'blur' }],
         purchasePrice: [{ required: true, type: 'number', message: '进价不能为空', trigger: 'blur' }],
         productPrice: [{ required: true, type: 'number', message: '售价不能为空', trigger: 'blur' }],
-        productClass: [{ required: true, message: '分类不能为空', trigger: 'blur' }],
+        productType: [{ required: true, message: '分类不能为空', trigger: 'blur' }],
         productCountry: [{ required: true, message: '国家不能为空', trigger: 'blur' }]
       }
     }
   },
   computed: {
-    token () {
-      return {
-        token: Cookies.get('bearcToken')
-      }
+    modalTitle () {
+      return this.modalType === 'new' ? '添加商品' : '修改商品'
     }
   },
   created () {
@@ -169,6 +162,7 @@ export default {
             this.$router.push('/login')
             break
         }
+        // this.handleStatus(res)
       } catch (err) {
         this.tLoading = false
         console.log(err)
@@ -180,28 +174,11 @@ export default {
           productName: this.formModalGood.productName,
           purchasePrice: this.formModalGood.purchasePrice,
           productPrice: this.formModalGood.productPrice,
-          productClass: this.formModalGood.productClass,
+          productType: this.formModalGood.productType,
           productCountry: this.formModalGood.productCountry,
           token: Cookies.get('bearcToken')
         })
-        switch (res.data.status) {
-          // 验证成功
-          case 0:
-            this.$Message.success(res.data.msg)
-            this.goodsListAsync()
-            break
-          // 验证成功，但需要更新token
-          case 1:
-            Cookies.set('bearcToken', res.data.result.newToken)
-            this.$Message.success(res.data.msg)
-            this.goodsListAsync()
-            break
-          // 验证失败
-          default:
-            this.$router.push('/login')
-            this.$Message.error(res.data.msg)
-            break
-        }
+        this.handleStatus(res)
       } catch (err) {
         console.log(err)
       }
@@ -213,28 +190,11 @@ export default {
           productName: this.formModalGood.productName,
           purchasePrice: this.formModalGood.purchasePrice,
           productPrice: this.formModalGood.productPrice,
-          productClass: this.formModalGood.productClass,
+          productType: this.formModalGood.productType,
           productCountry: this.formModalGood.productCountry,
           token: Cookies.get('bearcToken')
         })
-        switch (res.data.status) {
-          // 验证成功
-          case 0:
-            this.$Message.success(res.data.msg)
-            this.goodsListAsync()
-            break
-          // 验证成功，但需要更新token
-          case 1:
-            Cookies.set('bearcToken', res.data.result.newToken)
-            this.$Message.success(res.data.msg)
-            this.goodsListAsync()
-            break
-          // 验证失败
-          default:
-            this.$router.push('/login')
-            this.$Message.error(res.data.msg)
-            break
-        }
+        this.handleStatus(res)
       } catch (err) {
         console.log(err)
       }
@@ -245,32 +205,10 @@ export default {
           _id: this.tBody[index]._id,
           token: Cookies.get('bearcToken')
         })
-        switch (res.data.status) {
-          // 验证成功
-          case 0:
-            this.$Message.success(res.data.msg)
-            this.goodsListAsync()
-            break
-          // 验证成功，但需要更新token
-          case 1:
-            Cookies.set('bearcToken', res.data.result.newToken)
-            this.$Message.success(res.data.msg)
-            this.goodsListAsync()
-            break
-          // 验证失败
-          default:
-            this.$router.push('/login')
-            this.$Message.error(res.data.msg)
-            break
-        }
+        this.handleStatus(res)
       } catch (err) {
         console.log(err)
       }
-    },
-    exportData () {
-      this.$refs.table.exportCsv({
-        filename: '商品数据'
-      })
     },
     modalAddGood () {
       this.modalType = 'new'
@@ -278,7 +216,7 @@ export default {
       this.formModalGood.productName = ''
       this.formModalGood.purchasePrice = null
       this.formModalGood.productPrice = null
-      this.formModalGood.productClass = ''
+      this.formModalGood.productType = ''
       this.formModalGood.productCountry = ''
       this.isModalShow = true
     },
@@ -288,14 +226,16 @@ export default {
       this.formModalGood.productName = this.tBody[index].productName
       this.formModalGood.purchasePrice = this.tBody[index].purchasePrice
       this.formModalGood.productPrice = this.tBody[index].productPrice
-      this.formModalGood.productClass = this.tBody[index].productClass
+      this.formModalGood.productType = this.tBody[index].productType
       this.formModalGood.productCountry = this.tBody[index].productCountry
       this.isModalShow = true
     },
+
+    // 提交新增和修改
     modalGoodSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Modal.remove()
+          this.isModalShow = false
           if (this.modalType === 'edit') {
             this.modifyGoodAsync()
           } else if (this.modalType === 'new') {
@@ -305,6 +245,7 @@ export default {
           this.$Message.error('请先填写表单')
         }
       })
+      this.$Modal.remove()
     },
     modalRemoveGood (index) {
       this.$Modal.confirm({
@@ -314,6 +255,31 @@ export default {
           this.removeGoodAsync(index)
         }
       })
+    },
+    exportData () {
+      this.$refs.table.exportCsv({
+        filename: '商品数据'
+      })
+    },
+    handleStatus (res) {
+      switch (res.data.status) {
+        // 验证成功
+        case 0:
+          this.$Message.success(res.data.msg)
+          this.goodsListAsync()
+          break
+        // 验证成功，但需要更新token
+        case 1:
+          Cookies.set('bearcToken', res.data.result.newToken)
+          this.$Message.success(res.data.msg)
+          this.goodsListAsync()
+          break
+        // 验证失败
+        default:
+          this.$router.push('/login')
+          this.$Message.error(res.data.msg)
+          break
+      }
     }
   }
 }

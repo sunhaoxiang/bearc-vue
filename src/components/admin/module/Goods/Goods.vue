@@ -7,9 +7,9 @@
             <Icon type="ios-list"></Icon>
             商品列表
           </MenuItem>
-          <MenuItem name="hotgoods">
-            <Icon type="ios-flame"></Icon>
-            热门商品
+          <MenuItem name="goodstype">
+            <Icon type="ios-pricetags"></Icon>
+            分类列表
           </MenuItem>
         </Menu>
       </Col>
@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     selectMenu (name) {
-      this.$router.push(`/admin/${this.$route.matched[1].name}/${name}`)
+      this.$router.push(`/${this.$route.matched[1].name}/${name}`)
     }
   },
   watch: {

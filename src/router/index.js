@@ -27,7 +27,7 @@ const Admin = resolve => require(['@/components/admin/layout/Admin'], resolve)
 // Goods模块
 const Goods = resolve => require(['@/components/admin/module/Goods/Goods'], resolve)
 const GoodsList = resolve => require(['@/components/admin/module/Goods/GoodsList'], resolve)
-const HotGoods = resolve => require(['@/components/admin/module/Goods/HotGoods'], resolve)
+const GoodsType = resolve => require(['@/components/admin/module/Goods/GoodsType'], resolve)
 // Customers模块
 const Customers = resolve => require(['@/components/admin/module/Customers/Customers'], resolve)
 // Statistics模块
@@ -132,9 +132,9 @@ const router = new Router({
               component: GoodsList
             },
             {
-              path: 'hotgoods',
-              name: 'hotgoods',
-              component: HotGoods
+              path: 'goodstype',
+              name: 'goodstype',
+              component: GoodsType
             }
           ],
           redirect: 'goods/goodslist'

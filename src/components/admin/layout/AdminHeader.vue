@@ -26,10 +26,10 @@
     <Modal v-model="logoutModal" width="360">
       <p slot="header" class="modal text-center">
         <Icon type="information-circled"></Icon>
-        <span>退出登录</span>
+        <span>注销</span>
       </p>
       <div class="text-center">
-        <p>确定要退出登录吗？</p>
+        <p>确定要注销吗？</p>
       </div>
       <div slot="footer">
         <Button type="error" size="large" long @click="logout">确 定</Button>
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     selectMenu (name) {
-      this.$router.push(`/admin/${name}`)
+      this.$router.push(`/${name}`)
     },
     logout () {
       Cookies.remove('bearcToken')
