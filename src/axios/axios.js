@@ -3,16 +3,21 @@ import Cookies from 'js-cookie'
 
 // 接口地址
 axios.defaults.baseURL = 'http://localhost:9999/'
-axios.defaults.headers = {token: Cookies.get('bearcToken')}
 
 // get 方法
 function get (url) {
-  return body => axios.get(url, { params: body })
+  return body => axios.get(url, { params: {
+    ...body,
+    token: Cookies.get('bearcToken')
+  }})
 }
 
 // post 方法
 function post (url) {
-  return body => axios.post(url, body)
+  return body => axios.post(url, {
+    ...body,
+    token: Cookies.get('bearcToken')
+  })
 }
 
 // 前台

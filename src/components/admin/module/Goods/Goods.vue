@@ -7,9 +7,13 @@
             <Icon type="ios-list"></Icon>
             商品列表
           </MenuItem>
-          <MenuItem name="goodstype">
+          <MenuItem name="typeslist">
             <Icon type="ios-pricetags"></Icon>
             分类列表
+          </MenuItem>
+          <MenuItem name="countrieslist">
+            <Icon type="earth"></Icon>
+            国家列表
           </MenuItem>
         </Menu>
       </Col>

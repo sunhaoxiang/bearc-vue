@@ -62,7 +62,7 @@ export default {
           this.$Message.success(res.data.msg)
           Cookies.set('bearcToken', res.data.result.token)
           this.$store.commit('login', res.data.result.username)
-          this.$router.push('/')
+          this.$router.push('/welcome')
         } else {
           this.$Message.error(res.data.msg)
         }

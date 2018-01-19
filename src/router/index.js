@@ -18,16 +18,25 @@ import Cookies from 'js-cookie'
 // const Accessories = resolve => require(['@/components/goods/module/Accessories'], resolve)
 // const Detail = resolve => require(['@/components/goods/common/Detail'], resolve)
 
-// 注册登录
+// 注册登录模块
 const Register = resolve => require(['@/components/register/Register'], resolve)
 const Login = resolve => require(['@/components/login/Login'], resolve)
 
 // 后台内容
 const Admin = resolve => require(['@/components/admin/layout/Admin'], resolve)
+
+// 欢迎模块
+const Welcome = resolve => require(['@/components/admin/module/Welcome/Welcome'], resolve)
+
 // Goods模块
 const Goods = resolve => require(['@/components/admin/module/Goods/Goods'], resolve)
+// 商品列表
 const GoodsList = resolve => require(['@/components/admin/module/Goods/GoodsList'], resolve)
-const GoodsType = resolve => require(['@/components/admin/module/Goods/GoodsType'], resolve)
+// 分类列表
+const TypesList = resolve => require(['@/components/admin/module/Goods/TypesList'], resolve)
+// 国家列表
+const CountriesList = resolve => require(['@/components/admin/module/Goods/CountriesList'], resolve)
+
 // Customers模块
 const Customers = resolve => require(['@/components/admin/module/Customers/Customers'], resolve)
 // Statistics模块
@@ -122,6 +131,11 @@ const router = new Router({
       },
       children: [
         {
+          path: 'welcome',
+          name: 'welcome',
+          component: Welcome
+        },
+        {
           path: 'goods',
           name: 'goods',
           component: Goods,
@@ -132,9 +146,14 @@ const router = new Router({
               component: GoodsList
             },
             {
-              path: 'goodstype',
-              name: 'goodstype',
-              component: GoodsType
+              path: 'typeslist',
+              name: 'typeslist',
+              component: TypesList
+            },
+            {
+              path: 'countrieslist',
+              name: 'countrieslist',
+              component: CountriesList
             }
           ],
           redirect: 'goods/goodslist'
@@ -172,9 +191,7 @@ router.beforeEach((to, from, next) => {
   }
   async function verifyTokenAsync () {
     try {
-      let res = await verifyToken({
-        token: Cookies.get('bearcToken')
-      })
+      let res = await verifyToken()
       switch (res.data.status) {
         // 验证成功
         case 0:
