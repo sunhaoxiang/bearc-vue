@@ -34,8 +34,7 @@ export default {
       tHeader: [
         {
           title: '分类',
-          key: 'type',
-          width: 100
+          key: 'type'
         },
         {
           title: '操作',
