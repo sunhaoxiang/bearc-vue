@@ -1,6 +1,6 @@
 <template>
   <div>
-  欢迎登陆Bearc系统！
+    <Card shadow class="admin-card center">欢迎登陆Bearc系统！</Card>
   </div>
 </template>
 

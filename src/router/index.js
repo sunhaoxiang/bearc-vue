@@ -131,15 +131,15 @@ const router = new Router({
       },
       children: [
         {
-          path: 'welcome',
-          name: 'welcome',
-          component: Welcome
-        },
-        {
           path: 'goods',
           name: 'goods',
           component: Goods,
           children: [
+            {
+              path: 'welcome',
+              name: 'welcome',
+              component: Welcome
+            },
             {
               path: 'goodslist',
               name: 'goodslist',
@@ -174,7 +174,7 @@ const router = new Router({
           component: Settings
         }
       ],
-      redirect: 'goods/goodslist'
+      redirect: 'goods/welcome'
     }
     // {
     //   path: '*',
