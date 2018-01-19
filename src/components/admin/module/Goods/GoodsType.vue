@@ -98,9 +98,7 @@ export default {
     async typesListAsync () {
       try {
         this.tLoading = true
-        let res = await typesList({
-          token: Cookies.get('bearcToken')
-        })
+        let res = await typesList()
         switch (res.data.status) {
           // 验证成功
           case 0:
@@ -127,8 +125,7 @@ export default {
     async addTypeAsync () {
       try {
         let res = await addType({
-          type: this.formModalType.type,
-          token: Cookies.get('bearcToken')
+          type: this.formModalType.type
         })
         this.handleStatus(res)
       } catch (err) {
@@ -139,8 +136,7 @@ export default {
       try {
         let res = await modifyType({
           _id: this.formModalType._id,
-          type: this.formModalType.type,
-          token: Cookies.get('bearcToken')
+          type: this.formModalType.type
         })
         this.handleStatus(res)
       } catch (err) {
@@ -150,8 +146,7 @@ export default {
     async removeTypeAsync (index) {
       try {
         let res = await removeType({
-          _id: this.tBody[index]._id,
-          token: Cookies.get('bearcToken')
+          _id: this.tBody[index]._id
         })
         this.handleStatus(res)
       } catch (err) {

@@ -1,7 +1,9 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 // 接口地址
 axios.defaults.baseURL = 'http://localhost:9999/'
+axios.defaults.headers = {token: Cookies.get('bearcToken')}
 
 // get 方法
 function get (url) {
@@ -37,3 +39,7 @@ export const goodsList = get('users/goods/goodslist')  // 商品列表
 export const addGood = post('users/goods/addgood')  // 添加商品
 export const modifyGood = post('users/goods/modifygood')  // 修改商品
 export const removeGood = post('users/goods/removegood')  // 删除商品
+export const typesList = get('users/types/typeslist')  // 分类列表
+export const addType = post('users/types/addtype')  // 添加分类
+export const modifyType = post('users/types/modifytype')  // 修改分类
+export const removeType = post('users/types/removetype')  // 删除分类

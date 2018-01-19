@@ -142,9 +142,7 @@ export default {
     async goodsListAsync () {
       try {
         this.tLoading = true
-        let res = await goodsList({
-          token: Cookies.get('bearcToken')
-        })
+        let res = await goodsList()
         switch (res.data.status) {
           // 验证成功
           case 0:
@@ -175,8 +173,7 @@ export default {
           purchasePrice: this.formModalGood.purchasePrice,
           productPrice: this.formModalGood.productPrice,
           productType: this.formModalGood.productType,
-          productCountry: this.formModalGood.productCountry,
-          token: Cookies.get('bearcToken')
+          productCountry: this.formModalGood.productCountry
         })
         this.handleStatus(res)
       } catch (err) {
@@ -191,8 +188,7 @@ export default {
           purchasePrice: this.formModalGood.purchasePrice,
           productPrice: this.formModalGood.productPrice,
           productType: this.formModalGood.productType,
-          productCountry: this.formModalGood.productCountry,
-          token: Cookies.get('bearcToken')
+          productCountry: this.formModalGood.productCountry
         })
         this.handleStatus(res)
       } catch (err) {
@@ -202,8 +198,7 @@ export default {
     async removeGoodAsync (index) {
       try {
         let res = await removeGood({
-          _id: this.tBody[index]._id,
-          token: Cookies.get('bearcToken')
+          _id: this.tBody[index]._id
         })
         this.handleStatus(res)
       } catch (err) {
