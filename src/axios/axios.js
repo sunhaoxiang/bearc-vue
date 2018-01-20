@@ -65,3 +65,6 @@ export const countriesList = getWithToken('/users/countries/countrieslist')  // 
 export const addCountry = postWithToken('/users/countries/addcountry')  // 添加国家
 export const modifyCountry = postWithToken('/users/countries/modifycountry')  // 修改国家
 export const removeCountry = postWithToken('/users/countries/removecountry')  // 删除国家
+
+// 第三方接口
+export const todayInHistoryRandom = getWithToken('/thirdparty/todayinhistory/random')  // 历史上的今天列表
