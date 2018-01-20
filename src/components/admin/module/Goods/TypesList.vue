@@ -2,7 +2,7 @@
   <div>
     <Card shadow class="admin-card center">
       <div class="ma-b-10">
-        <Button type="primary" size="large" @click="modalAddType">
+        <Button type="primary" size="large" @click="modalAdd">
           <Icon type="ios-compose-outline"></Icon>
           添加分类
         </Button>
@@ -12,23 +12,26 @@
     <Modal
       v-model="isModalShow"
       :title="modalTitle">
-      <Form ref="formModalType" :model="formModalType" :rules="ruleModalType" :label-width="80">
+      <Form ref="formModal" :model="formModal" :rules="ruleModal" :label-width="80">
         <FormItem label="分类" prop="type">
-          <Input v-model="formModalType.type" placeholder="请输入分类"></Input>
+          <Input v-model="formModal.type" placeholder="请输入分类"></Input>
         </FormItem>
       </Form>
       <div slot="footer">
-        <Button type="primary" size="large" long @click="modalTypeSubmit('formModalType')">确 定</Button>
+        <Button type="primary" size="large" long @click="modalSubmit('formModal')">确 定</Button>
       </div>
     </Modal>
   </div>
 </template>
 
 <script>
-import Cookies from 'js-cookie'
 import { typesList, addType, modifyType, removeType } from '@/axios/axios.js'
+import goods from '@/mixin/goods.js'
 
 export default {
+  mixins: [
+    goods
+  ],
   data () {
     return {
       tHeader: [
@@ -53,7 +56,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.modalmodifyType(params.index)
+                    this.modalModify(params.index)
                   }
                 }
               }, '修改'),
@@ -64,7 +67,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.modalremoveType(params.index)
+                    this.modalRemove(params.index)
                   }
                 }
               }, '删除')
@@ -72,143 +75,68 @@ export default {
           }
         }
       ],
-      tBody: [],
-      tLoading: false,
-      isModalShow: false,
-      modalType: '',
-      formModalType: {
+      formModal: {
         _id: '',
         type: ''
       },
-      ruleModalType: {
+      ruleModal: {
         type: [{ required: true, message: '分类名不能为空', trigger: 'blur' }]
       }
     }
   },
-  computed: {
-    modalTitle () {
-      return this.modalType === 'new' ? '添加分类' : '修改分类'
-    }
-  },
-  created () {
-    this.typesListAsync()
-  },
   methods: {
-    async typesListAsync () {
+    async listAsync () {
       try {
         this.tLoading = true
         let res = await typesList()
-        switch (res.data.status) {
-          // 验证成功
-          case 0:
-            this.tBody = res.data.result.list
-            this.tLoading = false
-            break
-          // 验证成功，但需要更新token
-          case 1:
-            Cookies.set('bearcToken', res.data.result.newToken)
-            this.tBody = res.data.result.list
-            this.tLoading = false
-            break
-          // 验证失败
-          default:
-            this.$router.push('/login')
-            break
-        }
-        // this.handleStatus(res)
+        this.listStatusHandler(res)
       } catch (err) {
         this.tLoading = false
         console.log(err)
       }
     },
-    async addTypeAsync () {
+    async addAsync () {
       try {
         let res = await addType({
-          type: this.formModalType.type
+          type: this.formModal.type
         })
-        this.handleStatus(res)
+        this.actionStatusHandler(res)
       } catch (err) {
         console.log(err)
       }
     },
-    async modifyTypeAsync () {
+    async modifyAsync () {
       try {
         let res = await modifyType({
-          _id: this.formModalType._id,
-          type: this.formModalType.type
+          _id: this.formModal._id,
+          type: this.formModal.type
         })
-        this.handleStatus(res)
+        this.actionStatusHandler(res)
       } catch (err) {
         console.log(err)
       }
     },
-    async removeTypeAsync (index) {
+    async removeAsync (index) {
       try {
         let res = await removeType({
           _id: this.tBody[index]._id
         })
-        this.handleStatus(res)
+        this.actionStatusHandler(res)
       } catch (err) {
         console.log(err)
       }
     },
-    modalAddType () {
+    modalAdd () {
       this.modalType = 'new'
-      this.formModalType._id = ''
-      this.formModalType.type = ''
+      this.formModal._id = ''
+      this.formModal.type = ''
       this.isModalShow = true
     },
-    modalmodifyType (index) {
+    modalModify (index) {
       this.modalType = 'edit'
-      this.formModalType._id = this.tBody[index]._id
-      this.formModalType.type = this.tBody[index].type
+      this.formModal._id = this.tBody[index]._id
+      this.formModal.type = this.tBody[index].type
       this.isModalShow = true
-    },
-
-    // 提交新增和修改
-    modalTypeSubmit (name) {
-      this.$refs[name].validate((valid) => {
-        if (valid) {
-          this.isModalShow = false
-          if (this.modalType === 'edit') {
-            this.modifyTypeAsync()
-          } else if (this.modalType === 'new') {
-            this.addTypeAsync()
-          }
-        } else {
-          this.$Message.error('请先填写表单')
-        }
-      })
-      this.$Modal.remove()
-    },
-    modalremoveType (index) {
-      this.$Modal.confirm({
-        title: '删除分类',
-        content: '<p>确定删除分类吗？</p>',
-        onOk: () => {
-          this.removeTypeAsync(index)
-        }
-      })
-    },
-    handleStatus (res) {
-      switch (res.data.status) {
-        // 验证成功
-        case 0:
-          this.$Message.success(res.data.msg)
-          this.typesListAsync()
-          break
-        // 验证成功，但需要更新token
-        case 1:
-          Cookies.set('bearcToken', res.data.result.newToken)
-          this.$Message.success(res.data.msg)
-          this.typesListAsync()
-          break
-        // 验证失败
-        default:
-          this.$router.push('/login')
-          this.$Message.error(res.data.msg)
-          break
-      }
     }
   }
 }
