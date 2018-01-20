@@ -2,7 +2,8 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 // 接口地址
-axios.defaults.baseURL = 'http://localhost:9999/'
+// axios.defaults.baseURL = 'http://localhost:9999/'
+axios.defaults.baseURL = '/api'
 
 // get 方法
 // function get (url) {
@@ -46,13 +47,17 @@ export const register = post('/register')  // 注册
 export const login = post('/login')  // 登录
 
 // 后台
-export const verifyToken = postWithToken('users/verifytoken')  // 验证登录
-export const upload = postWithToken('users/upload')  // 上传文件
-export const goodsList = getWithToken('users/goods/goodslist')  // 商品列表
-export const addGood = postWithToken('users/goods/addgood')  // 添加商品
-export const modifyGood = postWithToken('users/goods/modifygood')  // 修改商品
-export const removeGood = postWithToken('users/goods/removegood')  // 删除商品
-export const typesList = getWithToken('users/types/typeslist')  // 分类列表
-export const addType = postWithToken('users/types/addtype')  // 添加分类
-export const modifyType = postWithToken('users/types/modifytype')  // 修改分类
-export const removeType = postWithToken('users/types/removetype')  // 删除分类
+export const verifyToken = postWithToken('/users/verifytoken')  // 验证登录
+export const upload = postWithToken('/users/upload')  // 上传文件
+export const goodsList = getWithToken('/users/goods/goodslist')  // 商品列表
+export const addGood = postWithToken('/users/goods/addgood')  // 添加商品
+export const modifyGood = postWithToken('/users/goods/modifygood')  // 修改商品
+export const removeGood = postWithToken('/users/goods/removegood')  // 删除商品
+export const typesList = getWithToken('/users/types/typeslist')  // 分类列表
+export const addType = postWithToken('/users/types/addtype')  // 添加分类
+export const modifyType = postWithToken('/users/types/modifytype')  // 修改分类
+export const removeType = postWithToken('/users/types/removetype')  // 删除分类
+export const countriesList = getWithToken('/users/countries/countrieslist')  // 分类列表
+export const addCountry = postWithToken('/users/countries/addcountry')  // 添加分类
+export const modifyCountry = postWithToken('/users/countries/modifycountry')  // 修改分类
+export const removeCountry = postWithToken('/users/countries/removecountry')  // 删除分类
