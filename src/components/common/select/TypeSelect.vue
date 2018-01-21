@@ -1,0 +1,38 @@
+<template>
+  <Select
+    v-model="valueSelf" 
+    @on-change="changeHandler"
+    :placeholder="placeholder"
+    :clearable="clearable"
+    :disabled="disabled">
+    <Option v-for="item in typesList" :value="item.value" :key="item.value">
+      {{item.label}}
+    </Option>
+  </Select>
+</template>
+
+<script>
+import { typesList } from '@/axios/axios.js'
+import select from '@/mixin/select.js'
+
+export default {
+  mixins: [
+    select
+  ],
+  methods: {
+    async optionsAsync () {
+      try {
+        let res = await typesList()
+        this.typesList = res.data.result.list.map(e => {
+          return {
+            value: e.type,
+            label: e.type
+          }
+        })
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+}
+</script>

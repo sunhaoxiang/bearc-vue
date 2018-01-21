@@ -27,10 +27,10 @@
           <Input number v-model="formModal.productPrice" placeholder="请输入售价"></Input>
         </FormItem>
         <FormItem label="分类" prop="productType">
-          <Input v-model="formModal.productType" placeholder="请输入分类"></Input>
+          <TypeSelect v-model="formModal.productType" placeholder="请输入分类"></TypeSelect>
         </FormItem>
         <FormItem label="国家" prop="productCountry">
-          <Input v-model="formModal.productCountry" placeholder="请输入国家"></Input>
+          <CountrySelect v-model="formModal.productCountry" placeholder="请输入国家"></CountrySelect>
         </FormItem>
       </Form>
       <div slot="footer">

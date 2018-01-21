@@ -26,6 +26,7 @@ import VueLazyload from 'vue-lazyload'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import Utils from './lib/utils'
+import '@/registerComponents.js'
 
 Vue.use(VueLazyload, {
   loading: '/static/loading-svg/loading-bars.svg'
