@@ -79,14 +79,15 @@ export default {
         {
           title: '操作',
           key: 'action',
-          width: 150,
+          width: 160,
           align: 'center',
           render: (h, params) => {
             return h('div', [
               h('Button', {
                 props: {
                   type: 'primary',
-                  size: 'small'
+                  size: 'small',
+                  icon: 'edit'
                 },
                 style: {
                   marginRight: '5px'
@@ -100,7 +101,8 @@ export default {
               h('Button', {
                 props: {
                   type: 'error',
-                  size: 'small'
+                  size: 'small',
+                  icon: 'trash-a'
                 },
                 on: {
                   click: () => {
