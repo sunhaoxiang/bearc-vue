@@ -2,8 +2,8 @@
   <div>
     <Card shadow class="admin-card center">
       <h2 class="ma-b-20"><Icon type="calendar"></Icon> 历史上的今天</h2>
-      <p>{{todayInHistoryTitle}}<Button type="text" icon="ios-search">查看详情</Button></p>
-      <Spin size="large" fix v-if="todayInHistoryLoading"></Spin>
+      <p>{{todayInHistoryTitle}}</p>
+      <Spin size="large" fix v-if="TIHLoading"></Spin>
     </Card>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
         title: '',
         e_id: ''
       },
-      todayInHistoryLoading: true
+      TIHLoading: false // 历史上的今天标题loading
     }
   },
   computed: {
@@ -32,13 +32,15 @@ export default {
   },
   methods: {
     async randomTIHAsync () {
+      this.TIHLoading = true
       try {
         let res = await todayInHistoryRandom()
         this.todayInHistory.date = res.data.result.date
         this.todayInHistory.title = res.data.result.title
         this.todayInHistory.e_id = res.data.result.e_id
-        this.todayInHistoryLoading = false
+        this.TIHLoading = false
       } catch (err) {
+        this.TIHLoading = false
         console.log(err)
       }
     }

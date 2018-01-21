@@ -68,3 +68,4 @@ export const removeCountry = postWithToken('/users/countries/removecountry')  //
 
 // 第三方接口
 export const todayInHistoryRandom = getWithToken('/thirdparty/todayinhistory/random')  // 历史上的今天列表
+export const todayInHistoryDetail = getWithToken('/thirdparty/todayinhistory/detail')  // 历史上的今天列表

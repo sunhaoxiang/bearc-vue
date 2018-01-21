@@ -14,7 +14,7 @@
             <Icon type="ios-locked-outline" size="20" slot="prepend"></Icon>
           </Input>
         </Form-item>
-        <Button class="login-button" type="primary" size="large" @click="loginSubmit('formLogin')">登 录</Button>
+        <Button class="login-button" type="primary" size="large" :loading="loginLoading" @click="loginSubmit('formLogin')">{{loginBtnText}}</Button>
       </Form>
     </div>
   </div>
@@ -39,7 +39,13 @@ export default {
         password: [
           { required: true, message: '密码不能为空', trigger: 'blur' }
         ]
-      }
+      },
+      loginLoading: false
+    }
+  },
+  computed: {
+    loginBtnText () {
+      return this.loginLoading ? '登录中…' : '登 录'
     }
   },
   methods: {
@@ -53,6 +59,7 @@ export default {
       })
     },
     async loginAsync () {
+      this.loginLoading = true
       try {
         let res = await login({
           username: this.formLogin.username,
@@ -65,8 +72,10 @@ export default {
           this.$router.push('goods/welcome')
         } else {
           this.$Message.error(res.data.msg)
+          this.loginLoading = false
         }
       } catch (err) {
+        this.loginLoading = false
         console.log(err)
       }
     }
