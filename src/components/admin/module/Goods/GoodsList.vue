@@ -1,6 +1,7 @@
 <template>
   <div>
     <Card shadow class="admin-card center">
+      <h2 slot="title">商品列表</h2>
       <div class="ma-b-10">
         <Button type="primary" size="large" @click="modalAdd">
           <Icon type="ios-compose-outline"></Icon>

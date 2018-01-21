@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import CanvasBackground from '../common/CanvasBackground'
+import CanvasBackground from '../common/background/CanvasBackground'
 import { register } from '@/axios/axios.js'
 
 export default {
