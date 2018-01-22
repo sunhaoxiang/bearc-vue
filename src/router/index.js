@@ -38,9 +38,9 @@ const TypesList = resolve => require(['@/components/admin/module/Goods/TypesList
 const CountriesList = resolve => require(['@/components/admin/module/Goods/CountriesList'], resolve)
 
 // Earning模块
-const Earning = resolve => require(['@/components/admin/module/Earning/Earning'], resolve)
+const Earnings = resolve => require(['@/components/admin/module/Earnings/Earnings'], resolve)
 // 收入列表
-const EarningList = resolve => require(['@/components/admin/module/Earning/EarningList'], resolve)
+const EarningsList = resolve => require(['@/components/admin/module/Earnings/EarningsList'], resolve)
 
 // Customers模块
 const Customers = resolve => require(['@/components/admin/module/Customers/Customers'], resolve)
@@ -167,17 +167,17 @@ const router = new Router({
           redirect: 'goods/goodslist'
         },
         {
-          path: 'earning',
-          name: 'earning',
-          component: Earning,
+          path: 'earnings',
+          name: 'earnings',
+          component: Earnings,
           children: [
             {
-              path: 'earninglist',
-              name: 'earninglist',
-              component: EarningList
+              path: 'earningslist',
+              name: 'earningslist',
+              component: EarningsList
             }
           ],
-          redirect: 'earning/earninglist'
+          redirect: 'earnings/earningslist'
         },
         {
           path: 'customers',

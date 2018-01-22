@@ -6,7 +6,7 @@
         <Icon type="ios-paper"></Icon>
         商品管理
       </MenuItem>
-      <MenuItem name="earning">
+      <MenuItem name="earnings">
         <Icon type="social-usd"></Icon>
         收入管理
       </MenuItem>

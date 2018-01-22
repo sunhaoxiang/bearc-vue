@@ -3,7 +3,7 @@
     <Row>
       <Col span="4">
         <Menu class="body-min-height" theme="light" :active-name="routeName" @on-select="selectMenu">
-          <MenuItem name="earninglist">
+          <MenuItem name="earningslist">
             <Icon type="social-usd"></Icon>
             收入列表
           </MenuItem>
