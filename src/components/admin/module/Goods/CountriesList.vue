@@ -27,11 +27,11 @@
 
 <script>
 import { countriesList, addCountry, modifyCountry, removeCountry } from '@/axios/axios.js'
-import goods from '@/mixin/goods.js'
+import list from '@/mixin/list.js'
 
 export default {
   mixins: [
-    goods
+    list
   ],
   data () {
     return {
