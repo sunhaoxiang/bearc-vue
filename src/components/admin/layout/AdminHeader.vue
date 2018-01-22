@@ -6,6 +6,10 @@
         <Icon type="ios-paper"></Icon>
         商品管理
       </MenuItem>
+      <MenuItem name="earning">
+        <Icon type="social-usd"></Icon>
+        收入管理
+      </MenuItem>
       <MenuItem name="customers">
         <Icon type="ios-people"></Icon>
         客户管理
