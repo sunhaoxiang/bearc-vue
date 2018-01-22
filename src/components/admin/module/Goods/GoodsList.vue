@@ -57,8 +57,7 @@ export default {
       tHeader: [
         {
           title: '商品',
-          key: 'productName',
-          ellipsis: true
+          key: 'productName'
         },
         {
           title: '进价',
