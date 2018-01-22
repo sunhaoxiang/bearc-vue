@@ -39,6 +39,9 @@ const CountriesList = resolve => require(['@/components/admin/module/Goods/Count
 
 // Customers模块
 const Customers = resolve => require(['@/components/admin/module/Customers/Customers'], resolve)
+// 客户列表
+const CustomersList = resolve => require(['@/components/admin/module/Customers/CustomersList'], resolve)
+
 // Statistics模块
 const Statistics = resolve => require(['@/components/admin/module/Statistics/Statistics'], resolve)
 // Settings模块
@@ -161,7 +164,15 @@ const router = new Router({
         {
           path: 'customers',
           name: 'customers',
-          component: Customers
+          component: Customers,
+          children: [
+            {
+              path: 'customerslist',
+              name: 'customerslist',
+              component: CustomersList
+            }
+          ],
+          redirect: 'customers/customerslist'
         },
         {
           path: 'statistics',

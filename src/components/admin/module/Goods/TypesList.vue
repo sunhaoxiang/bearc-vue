@@ -1,7 +1,10 @@
 <template>
   <div>
     <Card shadow class="admin-card center">
-      <h2 slot="title">分类列表</h2>
+      <h2 slot="title">
+        <Icon type="ios-pricetags"></Icon>
+        分类列表
+      </h2>
       <div class="ma-b-10">
         <Button type="primary" size="large" @click="modalAdd">
           <Icon type="ios-compose-outline"></Icon>
