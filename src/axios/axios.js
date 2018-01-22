@@ -66,6 +66,11 @@ export const addCountry = postWithToken('/users/countries/addcountry')  // 添�
 export const modifyCountry = postWithToken('/users/countries/modifycountry')  // 修改国家
 export const removeCountry = postWithToken('/users/countries/removecountry')  // 删除国家
 
+export const customersList = getWithToken('/users/customers/customerslist')  // 客户列表
+export const addCustomer = postWithToken('/users/customers/addcustomer')  // 添加客户
+export const modifyCustomer = postWithToken('/users/customers/modifycustomer')  // 修改客户
+export const removeCustomer = postWithToken('/users/customers/removecustomer')  // 删除客户
+
 // 第三方接口
 export const todayInHistoryRandom = getWithToken('/thirdparty/todayinhistory/random')  // 历史上的今天列表
 export const todayInHistoryDetail = getWithToken('/thirdparty/todayinhistory/detail')  // 历史上的今天列表

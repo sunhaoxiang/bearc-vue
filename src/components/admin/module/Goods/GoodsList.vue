@@ -130,8 +130,8 @@ export default {
         productName: [{ required: true, message: '商品名不能为空', trigger: 'blur' }],
         purchasePrice: [{ required: true, type: 'number', message: '进价不能为空', trigger: 'blur' }],
         productPrice: [{ required: true, type: 'number', message: '售价不能为空', trigger: 'blur' }],
-        productType: [{ required: true, message: '分类不能为空', trigger: 'blur' }],
-        productCountry: [{ required: true, message: '国家不能为空', trigger: 'blur' }]
+        productType: [{ required: true, message: '分类不能为空', trigger: 'change' }],
+        productCountry: [{ required: true, message: '国家不能为空', trigger: 'change' }]
       }
     }
   },
