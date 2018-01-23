@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { goodsList } from '@/axios/axios.js'
+import { goodsListSelect } from '@/axios/axios.js'
 import select from '@/mixin/select.js'
 
 export default {
@@ -23,7 +23,7 @@ export default {
   methods: {
     async optionsAsync () {
       try {
-        let res = await goodsList()
+        let res = await goodsListSelect()
         this.list = res.data.result.list.map(e => {
           return {
             value: e.productName,

@@ -272,7 +272,7 @@ export default {
     },
     exportData () {
       this.$refs.table.exportCsv({
-        filename: '商品数据'
+        filename: '收入数据'
       })
     }
   }

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { countriesList } from '@/axios/axios.js'
+import { countriesListSelect } from '@/axios/axios.js'
 import select from '@/mixin/select.js'
 
 export default {
@@ -23,7 +23,7 @@ export default {
   methods: {
     async optionsAsync () {
       try {
-        let res = await countriesList()
+        let res = await countriesListSelect()
         this.list = res.data.result.list.map(e => {
           return {
             value: e.country,

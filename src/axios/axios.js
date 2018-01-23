@@ -79,3 +79,9 @@ export const removeCustomer = postWithToken('/users/customers/removecustomer')  
 // 第三方接口
 export const todayInHistoryRandom = getWithToken('/thirdparty/todayinhistory/random')  // 历史上的今天标题
 export const todayInHistoryDetail = getWithToken('/thirdparty/todayinhistory/detail')  // 历史上的今天详情
+
+// select
+export const goodsListSelect = getWithToken('/users/goods/goodslist/select')
+export const typesListSelect = getWithToken('/users/types/typeslist/select')
+export const countriesListSelect = getWithToken('/users/countries/countrieslist/select')
+export const customersListSelect = getWithToken('/users/customers/customerslist/select')
