@@ -17,24 +17,11 @@
 </template>
 
 <script>
+import module from '@/mixin/module.js'
+
 export default {
-  data () {
-    return {
-      routeName: ''
-    }
-  },
-  methods: {
-    selectMenu (name) {
-      this.$router.push(`/${this.$route.matched[1].name}/${name}`)
-    }
-  },
-  watch: {
-    $route (val, oldVal) {
-      this.routeName = val.matched[2].name
-    }
-  },
-  created () {
-    this.routeName = this.$route.matched[2].name
-  }
+  mixins: [
+    module
+  ]
 }
 </script>
