@@ -21,13 +21,13 @@
       v-model="isModalShow"
       :title="modalTitle">
       <Form ref="formModal" :model="formModal" :rules="ruleModal" :label-width="80">
-        <FormItem label="姓名" prop="customerName">
+        <FormItem label="姓名" prop="customerName" class="modal-input">
           <Input v-model="formModal.customerName" placeholder="请输入姓名"></Input>
         </FormItem>
-        <FormItem label="电话" prop="customerPhone">
+        <FormItem label="电话" prop="customerPhone" class="modal-input">
           <Input v-model="formModal.customerPhone" placeholder="请输入电话"></Input>
         </FormItem>
-        <FormItem label="地址" prop="customerAddress">
+        <FormItem label="地址" prop="customerAddress" class="modal-input">
           <Input v-model="formModal.customerAddress" placeholder="请输入地址"></Input>
         </FormItem>
       </Form>

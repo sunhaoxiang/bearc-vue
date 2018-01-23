@@ -21,20 +21,20 @@
       v-model="isModalShow"
       :title="modalTitle">
       <Form ref="formModal" :model="formModal" :rules="ruleModal" :label-width="80">
-        <FormItem label="商品名" prop="productName">
+        <FormItem label="商品名" prop="productName" class="modal-input">
           <Input v-model="formModal.productName" placeholder="请输入商品名"></Input>
         </FormItem>
-        <FormItem label="进价" prop="purchasePrice">
+        <FormItem label="进价" prop="purchasePrice" class="modal-input">
           <Input number v-model="formModal.purchasePrice" placeholder="请输入进价"></Input>
         </FormItem>
-        <FormItem label="售价" prop="productPrice">
+        <FormItem label="售价" prop="productPrice" class="modal-input">
           <Input number v-model="formModal.productPrice" placeholder="请输入售价"></Input>
         </FormItem>
-        <FormItem label="分类" prop="productType">
-          <TypeSelect v-model="formModal.productType" placeholder="请输入分类"></TypeSelect>
+        <FormItem label="分类" prop="productType" class="modal-input">
+          <TypeSelect v-model="formModal.productType" placeholder="请选择分类"></TypeSelect>
         </FormItem>
-        <FormItem label="国家" prop="productCountry">
-          <CountrySelect v-model="formModal.productCountry" placeholder="请输入国家"></CountrySelect>
+        <FormItem label="国家" prop="productCountry" class="modal-input">
+          <CountrySelect v-model="formModal.productCountry" placeholder="请选择国家"></CountrySelect>
         </FormItem>
       </Form>
       <div slot="footer">

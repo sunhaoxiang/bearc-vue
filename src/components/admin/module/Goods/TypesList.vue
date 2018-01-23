@@ -17,7 +17,7 @@
       v-model="isModalShow"
       :title="modalTitle">
       <Form ref="formModal" :model="formModal" :rules="ruleModal" :label-width="80">
-        <FormItem label="分类" prop="type">
+        <FormItem label="分类" prop="type" class="modal-input">
           <Input v-model="formModal.type" placeholder="请输入分类"></Input>
         </FormItem>
       </Form>

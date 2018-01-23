@@ -17,7 +17,7 @@
       v-model="isModalShow"
       :title="modalTitle">
       <Form ref="formModal" :model="formModal" :rules="ruleModal" :label-width="80">
-        <FormItem label="国家" prop="country">
+        <FormItem label="国家" prop="country" class="modal-input">
           <Input v-model="formModal.country" placeholder="请输入国家"></Input>
         </FormItem>
       </Form>

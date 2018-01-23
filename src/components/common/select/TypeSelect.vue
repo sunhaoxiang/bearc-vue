@@ -4,8 +4,9 @@
     @on-change="changeHandler"
     :placeholder="placeholder"
     :clearable="clearable"
+    :filterable="filterable"
     :disabled="disabled">
-    <Option v-for="item in typesList" :value="item.value" :key="item.value">
+    <Option v-for="item in list" :value="item.value" :key="item.value">
       {{item.label}}
     </Option>
   </Select>
@@ -23,7 +24,7 @@ export default {
     async optionsAsync () {
       try {
         let res = await typesList()
-        this.typesList = res.data.result.list.map(e => {
+        this.list = res.data.result.list.map(e => {
           return {
             value: e.type,
             label: e.type

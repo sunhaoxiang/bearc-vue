@@ -15,6 +15,11 @@ export default {
       type: Boolean,
       default: true
     },
+    // 可搜索
+    filterable: {
+      type: Boolean,
+      default: false
+    },
     // 禁用
     disabled: {
       type: Boolean,
@@ -24,7 +29,7 @@ export default {
   data () {
     return {
       valueSelf: '',
-      typesList: []
+      list: []
     }
   },
   watch: {
