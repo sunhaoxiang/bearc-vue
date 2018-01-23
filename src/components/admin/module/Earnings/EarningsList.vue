@@ -27,6 +27,9 @@
         <FormItem label="客户姓名" prop="customerName" class="modal-input">
           <CustomerSelect v-model="formModal.customerName" :filterable="true" placeholder="请选择客户"></CustomerSelect>
         </FormItem>
+        <FormItem label="售出日期" prop="sellDate">
+          <DatePicker type="date" v-model="formModal.sellDate" placeholder="请选择日期"></DatePicker>
+        </FormItem>
         <FormItem label="进价" prop="purchasePrice" class="modal-input">
           <Input number v-model="formModal.purchasePrice" placeholder="请输入进价"></Input>
         </FormItem>
@@ -38,9 +41,6 @@
         </FormItem>
         <FormItem label="快递费" prop="expressFee" class="modal-input">
           <Input number v-model="formModal.expressFee" placeholder="请输入快递支出"></Input>
-        </FormItem>
-        <FormItem label="售出日期" prop="sellDate">
-          <DatePicker type="date" v-model="formModal.sellDate" placeholder="请选择日期"></DatePicker>
         </FormItem>
       </Form>
       <div slot="footer">
@@ -155,7 +155,7 @@ export default {
         customerName: [{ required: true, message: '客户姓名不能为空', trigger: 'change' }],
         purchasePrice: [{ required: true, type: 'number', message: '进价不能为空', trigger: 'blur' }],
         productPrice: [{ required: true, type: 'number', message: '售价不能为空', trigger: 'blur' }],
-        sellNumber: [{ required: true, type: 'number', message: '售出数量不能为空', trigger: 'blur' }],
+        sellNumber: [{ required: true, type: 'number', message: '售出数量不能为空', trigger: 'change' }],
         expressFee: [{ required: true, type: 'number', message: '快递支出不能为空', trigger: 'blur' }],
         sellDate: [{ required: true, type: 'date', message: '售出日期不能为空', trigger: 'change' }]
       }
