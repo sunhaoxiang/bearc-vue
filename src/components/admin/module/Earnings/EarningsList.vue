@@ -16,6 +16,7 @@
         </Button>
       </div>
       <Table :loading="tLoading" :columns="tHeader" :data="tBody" ref="table"></Table>
+      <Page v-if="page.total > 10" :total="page.total" @on-change="pageChangeHandler" class="ma-t-10"></Page>
     </Card>
     <Modal
       v-model="isModalShow"
@@ -165,7 +166,10 @@ export default {
     async listAsync () {
       try {
         this.tLoading = true
-        let res = await earningsList()
+        let res = await earningsList({
+          current: this.page.current,
+          size: this.page.size
+        })
         this.listStatusSelfHandler(res)
       } catch (err) {
         this.tLoading = false
@@ -243,25 +247,37 @@ export default {
       switch (res.data.status) {
         // 验证成功
         case 0:
-          this.tBody = res.data.result.list.map(e => {
-            return {
-              ...e,
-              _profit: (e.productPrice - e.purchasePrice) * e.sellNumber - e.expressFee,
-              _sellDate: Moment(e.sellDate).format('YYYY-MM-DD')
-            }
-          })
+          if (res.data.result.list.length === 0 && this.page.current !== 1) {
+            this.page.current--
+            this.listAsync()
+          } else {
+            this.tBody = res.data.result.list.map(e => {
+              return {
+                ...e,
+                _profit: (e.productPrice - e.purchasePrice) * e.sellNumber - e.expressFee,
+                _sellDate: Moment(e.sellDate).format('YYYY-MM-DD')
+              }
+            })
+            this.page.total = res.data.result.count
+          }
           this.tLoading = false
           break
         // 验证成功，但需要更新token
         case 1:
           Cookies.set('bearcToken', res.data.result.newToken)
-          this.tBody = res.data.result.list.map(e => {
-            return {
-              ...e,
-              _profit: (e.productPrice - e.purchasePrice) * e.sellNumber - e.expressFee,
-              _sellDate: Moment(e.sellDate).format('YYYY-MM-DD')
-            }
-          })
+          if (res.data.result.list.length === 0 && this.page.current !== 1) {
+            this.page.current--
+            this.listAsync()
+          } else {
+            this.tBody = res.data.result.list.map(e => {
+              return {
+                ...e,
+                _profit: (e.productPrice - e.purchasePrice) * e.sellNumber - e.expressFee,
+                _sellDate: Moment(e.sellDate).format('YYYY-MM-DD')
+              }
+            })
+            this.page.total = res.data.result.count
+          }
           this.tLoading = false
           break
         // 验证失败

@@ -5,6 +5,11 @@ export default {
     return {
       tBody: [], // 表格data
       tLoading: false, // 表格loading
+      page: {
+        current: 1,
+        size: 10,
+        total: 0
+      },
       isModalShow: false, // modal显示
       modalType: '' // modal类型
     }
@@ -51,13 +56,25 @@ export default {
       switch (res.data.status) {
         // 验证成功
         case 0:
-          this.tBody = res.data.result.list
+          if (res.data.result.list.length === 0 && this.page.current !== 1) {
+            this.page.current--
+            this.listAsync()
+          } else {
+            this.tBody = res.data.result.list
+            this.page.total = res.data.result.count
+          }
           this.tLoading = false
           break
         // 验证成功，但需要更新token
         case 1:
           Cookies.set('bearcToken', res.data.result.newToken)
-          this.tBody = res.data.result.list
+          if (res.data.result.list.length === 0 && this.page.current !== 1) {
+            this.page.current--
+            this.listAsync()
+          } else {
+            this.tBody = res.data.result.list
+            this.page.total = res.data.result.count
+          }
           this.tLoading = false
           break
         // 验证失败
@@ -86,6 +103,10 @@ export default {
           this.$Message.error(res.data.msg)
           break
       }
+    },
+    pageChangeHandler (current) {
+      this.page.current = current
+      this.listAsync()
     }
   }
 }

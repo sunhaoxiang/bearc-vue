@@ -16,6 +16,7 @@
         </Button>
       </div>
       <Table :loading="tLoading" :columns="tHeader" :data="tBody" ref="table"></Table>
+      <Page v-if="page.total > 10" :total="page.total" @on-change="pageChangeHandler" class="ma-t-10"></Page>
     </Card>
     <Modal
       v-model="isModalShow"
@@ -119,7 +120,10 @@ export default {
     async listAsync () {
       try {
         this.tLoading = true
-        let res = await customersList()
+        let res = await customersList({
+          current: this.page.current,
+          size: this.page.size
+        })
         this.listStatusHandler(res)
       } catch (err) {
         this.tLoading = false
