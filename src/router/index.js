@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
-import { verifyToken } from '@/axios/axios.js'
 import Cookies from 'js-cookie'
+import { verifyToken } from '@/axios/axios.js'
 
 // 前台内容
 // const Layout = resolve => require(['@/components/goods/layout/Layout'], resolve)
