@@ -28,7 +28,7 @@
           <Input v-model="formModal.customerPhone" placeholder="请输入电话"></Input>
         </FormItem>
         <FormItem label="地址" prop="customerAddress" class="modal-input">
-          <Input v-model="formModal.customerAddress" placeholder="请输入地址"></Input>
+          <Input v-model="formModal.customerAddress" type="textarea" placeholder="请输入地址"></Input>
         </FormItem>
       </Form>
       <div slot="footer">
