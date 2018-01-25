@@ -37,7 +37,7 @@ export default {
       this.valueSelf = val
     }
   },
-  mounted () {
+  created () {
     this.optionsAsync()
   },
   methods: {

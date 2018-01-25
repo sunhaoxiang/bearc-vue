@@ -27,7 +27,7 @@ export default {
       return this.todayInHistory.e_id ? `${this.todayInHistory.date}，${this.todayInHistory.title}` : ''
     }
   },
-  mounted () {
+  created () {
     this.randomTIHAsync()
   },
   methods: {
