@@ -49,8 +49,10 @@ const CustomersList = resolve => require(['@/components/admin/module/Customers/C
 
 // Statistics模块
 const Statistics = resolve => require(['@/components/admin/module/Statistics/Statistics'], resolve)
+
 // Settings模块
 const Settings = resolve => require(['@/components/admin/module/Settings/Settings'], resolve)
+const ModifyPassword = resolve => require(['@/components/admin/module/Settings/ModifyPassword'], resolve)
 
 // 404页面
 const page404 = resolve => require(['@/components/admin/404/404'], resolve)
@@ -203,7 +205,15 @@ const router = new Router({
         {
           path: 'settings',
           name: 'settings',
-          component: Settings
+          component: Settings,
+          children: [
+            {
+              path: 'modifypassword',
+              name: 'modifypassword',
+              component: ModifyPassword
+            }
+          ],
+          redirect: 'settings/modifypassword'
         }
       ],
       redirect: 'goods/welcome'
