@@ -52,6 +52,9 @@ const Statistics = resolve => require(['@/components/admin/module/Statistics/Sta
 // Settings模块
 const Settings = resolve => require(['@/components/admin/module/Settings/Settings'], resolve)
 
+// 404页面
+const page404 = resolve => require(['@/components/admin/404/404'], resolve)
+
 Vue.use(Router)
 
 const router = new Router({
@@ -204,11 +207,16 @@ const router = new Router({
         }
       ],
       redirect: 'goods/welcome'
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: page404
+    },
+    {
+      path: '*',
+      redirect: '/404'
     }
-    // {
-    //   path: '*',
-    //   redirect: '/hot'
-    // }
   ]
 })
 
