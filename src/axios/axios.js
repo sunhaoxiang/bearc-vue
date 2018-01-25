@@ -6,26 +6,21 @@ import Cookies from 'js-cookie'
 axios.defaults.baseURL = '/api'
 
 // get 方法
-// function get (url) {
-//   return body => axios.get(url, {params: body})
-// }
-
-function getWithToken (url) {
-  return body => axios.get(url, {params: {
-    ...body,
-    token: Cookies.get('bearcToken')
-  }})
+function get (url) {
+  return body => axios.get(url, {
+    headers: {
+      token: Cookies.get('bearcToken')
+    },
+    params: body
+  })
 }
 
 // post 方法
 function post (url) {
-  return body => axios.post(url, body)
-}
-
-function postWithToken (url) {
-  return body => axios.post(url, {
-    ...body,
-    token: Cookies.get('bearcToken')
+  return body => axios.post(url, body, {
+    headers: {
+      token: Cookies.get('bearcToken')
+    }
   })
 }
 
@@ -47,41 +42,41 @@ export const register = post('/register')  // 注册
 export const login = post('/login')  // 登录
 
 // 后台
-export const verifyToken = postWithToken('/users/verifytoken')  // 验证登录
+export const verifyToken = post('/users/verifytoken')  // 验证登录
 
-export const upload = postWithToken('/users/upload')  // 上传文件
+export const upload = post('/users/upload')  // 上传文件
 
-export const goodsList = getWithToken('/users/goods/goodslist')  // 商品列表
-export const addGood = postWithToken('/users/goods/addgood')  // 添加商品
-export const modifyGood = postWithToken('/users/goods/modifygood')  // 修改商品
-export const removeGood = postWithToken('/users/goods/removegood')  // 删除商品
+export const goodsList = get('/users/goods/goodslist')  // 商品列表
+export const addGood = post('/users/goods/addgood')  // 添加商品
+export const modifyGood = post('/users/goods/modifygood')  // 修改商品
+export const removeGood = post('/users/goods/removegood')  // 删除商品
 
-export const typesList = getWithToken('/users/types/typeslist')  // 分类列表
-export const addType = postWithToken('/users/types/addtype')  // 添加分类
-export const modifyType = postWithToken('/users/types/modifytype')  // 修改分类
-export const removeType = postWithToken('/users/types/removetype')  // 删除分类
+export const typesList = get('/users/types/typeslist')  // 分类列表
+export const addType = post('/users/types/addtype')  // 添加分类
+export const modifyType = post('/users/types/modifytype')  // 修改分类
+export const removeType = post('/users/types/removetype')  // 删除分类
 
-export const countriesList = getWithToken('/users/countries/countrieslist')  // 国家列表
-export const addCountry = postWithToken('/users/countries/addcountry')  // 添加国家
-export const modifyCountry = postWithToken('/users/countries/modifycountry')  // 修改国家
-export const removeCountry = postWithToken('/users/countries/removecountry')  // 删除国家
+export const countriesList = get('/users/countries/countrieslist')  // 国家列表
+export const addCountry = post('/users/countries/addcountry')  // 添加国家
+export const modifyCountry = post('/users/countries/modifycountry')  // 修改国家
+export const removeCountry = post('/users/countries/removecountry')  // 删除国家
 
-export const earningsList = getWithToken('/users/earnings/earningslist')  // 收入列表
-export const addEarning = postWithToken('/users/earnings/addearning')  // 添加收入
-export const modifyEarning = postWithToken('/users/earnings/modifyearning')  // 修改收入
-export const removeEarning = postWithToken('/users/earnings/removeearning')  // 删除收入
+export const earningsList = get('/users/earnings/earningslist')  // 收入列表
+export const addEarning = post('/users/earnings/addearning')  // 添加收入
+export const modifyEarning = post('/users/earnings/modifyearning')  // 修改收入
+export const removeEarning = post('/users/earnings/removeearning')  // 删除收入
 
-export const customersList = getWithToken('/users/customers/customerslist')  // 客户列表
-export const addCustomer = postWithToken('/users/customers/addcustomer')  // 添加客户
-export const modifyCustomer = postWithToken('/users/customers/modifycustomer')  // 修改客户
-export const removeCustomer = postWithToken('/users/customers/removecustomer')  // 删除客户
+export const customersList = get('/users/customers/customerslist')  // 客户列表
+export const addCustomer = post('/users/customers/addcustomer')  // 添加客户
+export const modifyCustomer = post('/users/customers/modifycustomer')  // 修改客户
+export const removeCustomer = post('/users/customers/removecustomer')  // 删除客户
 
 // 第三方接口
-export const todayInHistoryRandom = getWithToken('/thirdparty/todayinhistory/random')  // 历史上的今天标题
-export const todayInHistoryDetail = getWithToken('/thirdparty/todayinhistory/detail')  // 历史上的今天详情
+export const todayInHistoryRandom = get('/thirdparty/todayinhistory/random')  // 历史上的今天标题
+export const todayInHistoryDetail = get('/thirdparty/todayinhistory/detail')  // 历史上的今天详情
 
 // select
-export const goodsListSelect = getWithToken('/users/goods/goodslist/select')
-export const typesListSelect = getWithToken('/users/types/typeslist/select')
-export const countriesListSelect = getWithToken('/users/countries/countrieslist/select')
-export const customersListSelect = getWithToken('/users/customers/customerslist/select')
+export const goodsListSelect = get('/users/goods/goodslist/select')
+export const typesListSelect = get('/users/types/typeslist/select')
+export const countriesListSelect = get('/users/countries/countrieslist/select')
+export const customersListSelect = get('/users/customers/customerslist/select')
