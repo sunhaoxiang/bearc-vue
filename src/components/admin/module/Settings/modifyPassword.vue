@@ -22,7 +22,7 @@
           </Input>
         </FormItem>
         <FormItem>
-          <Button type="primary" @click="submitModify('form')">确定</Button>
+          <Button type="primary" @click="submit('form')">确定</Button>
         </FormItem>
       </Form>
     </Card>
@@ -30,7 +30,8 @@
 </template>
 
 <script>
-// import { typesList, addType, modifyType, removeType } from '@/axios/axios.js'
+import Cookies from 'js-cookie'
+import { modifyPassword } from '@/axios/axios.js'
 
 export default {
   data () {
@@ -57,14 +58,49 @@ export default {
     }
   },
   methods: {
-    submitModify (name) {
+    submit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-
+          this.modifyAsync({})
         } else {
           this.$Message.error('请先填写表单')
         }
       })
+    },
+    async modifyAsync () {
+      try {
+        let res = await modifyPassword({
+          oldPassword: this.form.oldPassword,
+          newPassword: this.form.newPassword
+        })
+        this.StatusHandler(res)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    StatusHandler (res) {
+      switch (res.data.status) {
+        case 0: // 验证成功
+          this.form.oldPassword = ''
+          this.form.newPassword = ''
+          this.form.repeatNewPassword = ''
+          this.$Message.success(res.data.msg)
+          break
+        case 1: // 验证成功，但需要更新token
+          this.form.oldPassword = ''
+          this.form.newPassword = ''
+          this.form.repeatNewPassword = ''
+          Cookies.set('bearcToken', res.data.result.newToken)
+          this.$Message.success(res.data.msg)
+          break
+        case 500: // 验证成功，但出错
+          this.$Message.error(res.data.msg)
+          break
+        default: // 验证失败
+          this.$router.push('/login')
+          this.$Message.error(res.data.msg)
+          break
+      }
     }
   }
 }

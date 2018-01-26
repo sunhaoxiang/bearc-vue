@@ -245,8 +245,7 @@ export default {
     },
     listStatusSelfHandler (res) {
       switch (res.data.status) {
-        // 验证成功
-        case 0:
+        case 0: // 验证成功
           if (res.data.result.list.length === 0 && this.page.current !== 1) {
             this.page.current--
             this.listAsync()
@@ -262,8 +261,7 @@ export default {
           }
           this.tLoading = false
           break
-        // 验证成功，但需要更新token
-        case 1:
+        case 1: // 验证成功，但需要更新token
           Cookies.set('bearcToken', res.data.result.newToken)
           if (res.data.result.list.length === 0 && this.page.current !== 1) {
             this.page.current--
@@ -280,8 +278,10 @@ export default {
           }
           this.tLoading = false
           break
-        // 验证失败
-        default:
+        case 500: // 验证成功，但出错
+          this.$Message.error(res.data.msg)
+          break
+        default: // 验证失败
           this.$router.push('/login')
           break
       }

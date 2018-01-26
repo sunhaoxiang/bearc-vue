@@ -5,7 +5,7 @@ export default {
     return {
       tBody: [], // 表格data
       tLoading: false, // 表格loading
-      page: {
+      page: { // 分页
         current: 1,
         size: 10,
         total: 0
@@ -54,8 +54,7 @@ export default {
     // 查询的status
     listStatusHandler (res) {
       switch (res.data.status) {
-        // 验证成功
-        case 0:
+        case 0: // 验证成功
           if (res.data.result.list.length === 0 && this.page.current !== 1) {
             this.page.current--
             this.listAsync()
@@ -65,8 +64,7 @@ export default {
           }
           this.tLoading = false
           break
-        // 验证成功，但需要更新token
-        case 1:
+        case 1: // 验证成功，但需要更新token
           Cookies.set('bearcToken', res.data.result.newToken)
           if (res.data.result.list.length === 0 && this.page.current !== 1) {
             this.page.current--
@@ -77,8 +75,10 @@ export default {
           }
           this.tLoading = false
           break
-        // 验证失败
-        default:
+        case 500: // 验证成功，但出错
+          this.$Message.error(res.data.msg)
+          break
+        default: // 验证失败
           this.$router.push('/login')
           break
       }
@@ -86,19 +86,19 @@ export default {
     // 添加、修改、删除的status
     actionStatusHandler (res) {
       switch (res.data.status) {
-        // 验证成功
-        case 0:
+        case 0: // 验证成功
           this.$Message.success(res.data.msg)
           this.listAsync()
           break
-        // 验证成功，但需要更新token
-        case 1:
+        case 1: // 验证成功，但需要更新token
           Cookies.set('bearcToken', res.data.result.newToken)
           this.$Message.success(res.data.msg)
           this.listAsync()
           break
-        // 验证失败
-        default:
+        case 500: // 验证成功，但出错
+          this.$Message.error(res.data.msg)
+          break
+        default: // 验证失败
           this.$router.push('/login')
           this.$Message.error(res.data.msg)
           break

@@ -71,6 +71,8 @@ export const addCustomer = post('/users/customers/addcustomer')  // 添加客户
 export const modifyCustomer = post('/users/customers/modifycustomer')  // 修改客户
 export const removeCustomer = post('/users/customers/removecustomer')  // 删除客户
 
+export const modifyPassword = post('/users/modifyPassword') // 修改密码
+
 // 第三方接口
 export const todayInHistoryRandom = get('/thirdparty/todayinhistory/random')  // 历史上的今天标题
 export const todayInHistoryDetail = get('/thirdparty/todayinhistory/detail')  // 历史上的今天详情
