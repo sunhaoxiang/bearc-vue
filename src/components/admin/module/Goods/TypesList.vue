@@ -70,7 +70,7 @@ export default {
                 props: {
                   type: 'error',
                   size: 'small',
-                  icon: 'trash-a'
+                  icon: 'trash-b'
                 },
                 on: {
                   click: () => {
