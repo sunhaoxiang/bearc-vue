@@ -65,7 +65,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .banner {
   height: 400px;
   line-height: 400px;

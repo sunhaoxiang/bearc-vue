@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .footer {
   color: #fff;
   background: #495060;

@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @media screen and (min-width: 1321px) {
   .img {
     width: 200px;

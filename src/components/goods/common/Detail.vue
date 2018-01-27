@@ -93,7 +93,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @media screen and (min-width: 1561px) {
   .detail-pic {
     width: 500px;

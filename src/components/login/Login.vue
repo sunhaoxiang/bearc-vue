@@ -86,7 +86,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .login-wrapper {
   position: absolute;
   top: 50%;
