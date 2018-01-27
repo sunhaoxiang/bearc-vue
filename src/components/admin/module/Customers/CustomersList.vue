@@ -6,14 +6,23 @@
         客户列表
       </h2>
       <div class="ma-b-10">
-        <Button type="primary" size="large" @click="modalAdd">
-          <Icon type="ios-compose-outline"></Icon>
-          添加客户
-        </Button>
-        <Button type="primary" size="large" @click="exportData">
-          <Icon type="ios-download-outline"></Icon>
-          导出客户数据
-        </Button>
+        <Row>
+          <Col span="12">
+            <Button type="primary" size="large" @click="modalAdd">
+              <Icon type="ios-compose-outline"></Icon>
+              添加商品
+            </Button>
+            <Button type="primary" size="large" @click="exportData">
+              <Icon type="ios-download-outline"></Icon>
+              导出商品数据
+            </Button>
+          </Col>
+          <Col span="12">
+            <Input v-model="searchText" size="large" @keyup.enter.native="search" placeholder="请输入客户姓名">
+              <Button slot="append" icon="ios-search" @click="search">搜索</Button>
+            </Input>
+          </Col>
+        </Row>
       </div>
       <Table :loading="tLoading" :columns="tHeader" :data="tBody" ref="table"></Table>
       <Page v-if="page.total > 10" :total="page.total" @on-change="pageChangeHandler" class="ma-t-10"></Page>
@@ -103,6 +112,7 @@ export default {
           }
         }
       ],
+      searchText: '',
       formModal: {
         _id: '',
         customerName: '',
@@ -121,6 +131,7 @@ export default {
       try {
         this.tLoading = true
         let res = await customersList({
+          search: this.searchText,
           current: this.page.current,
           size: this.page.size
         })
@@ -164,6 +175,10 @@ export default {
       } catch (err) {
         console.log(err)
       }
+    },
+    search () {
+      this.page.current = 1
+      this.listAsync()
     },
     modalAdd () {
       this.modalType = 'new'
