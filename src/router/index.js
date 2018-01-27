@@ -2,7 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
 import Cookies from 'js-cookie'
-import { verifyToken } from '@/axios/axios.js'
+import { verifyToken } from '@/axios/axios'
+import Goods from './Goods'
+import Customers from './Customers'
+import Earnings from './Earnings'
+import Statistics from './Statistics'
+import Settings from './Settings'
 
 // 前台内容
 // const Layout = resolve => require(['@/components/goods/layout/Layout'], resolve)
@@ -24,35 +29,6 @@ const Login = resolve => require(['@/components/login/Login'], resolve)
 
 // 后台内容
 const Admin = resolve => require(['@/components/admin/layout/Admin'], resolve)
-
-// 欢迎模块
-const Welcome = resolve => require(['@/components/admin/module/Welcome/Welcome'], resolve)
-
-// Goods模块
-const Goods = resolve => require(['@/components/admin/module/Goods/Goods'], resolve)
-// 商品列表
-const GoodsList = resolve => require(['@/components/admin/module/Goods/GoodsList'], resolve)
-// 分类列表
-const TypesList = resolve => require(['@/components/admin/module/Goods/TypesList'], resolve)
-// 国家列表
-const CountriesList = resolve => require(['@/components/admin/module/Goods/CountriesList'], resolve)
-
-// Earning模块
-const Earnings = resolve => require(['@/components/admin/module/Earnings/Earnings'], resolve)
-// 收入列表
-const EarningsList = resolve => require(['@/components/admin/module/Earnings/EarningsList'], resolve)
-
-// Customers模块
-const Customers = resolve => require(['@/components/admin/module/Customers/Customers'], resolve)
-// 客户列表
-const CustomersList = resolve => require(['@/components/admin/module/Customers/CustomersList'], resolve)
-
-// Statistics模块
-const Statistics = resolve => require(['@/components/admin/module/Statistics/Statistics'], resolve)
-
-// Settings模块
-const Settings = resolve => require(['@/components/admin/module/Settings/Settings'], resolve)
-const ModifyPassword = resolve => require(['@/components/admin/module/Settings/ModifyPassword'], resolve)
 
 // 404页面
 const page404 = resolve => require(['@/components/admin/404/404'], resolve)
@@ -143,78 +119,11 @@ const router = new Router({
         login: true
       },
       children: [
-        {
-          path: 'goods',
-          name: 'goods',
-          component: Goods,
-          children: [
-            {
-              path: 'welcome',
-              name: 'welcome',
-              component: Welcome
-            },
-            {
-              path: 'goodslist',
-              name: 'goodslist',
-              component: GoodsList
-            },
-            {
-              path: 'typeslist',
-              name: 'typeslist',
-              component: TypesList
-            },
-            {
-              path: 'countrieslist',
-              name: 'countrieslist',
-              component: CountriesList
-            }
-          ],
-          redirect: 'goods/goodslist'
-        },
-        {
-          path: 'earnings',
-          name: 'earnings',
-          component: Earnings,
-          children: [
-            {
-              path: 'earningslist',
-              name: 'earningslist',
-              component: EarningsList
-            }
-          ],
-          redirect: 'earnings/earningslist'
-        },
-        {
-          path: 'customers',
-          name: 'customers',
-          component: Customers,
-          children: [
-            {
-              path: 'customerslist',
-              name: 'customerslist',
-              component: CustomersList
-            }
-          ],
-          redirect: 'customers/customerslist'
-        },
-        {
-          path: 'statistics',
-          name: 'statistics',
-          component: Statistics
-        },
-        {
-          path: 'settings',
-          name: 'settings',
-          component: Settings,
-          children: [
-            {
-              path: 'modifypassword',
-              name: 'modifypassword',
-              component: ModifyPassword
-            }
-          ],
-          redirect: 'settings/modifypassword'
-        }
+        Goods,
+        Customers,
+        Earnings,
+        Statistics,
+        Settings
       ],
       redirect: 'goods/welcome'
     },

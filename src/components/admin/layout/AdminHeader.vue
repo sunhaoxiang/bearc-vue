@@ -6,13 +6,13 @@
         <Icon type="ios-paper"></Icon>
         商品管理
       </MenuItem>
-      <MenuItem name="earnings">
-        <Icon type="social-usd"></Icon>
-        收入管理
-      </MenuItem>
       <MenuItem name="customers">
         <Icon type="ios-people"></Icon>
         客户管理
+      </MenuItem>
+      <MenuItem name="earnings">
+        <Icon type="social-usd"></Icon>
+        收入管理
       </MenuItem>
       <MenuItem name="statistics">
         <Icon type="ios-pulse-strong"></Icon>
