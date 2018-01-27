@@ -10,7 +10,7 @@
 
 <script>
 import ItemCard from '../common/ItemCard'
-import { getMasks } from '@/axios/axios.js'
+import { getMasks } from '@/axios'
 
 export default {
   props: {

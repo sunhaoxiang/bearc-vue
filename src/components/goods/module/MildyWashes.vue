@@ -10,7 +10,7 @@
 
 <script>
 import ItemCard from '../common/ItemCard'
-import { getMildyWashes } from '@/axios/axios.js'
+import { getMildyWashes } from '@/axios'
 
 export default {
   props: {

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { countriesList, addCountry, modifyCountry, removeCountry } from '@/axios/axios.js'
+import { countriesList, addCountry, modifyCountry, removeCountry } from '@/axios'
 import list from '@/mixin/list.js'
 
 export default {

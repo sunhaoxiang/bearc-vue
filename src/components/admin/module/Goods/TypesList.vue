@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { typesList, addType, modifyType, removeType } from '@/axios/axios.js'
+import { typesList, addType, modifyType, removeType } from '@/axios'
 import list from '@/mixin/list.js'
 
 export default {

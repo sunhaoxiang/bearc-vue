@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { getCountries } from '@/axios/axios.js'
+import { getCountries } from '@/axios'
 
 export default {
   props: {

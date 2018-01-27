@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { todayInHistoryRandom } from '@/axios/axios.js'
+import { todayInHistoryRandom } from '@/axios'
 
 export default {
   data () {

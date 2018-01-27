@@ -22,7 +22,7 @@
 
 <script>
 import CanvasBackground from '../common/background/CanvasBackground'
-import { register } from '@/axios/axios.js'
+import { register } from '@/axios'
 
 export default {
   data () {
@@ -86,11 +86,10 @@ export default {
   transform: translate(-50%,-50%);
   width: 300px;
   .register-title {
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
   .register-input {
     width: 300px;
-    margin-bottom: 10px;
   }
   .register-button {
     width: 300px;

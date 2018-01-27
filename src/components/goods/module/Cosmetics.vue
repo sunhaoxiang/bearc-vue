@@ -10,7 +10,7 @@
 
 <script>
 import ItemCard from '../common/ItemCard'
-import { getCosmetics } from '@/axios/axios.js'
+import { getCosmetics } from '@/axios'
 
 export default {
   props: {

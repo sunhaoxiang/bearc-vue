@@ -23,7 +23,7 @@
 <script>
 import Cookies from 'js-cookie'
 import CanvasBackground from '../common/background/CanvasBackground'
-import { login } from '@/axios/axios.js'
+import { login } from '@/axios'
 
 export default {
   data () {

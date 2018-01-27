@@ -54,7 +54,7 @@
 <script>
 import Moment from 'moment'
 import Cookies from 'js-cookie'
-import { earningsList, addEarning, modifyEarning, removeEarning } from '@/axios/axios.js'
+import { earningsList, addEarning, modifyEarning, removeEarning } from '@/axios'
 import list from '@/mixin/list.js'
 
 export default {

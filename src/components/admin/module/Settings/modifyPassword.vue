@@ -31,7 +31,7 @@
 
 <script>
 import Cookies from 'js-cookie'
-import { modifyPassword } from '@/axios/axios.js'
+import { modifyPassword } from '@/axios'
 
 export default {
   data () {

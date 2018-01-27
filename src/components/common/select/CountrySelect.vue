@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { countriesListSelect } from '@/axios/axios.js'
+import { countriesListSelect } from '@/axios'
 import select from '@/mixin/select.js'
 
 export default {

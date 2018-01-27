@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { goodsList, addGood, modifyGood, removeGood } from '@/axios/axios.js'
+import { goodsList, addGood, modifyGood, removeGood } from '@/axios'
 import list from '@/mixin/list.js'
 
 export default {

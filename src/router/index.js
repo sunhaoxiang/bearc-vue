@@ -2,8 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
 import Cookies from 'js-cookie'
-import { verifyToken } from '@/axios/axios'
+import Register from './Register'
+import Login from './Login'
 import Admin from './Admin'
+import Page404 from './404'
+import { verifyToken } from '@/axios'
 
 // 前台内容
 // const Layout = resolve => require(['@/components/goods/layout/Layout'], resolve)
@@ -18,13 +21,6 @@ import Admin from './Admin'
 // const HealthProducts = resolve => require(['@/components/goods/module/HealthProducts'], resolve)
 // const Accessories = resolve => require(['@/components/goods/module/Accessories'], resolve)
 // const Detail = resolve => require(['@/components/goods/common/Detail'], resolve)
-
-// 注册登录模块
-const Register = resolve => require(['@/components/register/Register'], resolve)
-const Login = resolve => require(['@/components/login/Login'], resolve)
-
-// 404页面
-const page404 = resolve => require(['@/components/admin/404/404'], resolve)
 
 Vue.use(Router)
 
@@ -94,22 +90,10 @@ const router = new Router({
     //   name: 'detail',
     //   component: Detail
     // },
+    Register,
+    Login,
     Admin,
-    {
-      path: '/register',
-      name: 'register',
-      component: Register
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    },
-    {
-      path: '/404',
-      name: '404',
-      component: page404
-    },
+    Page404,
     {
       path: '*',
       redirect: '/404'

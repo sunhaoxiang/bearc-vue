@@ -10,7 +10,7 @@
 
 <script>
 import ItemCard from '../common/ItemCard'
-import { getBabyFoods } from '@/axios/axios.js'
+import { getBabyFoods } from '@/axios'
 
 export default {
   props: {

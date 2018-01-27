@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { customersList, addCustomer, modifyCustomer, removeCustomer } from '@/axios/axios.js'
+import { customersList, addCustomer, modifyCustomer, removeCustomer } from '@/axios'
 import list from '@/mixin/list.js'
 
 export default {
