@@ -3,11 +3,7 @@ import Router from 'vue-router'
 import store from '@/store'
 import Cookies from 'js-cookie'
 import { verifyToken } from '@/axios/axios'
-import Goods from './Goods'
-import Customers from './Customers'
-import Earnings from './Earnings'
-import Statistics from './Statistics'
-import Settings from './Settings'
+import Admin from './Admin'
 
 // 前台内容
 // const Layout = resolve => require(['@/components/goods/layout/Layout'], resolve)
@@ -26,9 +22,6 @@ import Settings from './Settings'
 // 注册登录模块
 const Register = resolve => require(['@/components/register/Register'], resolve)
 const Login = resolve => require(['@/components/login/Login'], resolve)
-
-// 后台内容
-const Admin = resolve => require(['@/components/admin/layout/Admin'], resolve)
 
 // 404页面
 const page404 = resolve => require(['@/components/admin/404/404'], resolve)
@@ -101,6 +94,7 @@ const router = new Router({
     //   name: 'detail',
     //   component: Detail
     // },
+    Admin,
     {
       path: '/register',
       name: 'register',
@@ -110,22 +104,6 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: Login
-    },
-    {
-      path: '/',
-      name: 'admin',
-      component: Admin,
-      meta: {
-        login: true
-      },
-      children: [
-        Goods,
-        Customers,
-        Earnings,
-        Statistics,
-        Settings
-      ],
-      redirect: 'goods/welcome'
     },
     {
       path: '/404',
