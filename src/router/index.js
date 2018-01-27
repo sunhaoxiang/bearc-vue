@@ -240,19 +240,16 @@ router.beforeEach((to, from, next) => {
     try {
       let res = await verifyToken()
       switch (res.data.status) {
-        // 验证成功
-        case 0:
+        case 0: // 验证成功
           store.commit('login', res.data.result.username)
           next()
           break
-        // 验证成功，但需要更新token
-        case 1:
+        case 1: // 验证成功，但需要更新token
           store.commit('login', res.data.result.username)
           Cookies.set('bearcToken', res.data.result.newToken)
           next()
           break
-        // 验证失败
-        default:
+        default: // token无效
           next('/login')
           break
       }

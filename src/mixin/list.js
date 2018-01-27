@@ -54,6 +54,9 @@ export default {
     // 查询的status
     listStatusHandler (res) {
       switch (res.data.status) {
+        case -1: // 验证成功，但出错
+          this.$Message.error(res.data.msg)
+          break
         case 0: // 验证成功
           if (res.data.result.list.length === 0 && this.page.current !== 1) {
             this.page.current--
@@ -75,17 +78,25 @@ export default {
           }
           this.tLoading = false
           break
-        case 500: // 验证成功，但出错
+        case 401: // token无效
+          this.$router.push('/login')
           this.$Message.error(res.data.msg)
           break
-        default: // 验证失败
+        case 500: // 服务器错误
+          this.$Message.error(res.data.msg)
+          break
+        default: // 未知错误
           this.$router.push('/login')
+          this.$Message.error(res.data.msg)
           break
       }
     },
     // 添加、修改、删除的status
     actionStatusHandler (res) {
       switch (res.data.status) {
+        case -1: // 验证成功，但出错
+          this.$Message.error(res.data.msg)
+          break
         case 0: // 验证成功
           this.$Message.success(res.data.msg)
           this.listAsync()
@@ -95,10 +106,14 @@ export default {
           this.$Message.success(res.data.msg)
           this.listAsync()
           break
-        case 500: // 验证成功，但出错
+        case 401: // token无效
+          this.$router.push('/login')
           this.$Message.error(res.data.msg)
           break
-        default: // 验证失败
+        case 500: // 服务器错误
+          this.$Message.error(res.data.msg)
+          break
+        default: // 未知错误
           this.$router.push('/login')
           this.$Message.error(res.data.msg)
           break
