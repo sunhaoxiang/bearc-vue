@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import Moment from 'moment'
+import moment from 'moment'
 import Cookies from 'js-cookie'
 import { earningsList, addEarning, modifyEarning, removeEarning } from '@/axios'
 import list from '@/mixin/list.js'
@@ -257,7 +257,7 @@ export default {
               return {
                 ...e,
                 _profit: (e.productPrice - e.purchasePrice) * e.sellNumber - e.expressFee,
-                _sellDate: Moment(e.sellDate).format('YYYY-MM-DD')
+                _sellDate: moment(e.sellDate).format('YYYY-MM-DD')
               }
             })
             this.page.total = res.data.result.count
@@ -274,7 +274,7 @@ export default {
               return {
                 ...e,
                 _profit: (e.productPrice - e.purchasePrice) * e.sellNumber - e.expressFee,
-                _sellDate: Moment(e.sellDate).format('YYYY-MM-DD')
+                _sellDate: moment(e.sellDate).format('YYYY-MM-DD')
               }
             })
             this.page.total = res.data.result.count
