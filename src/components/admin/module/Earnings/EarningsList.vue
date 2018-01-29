@@ -256,7 +256,7 @@ export default {
             this.tBody = res.data.result.list.map(e => {
               return {
                 ...e,
-                _profit: (e.productPrice - e.purchasePrice) * e.sellNumber - e.expressFee,
+                _profit: ((e.productPrice * 10 - e.purchasePrice * 10) * e.sellNumber - e.expressFee * 10) / 10,
                 _sellDate: moment(e.sellDate).format('YYYY-MM-DD')
               }
             })
@@ -273,7 +273,7 @@ export default {
             this.tBody = res.data.result.list.map(e => {
               return {
                 ...e,
-                _profit: (e.productPrice - e.purchasePrice) * e.sellNumber - e.expressFee,
+                _profit: ((e.productPrice * 10 - e.purchasePrice * 10) * e.sellNumber - e.expressFee * 10) / 10,
                 _sellDate: moment(e.sellDate).format('YYYY-MM-DD')
               }
             })
