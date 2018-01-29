@@ -11,8 +11,10 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "@antv/data-set": "^0.8.5",
+    "@antv/g2": "^3.0.4",
     "axios": "^0.17.1",
-    "echarts": "^4.0.2",
+    "countup.js": "^1.9.3",
     "iview": "^2.9.0",
     "js-cookie": "^2.2.0",
     "moment": "^2.20.1",

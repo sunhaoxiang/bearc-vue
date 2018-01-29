@@ -1,15 +1,27 @@
 <template>
   <div>
-    统计分析开发中
+    <Row>
+      <Col span="4">
+        <Menu class="body-min-height" theme="light" :active-name="routeName" @on-select="selectMenu">
+          <MenuItem name="earningsstatistics">
+            <Icon type="ios-pulse-strong"></Icon>
+            收入统计
+          </MenuItem>
+        </Menu>
+      </Col>
+      <Col class="pa-t-20" span="20">
+        <router-view></router-view>
+      </Col>
+    </Row>
   </div>
 </template>
 
 <script>
-export default {
+import module from '@/mixin/module.js'
 
+export default {
+  mixins: [
+    module
+  ]
 }
 </script>
-
-<style>
-
-</style>
