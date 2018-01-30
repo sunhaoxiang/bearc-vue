@@ -106,7 +106,6 @@ export default {
         })
       })
       this.chartData = chartDataTemp
-      console.log(this.chartData)
       if (this.chart) {
         this.chart.destroy()
       }
