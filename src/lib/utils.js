@@ -1,7 +1,9 @@
 let local = {
-  test () {
-    console.log('test')
+  // 数组去重
+  uniqueArray (array) {
+    return Array.from(new Set(array))
   },
+  // 深拷贝
   clone (obj) {
     var o
     if (typeof obj === 'object') {

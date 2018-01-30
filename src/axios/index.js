@@ -62,6 +62,7 @@ export const modifyCountry = post('/users/countries/modifycountry')  // 修改�
 export const removeCountry = post('/users/countries/removecountry')  // 删除国家
 
 export const earningsList = get('/users/earnings/earningslist')  // 收入列表
+export const earningsStatistics = get('/users/earnings/earningslist/statistics')  // 收入统计
 export const addEarning = post('/users/earnings/addearning')  // 添加收入
 export const modifyEarning = post('/users/earnings/modifyearning')  // 修改收入
 export const removeEarning = post('/users/earnings/removeearning')  // 删除收入
