@@ -10,7 +10,7 @@
           <DatePicker type="daterange" v-model="form.date" @on-change="dateChangeHandler" size="large" placeholder="请选择时间范围" style="width: 300px"></DatePicker>
         </FormItem>
         <FormItem>
-          <Button type="primary" size="large" :loading="loading" @click="search">查 询</Button>
+          <Button type="primary" size="large" :loading="loading" @click="search('form')">查 询</Button>
         </FormItem>
       </Form>
       <div v-show="showResult" class="text">
@@ -23,19 +23,27 @@
 </template>
 
 <script>
-// import moment from 'moment'
+import Cookies from 'js-cookie'
 import CountUp from 'countup.js'
 import G2 from '@antv/g2'
 import { earningsStatistics } from '@/axios'
-// import { View } from '@antv/data-set'
 
 export default {
   data () {
+    const validateDate = (rule, value, callback) => {
+      if (value[0] === '' || value[1] === '') {
+        callback(new Error('请先选择日期'))
+      } else {
+        callback()
+      }
+    }
     return {
       form: {
         date: ['', '']
       },
-      rule: {},
+      rule: {
+        date: [{ validator: validateDate, trigger: 'change' }]
+      },
       dateFormat: ['', ''],
       total: 0,
       earnings: 0,
@@ -57,19 +65,29 @@ export default {
           startDate: this.form.date[0],
           endDate: this.form.date[1]
         })
-        this.loading = false
-        if (res.data.result.count === 0) return
-        this.showResult = true
+        this.statusHandler(res)
+        // if (res.data.result.count === 0) {
+        //   this.$Message.warning('没有查找到数据')
+        //   this.showResult = false
+        //   return
+        // }
         this.total = res.data.result.count
         this.sumHandler(res.data.result.list)
         this.chartInitHandler(res.data.result.list)
+        this.loading = false
       } catch (err) {
         this.loading = false
         console.log(err)
       }
     },
-    search () {
-      this.StatisticsAsync()
+    search (name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          this.StatisticsAsync()
+        } else {
+          this.$Message.error('请先选择日期')
+        }
+      })
     },
     sumHandler (list) {
       let sumEarning = 0
@@ -136,6 +154,43 @@ export default {
     },
     dateChangeHandler (val) {
       this.dateFormat = val
+    },
+    statusHandler (res) {
+      switch (res.data.status) {
+        case -1: // 验证成功，但出错
+          this.$Message.error(res.data.msg)
+          break
+        case 0: // 验证成功
+          if (res.data.result.count === 0) {
+            this.showResult = false
+            this.$Message.warning('没有查找到数据')
+            return
+          } else {
+            this.showResult = true
+          }
+          break
+        case 1: // 验证成功，但需要更新token
+          Cookies.set('bearcToken', res.data.result.newToken)
+          if (res.data.result.count === 0) {
+            this.showResult = false
+            this.$Message.warning('没有查找到数据')
+            return
+          } else {
+            this.showResult = true
+          }
+          break
+        case 401: // token无效
+          this.$router.push('/login')
+          this.$Message.error(res.data.msg)
+          break
+        case 500: // 服务器错误
+          this.$Message.error(res.data.msg)
+          break
+        default: // 未知错误
+          this.$router.push('/login')
+          this.$Message.error(res.data.msg)
+          break
+      }
     }
   }
 }

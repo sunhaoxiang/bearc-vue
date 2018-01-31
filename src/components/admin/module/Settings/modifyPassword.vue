@@ -73,12 +73,12 @@ export default {
           oldPassword: this.form.oldPassword,
           newPassword: this.form.newPassword
         })
-        this.StatusHandler(res)
+        this.statusHandler(res)
       } catch (err) {
         console.log(err)
       }
     },
-    StatusHandler (res) {
+    statusHandler (res) {
       switch (res.data.status) {
         case -1: // 验证成功，但出错
           this.$Message.error(res.data.msg)
