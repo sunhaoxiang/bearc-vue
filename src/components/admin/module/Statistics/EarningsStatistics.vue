@@ -7,7 +7,7 @@
       </h2>
       <Form ref="form" :model="form" :rules="rule" inline>
         <FormItem prop="date">
-          <DatePicker type="daterange" v-model="form.date" @on-change="dateChangeHandler" size="large" placeholder="请选择时间范围" style="width: 300px"></DatePicker>
+          <DatePicker type="daterange" v-model="form.date" :options="dateOptions" @on-change="dateChangeHandler" size="large" placeholder="请选择时间范围" style="width: 300px"></DatePicker>
         </FormItem>
         <FormItem>
           <Button type="primary" size="large" :loading="loading" @click="search('form')">查 询</Button>
@@ -43,6 +43,11 @@ export default {
       },
       rule: {
         date: [{ validator: validateDate, trigger: 'change' }]
+      },
+      dateOptions: {
+        disabledDate (date) {
+          return date && date.valueOf() > Date.now()
+        }
       },
       dateFormat: ['', ''],
       total: 0,
