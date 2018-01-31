@@ -19,7 +19,7 @@
           </Col>
           <Col span="12">
             <Input v-model="searchText" size="large" @keyup.enter.native="search" placeholder="请输入客户姓名">
-              <Button slot="append" icon="ios-search" @click="search">搜索</Button>
+              <Button slot="append" icon="ios-search" :loading="tLoading" @click="search">搜索</Button>
             </Input>
           </Col>
         </Row>
