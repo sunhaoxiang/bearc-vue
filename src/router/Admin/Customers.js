@@ -11,6 +11,9 @@ export default {
     {
       path: 'customerslist',
       name: 'customerslist',
+      meta: {
+        title: '客户列表'
+      },
       component: CustomersList
     }
   ],

@@ -17,21 +17,33 @@ export default {
     {
       path: 'welcome',
       name: 'welcome',
+      meta: {
+        title: '欢迎'
+      },
       component: Welcome
     },
     {
       path: 'goodslist',
       name: 'goodslist',
+      meta: {
+        title: '商品列表'
+      },
       component: GoodsList
     },
     {
       path: 'typeslist',
       name: 'typeslist',
+      meta: {
+        title: '分类列表'
+      },
       component: TypesList
     },
     {
       path: 'countrieslist',
       name: 'countrieslist',
+      meta: {
+        title: '国家列表'
+      },
       component: CountriesList
     }
   ],

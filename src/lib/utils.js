@@ -1,4 +1,4 @@
-let local = {
+const local = {
   // 数组去重
   uniqueArray (array) {
     return Array.from(new Set(array))

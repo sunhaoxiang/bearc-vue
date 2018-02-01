@@ -10,6 +10,9 @@ export default {
     {
       path: 'modifypassword',
       name: 'modifypassword',
+      meta: {
+        title: '修改密码'
+      },
       component: ModifyPassword
     }
   ],

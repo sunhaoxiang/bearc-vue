@@ -102,6 +102,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
+  window.document.title = to.meta.title
   if (to.matched.some(item => item.meta.login)) {
     verifyTokenAsync()
   } else {
@@ -128,6 +129,10 @@ router.beforeEach((to, from, next) => {
       console.log(err)
     }
   }
+})
+
+router.afterEach((to, from, next) => {
+  window.scrollTo(0, 0)
 })
 
 export default router

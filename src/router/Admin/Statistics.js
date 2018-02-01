@@ -10,6 +10,9 @@ export default {
     {
       path: 'earningsstatistics',
       name: 'earningsstatistics',
+      meta: {
+        title: '收入统计'
+      },
       component: EarningsStatistics
     }
   ],

@@ -11,6 +11,9 @@ export default {
     {
       path: 'earningslist',
       name: 'earningslist',
+      meta: {
+        title: '收入列表'
+      },
       component: EarningsList
     }
   ],
