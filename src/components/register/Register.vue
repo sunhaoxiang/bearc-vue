@@ -14,6 +14,11 @@
             <Icon type="ios-locked-outline" size="20" slot="prepend"></Icon>
           </Input>
         </Form-item>
+        <Form-item prop="invitationCode">
+          <Input class="register-input" type="text" size="large" v-model="formRegister.invitationCode">
+            <Icon type="ios-person-outline" size="20" slot="prepend"></Icon>
+          </Input>
+        </Form-item>
         <Button class="register-button" type="primary" size="large" @click="registerSubmit('formRegister')">注 册</Button>
       </Form>
     </div>
@@ -29,7 +34,8 @@ export default {
     return {
       formRegister: {
         username: '',
-        password: ''
+        password: '',
+        invitationCode: ''
       },
       ruleRegister: {
         username: [
@@ -41,6 +47,9 @@ export default {
           { required: true, message: '密码不能为空', trigger: 'blur' },
           { type: 'string', min: 6, message: '密码不能少于6个字符', trigger: 'blur' },
           { type: 'string', max: 32, message: '密码不能多于32个字符', trigger: 'blur' }
+        ],
+        invitationCode: [
+          { required: true, message: '验证码不能为空', trigger: 'blur' }
         ]
       }
     }
@@ -59,7 +68,8 @@ export default {
       try {
         let res = await register({
           username: this.formRegister.username,
-          password: this.formRegister.password
+          password: this.formRegister.password,
+          invitationCode: this.formRegister.invitationCode
         })
         if (res.data.status === 0) {
           this.$Message.success(res.data.msg)
