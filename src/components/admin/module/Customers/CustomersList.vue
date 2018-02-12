@@ -10,11 +10,11 @@
           <Col span="12">
             <Button type="primary" size="large" @click="modalAdd">
               <Icon type="ios-compose-outline"></Icon>
-              添加商品
+              添加客户
             </Button>
             <Button type="primary" size="large" @click="exportData">
               <Icon type="ios-download-outline"></Icon>
-              导出商品数据
+              导出客户数据
             </Button>
           </Col>
           <Col span="12">
