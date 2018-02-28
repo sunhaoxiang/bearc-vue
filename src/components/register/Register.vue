@@ -16,7 +16,7 @@
         </Form-item>
         <Form-item prop="invitationCode">
           <Input class="register-input" type="text" size="large" v-model="formRegister.invitationCode">
-            <Icon type="ios-person-outline" size="20" slot="prepend"></Icon>
+            <Icon type="ios-paw" size="20" slot="prepend"></Icon>
           </Input>
         </Form-item>
         <Button class="register-button" type="primary" size="large" @click="registerSubmit('formRegister')">注 册</Button>

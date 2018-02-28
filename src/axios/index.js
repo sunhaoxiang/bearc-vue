@@ -3,7 +3,8 @@ import Cookies from 'js-cookie'
 
 // 接口地址
 // axios.defaults.baseURL = 'http://localhost:9999/'
-axios.defaults.baseURL = '/api'
+axios.defaults.baseURL = 'https://api.shx89.com'
+// axios.defaults.baseURL = '/api'
 
 // get 方法
 function get (url) {
