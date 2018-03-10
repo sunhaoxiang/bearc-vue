@@ -13,7 +13,7 @@
   "dependencies": {
     "@antv/data-set": "^0.8.5",
     "@antv/g2": "^3.0.4",
-    "axios": "^0.17.1",
+    "axios": "^0.18.0",
     "countup.js": "^1.9.3",
     "iview": "^2.10.1",
     "js-cookie": "^2.2.0",
