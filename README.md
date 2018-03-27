@@ -1,6 +1,15 @@
 # bearc-vue
 
-> bearc-vue
+> 使用vue开发的后台管理系统的客户端
+
+## 技术栈
+
+- vue
+- vue-router
+- vuex
+- i-view
+- axios
+- g2
 
 ## Build Setup
 
