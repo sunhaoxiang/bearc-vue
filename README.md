@@ -1,6 +1,8 @@
 # bearc-vue
 
-> 使用vue开发的后台管理系统
+> 使用vue开发的后台管理系统客户端
+
+> 服务端源码地址: [bearc-node](https://github.com/sunhaoxiang/bearc-node)
 
 ## 功能
 
@@ -13,7 +15,6 @@
 ## 预览
 
 - 登陆
-
 ![1](https://raw.githubusercontent.com/sunhaoxiang/bearc-vue/master/preview-images/1.gif)
 
 - 添加和修改商品
