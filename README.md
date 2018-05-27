@@ -1,6 +1,6 @@
 # bearc-vue
 
-> 使用vue开发的后台管理系统客户端
+> 使用 vue 开发的后台管理系统客户端
 
 > 服务端源码地址: [bearc-node](https://github.com/sunhaoxiang/bearc-node)
 
