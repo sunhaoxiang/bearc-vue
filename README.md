@@ -23,6 +23,9 @@
 - 图表展示
 ![3](https://raw.githubusercontent.com/sunhaoxiang/bearc-vue/master/preview-images/3.gif)
 
+- 修改密码
+![4](https://raw.githubusercontent.com/sunhaoxiang/bearc-vue/master/preview-images/4.gif)
+
 ## 技术栈
 
 - vue
