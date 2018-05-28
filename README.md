@@ -14,16 +14,16 @@
 
 ## 预览
 
-- 登陆
+登陆  
 ![1](https://raw.githubusercontent.com/sunhaoxiang/bearc-vue/master/preview-images/1.gif)
 
-- 添加和修改商品
+添加和修改商品  
 ![2](https://raw.githubusercontent.com/sunhaoxiang/bearc-vue/master/preview-images/2.gif)
 
-- 图表展示
+图表展示  
 ![3](https://raw.githubusercontent.com/sunhaoxiang/bearc-vue/master/preview-images/3.gif)
 
-- 修改密码
+修改密码  
 ![4](https://raw.githubusercontent.com/sunhaoxiang/bearc-vue/master/preview-images/4.gif)
 
 ## 技术栈
