@@ -24,6 +24,18 @@ const local = {
       }
     } else { o = obj }
     return o
+  },
+  // log
+  log (arg1 = 'log', ...logs) {
+    if (logs.length === 0) {
+      console.log(arg1)
+    } else {
+      console.group(arg1)
+      logs.forEach(e => {
+        console.log(e)
+      })
+      console.groupEnd()
+    }
   }
 }
 
