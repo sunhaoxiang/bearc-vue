@@ -15,7 +15,6 @@
 ## 目录结构
 
 ```
-
 ├─ build // 打包设置
 ├─ config // 发布设置
 ├─ preview-images // 预览图
